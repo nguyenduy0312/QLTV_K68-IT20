@@ -7,6 +7,7 @@ public abstract class Document {
     private String id;
     private String title;
     private String author;
+    private String publisher;
     private boolean state;
 
     /**
@@ -103,10 +104,37 @@ public abstract class Document {
     }
 
     /**
+     * Retrieves the name of the book's publisher.
+     *
+     * @return The name of the publisher as a string.
+     */
+    public String getPublisher() {
+        return publisher;
+    }
+
+    /**
+     * Sets the name of the book's publisher.
+     *
+     * @param publisher The name of the publisher to set for the book.
+     */
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    /**
      * Returns the document type.
      * This method can be overridden in subclasses to return more specific document types.
      *
      * @return The string "Document" representing the general type of the document.
      */
     public abstract String getDocumentType();
+
+    /**
+     * Returns a string representation of the document information.
+     *
+     * @return A string containing the document's ID, title, and author.
+     */
+    public String getInfo() {
+        return "Document ID: " + id + ", Title: " + title + ", Author: " + author;
+    }
 }

@@ -72,25 +72,48 @@ public class DocumentManage {
     }
 
     /**
-     * Searches for documents by ID, title, or author.
+     * Searches for a document by its ID.
      *
-     * @param id     The ID of the document to search for.
-     * @param title  The title of the document to search for.
-     * @param author The author of the document to search for.
-     * @return A list of documents that match the search criteria.
+     * @param id The ID of the document to search for.
+     * @return The document with the corresponding ID if found; otherwise, returns null.
      */
-    public List<Document> searchDocument(String id, String title, String author) {
-        List<Document> documentList1 = new ArrayList<>();
-
+    public Document searchBookById(String id) {
         for (Document document : documentList) {
-            boolean matchesId = (id != null && document.getId().equalsIgnoreCase(id));
-            boolean matchesTitle = (title != null && document.getTitle().equalsIgnoreCase(title));
-            boolean matchesAuthor = (author != null && document.getAuthor().equalsIgnoreCase(author));
-
-            if (matchesId || matchesTitle || matchesAuthor) {
-                documentList1.add(document);
+            if (document.getId().equals(id)) {
+                return document;
             }
         }
-        return documentList1;
+        return null;
+    }
+
+    /**
+     * Searches for documents by their title.
+     *
+     * @param title The title of the documents to search for.
+     * @return A list of documents with the corresponding title. If no documents are found, the list will be empty.
+     */
+    public List<Document> searchBookByTitle(String title) {
+        List<Document> tmpList = new ArrayList<>();
+        for (Document document : documentList) {
+            if (document.getTitle().equals(title)) {
+                tmpList.add(document);
+            }
+        }
+        return tmpList;
+    }
+
+    /**
+     * Searches for documents by their author.
+     *
+     * @param author The author of the documents to search for.
+     * @return A list of documents with the corresponding author. If no documents are found, the list will be empty.
+     */
+    public Document searchBookByAuthor(String author) {
+        for (Document document : documentList) {
+            if (document.getAuthor().equals(author)) {
+                return document;
+            }
+        }
+        return null;
     }
 }
