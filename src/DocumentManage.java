@@ -2,67 +2,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Lớp quản lý tài liệu trong thư viện.
+ * Class for managing documents in the library.
  */
 public class DocumentManage {
     private List<Document> documentList;
 
     /**
-     * Khởi tạo một đối tượng DocumentManage với danh sách tài liệu rỗng.
+     * Initializes a DocumentManage object with an empty document list.
      */
     public DocumentManage() {
         documentList = new ArrayList<>();
     }
 
     /**
-     * Khởi tạo một đối tượng DocumentManage với danh sách tài liệu được cung cấp.
+     * Initializes a DocumentManage object with a provided document list.
      *
-     * @param documentList Danh sách tài liệu khởi tạo.
+     * @param documentList The initial list of documents.
      */
     public DocumentManage(List<Document> documentList) {
         this.documentList = documentList;
     }
 
     /**
-     * Lấy danh sách tài liệu.
+     * Gets the list of documents.
      *
-     * @return Danh sách tài liệu.
+     * @return The list of documents.
      */
     public List<Document> getDocumentList() {
         return documentList;
     }
 
     /**
-     * Thiết lập danh sách tài liệu.
+     * Sets a new list of documents.
      *
-     * @param documentList Danh sách tài liệu mới.
+     * @param documentList The new list of documents.
      */
     public void setDocumentList(List<Document> documentList) {
         this.documentList = documentList;
     }
 
     /**
-     * Thêm tài liệu vào danh sách.
+     * Adds a document to the list.
      *
-     * @param document Tài liệu cần thêm.
+     * @param document The document to be added.
      */
     public void addDocument(Document document) {
         this.documentList.add(document);
     }
 
     /**
-     * Xóa tài liệu khỏi danh sách.
+     * Removes a document from the list.
      *
-     * @param document Tài liệu cần xóa.
+     * @param document The document to be removed.
      */
     public void removeDocument(Document document) {
         this.documentList.remove(document);
     }
 
     /**
-     * Chỉnh sửa thông tin tài liệu trong danh sách.
+     * Edits a document's information in the list.
      *
-     * @param document Tài liệu với thông tin đã được chỉnh sửa.
+     * @param document The document with updated information.
      */
     public void editDocument(Document document) {
         int index = documentList.indexOf(document);
@@ -72,12 +72,12 @@ public class DocumentManage {
     }
 
     /**
-     * Tìm kiếm tài liệu theo ID, tiêu đề hoặc tác giả.
+     * Searches for documents by ID, title, or author.
      *
-     * @param id     ID của tài liệu cần tìm.
-     * @param title  Tiêu đề của tài liệu cần tìm.
-     * @param author Tác giả của tài liệu cần tìm.
-     * @return Danh sách tài liệu khớp với các tiêu chí tìm kiếm.
+     * @param id     The ID of the document to search for.
+     * @param title  The title of the document to search for.
+     * @param author The author of the document to search for.
+     * @return A list of documents that match the search criteria.
      */
     public List<Document> searchDocument(String id, String title, String author) {
         List<Document> documentList1 = new ArrayList<>();
@@ -94,4 +94,3 @@ public class DocumentManage {
         return documentList1;
     }
 }
-// còn thiếu Tích hợp API tra cứu thông tin tài liệu
