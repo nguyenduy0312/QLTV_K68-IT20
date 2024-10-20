@@ -18,6 +18,25 @@ public class UserManage {
     }
 
     /**
+     * Trả về danh sách người dùng.
+     *
+     * @return danh sách các đối tượng User
+     */
+    public List<User> getUsers() {
+        return users;
+    }
+
+    /**
+     * Thiết lập danh sách người dùng.
+     *
+     * @param users danh sách các đối tượng User cần thiết lập
+     */
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+
+    /**
      * Thêm một người dùng mới vào danh sách.
      *
      * @param user Người dùng cần thêm

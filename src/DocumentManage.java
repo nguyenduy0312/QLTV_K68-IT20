@@ -108,12 +108,22 @@ public class DocumentManage {
      * @param author The author of the documents to search for.
      * @return A list of documents with the corresponding author. If no documents are found, the list will be empty.
      */
-    public Document searchBookByAuthor(String author) {
+    public List<Document> searchBookByAuthor(String author) {
+        List<Document> tmpList = new ArrayList<>();
         for (Document document : documentList) {
             if (document.getAuthor().equals(author)) {
-                return document;
+               tmpList.add(document);
             }
         }
-        return null;
+        return tmpList;
+    }
+
+    /**
+     * Hiển thị tất cả sách trong hệ thống.
+     *
+     * @return Danh sách tất cả các đối tượng sách
+     */
+    public List<Document> viewAllDocument() {
+        return new ArrayList<>(documentList);
     }
 }

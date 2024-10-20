@@ -6,7 +6,7 @@ public class Person {
     private String name;
 
     // Ngày sinh của người dùng
-    private Date birthday;
+    private Date dateOfBirth;
 
     // ID duy nhất của người dùng
     private String id;
@@ -24,15 +24,15 @@ public class Person {
      * Hàm khởi tạo cho lớp Person.
      *
      * @param name Tên của người dùng
-     * @param birthday Ngày sinh của người dùng
+     * @param dateOfBirth Ngày sinh của người dùng
      * @param id ID duy nhất của người dùng
      * @param address Địa chỉ của người dùng
      * @param phoneNumber Số điện thoại của người dùng
      * @param gender Giới tính của người dùng
      */
-    public Person(String name, Date birthday, String id, String address, String phoneNumber, String gender) {
+    public Person(String name, Date dateOfBirth, String id, String address, String phoneNumber, String gender) {
         this.name = name;
-        this.birthday = birthday;
+        this.dateOfBirth = dateOfBirth;
         this.id = id;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -51,12 +51,12 @@ public class Person {
 
     // Phương thức lấy ngày sinh của người dùng
     public Date getBirthday() {
-        return birthday;
+        return dateOfBirth;
     }
 
     // Phương thức thiết lập ngày sinh cho người dùng
     public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+        this.dateOfBirth = birthday;
     }
 
     // Phương thức lấy ID của người dùng
@@ -106,7 +106,7 @@ public class Person {
      */
     @Override
     public String toString() {
-        return "Tên: " + name + ", Ngày sinh: " + birthday.toString() +
+        return "Tên: " + name + ", Ngày sinh: " + dateOfBirth.toString() +
                 ", ID: " + id + ", Địa chỉ: " + address +
                 ", Số điện thoại: " + phoneNumber + ", Giới tính: " + gender;
     }
