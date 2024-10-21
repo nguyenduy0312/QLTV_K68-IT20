@@ -6,9 +6,10 @@ public abstract class Document {
 
     private String id;
     private String title;
-    private String author;
-    private String publisher;
+    private Person author;
+    private Person publisher;
     private boolean state;
+    private int maxBorrowDays;
 
     /**
      * Default constructor for Document.
@@ -24,11 +25,13 @@ public abstract class Document {
      * @param author The author of the document.
      * @param state  The availability state of the document (true if available, false if borrowed).
      */
-    public Document(String id, String title, String author, boolean state) {
+    public Document(String id, String title, Person author, Person publisher, boolean state, int maxBorrowDays) {
         this.id = id;
         this.title = title;
         this.author = author;
+        this.publisher = publisher;
         this.state = state;
+        this.maxBorrowDays = maxBorrowDays;
     }
 
     /**
@@ -72,7 +75,7 @@ public abstract class Document {
      *
      * @return The author of the document.
      */
-    public String getAuthor() {
+    public Person getAuthor() {
         return author;
     }
 
@@ -81,7 +84,7 @@ public abstract class Document {
      *
      * @param author The new author of the document.
      */
-    public void setAuthor(String author) {
+    public void setAuthor(Person author) {
         this.author = author;
     }
 
@@ -108,7 +111,7 @@ public abstract class Document {
      *
      * @return The name of the publisher as a string.
      */
-    public String getPublisher() {
+    public Person getPublisher() {
         return publisher;
     }
 
@@ -117,8 +120,30 @@ public abstract class Document {
      *
      * @param publisher The name of the publisher to set for the book.
      */
-    public void setPublisher(String publisher) {
+    public void setPublisher(Person publisher) {
         this.publisher = publisher;
+    }
+
+    /**
+     * Retrieves the maximum number of days allowed for borrowing the document.
+     *
+     * @return The maximum number of days the document can be borrowed.
+     */
+    public int getMaxBorrowDays() {
+        return maxBorrowDays;
+    }
+
+    /**
+     * Sets the maximum number of days allowed for borrowing the document.
+     *
+     * @param maxBorrowDays The new maximum number of days for borrowing.
+     * @throws IllegalArgumentException if the provided maxBorrowDays is less than or equal to zero.
+     */
+    public void setMaxBorrowDays(int maxBorrowDays) {
+        if (maxBorrowDays <= 0) {
+            throw new IllegalArgumentException("Max borrow days must be greater than 0.");
+        }
+        this.maxBorrowDays = maxBorrowDays;
     }
 
     /**
@@ -134,7 +159,5 @@ public abstract class Document {
      *
      * @return A string containing the document's ID, title, and author.
      */
-    public String getInfo() {
-        return "Document ID: " + id + ", Title: " + title + ", Author: " + author;
-    }
+
 }
