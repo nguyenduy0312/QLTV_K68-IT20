@@ -6,8 +6,9 @@ public abstract class Document {
 
     private String id;
     private String title;
-    private String author;
-    private String publisher;
+    private Person author;
+    private Person publisher;
+    private int quantity;
     private boolean state;
 
     /**
@@ -24,10 +25,12 @@ public abstract class Document {
      * @param author The author of the document.
      * @param state  The availability state of the document (true if available, false if borrowed).
      */
-    public Document(String id, String title, String author, boolean state) {
+    public Document(String id, String title, Person author, Person publisher, int quantity, boolean state) {
         this.id = id;
         this.title = title;
         this.author = author;
+        this.publisher = publisher;
+        this.quantity = quantity;
         this.state = state;
     }
 
@@ -72,7 +75,7 @@ public abstract class Document {
      *
      * @return The author of the document.
      */
-    public String getAuthor() {
+    public Person getAuthor() {
         return author;
     }
 
@@ -81,8 +84,26 @@ public abstract class Document {
      *
      * @param author The new author of the document.
      */
-    public void setAuthor(String author) {
+    public void setAuthor(Person author) {
         this.author = author;
+    }
+
+    /**
+     * Gets the quantity of the document.
+     *
+     * @return The quantity of the document.
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * Sets a new quantity for the document.
+     *
+     * @param quantity The new quantity of the document.
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     /**
@@ -108,7 +129,7 @@ public abstract class Document {
      *
      * @return The name of the publisher as a string.
      */
-    public String getPublisher() {
+    public Person getPublisher() {
         return publisher;
     }
 
@@ -117,7 +138,7 @@ public abstract class Document {
      *
      * @param publisher The name of the publisher to set for the book.
      */
-    public void setPublisher(String publisher) {
+    public void setPublisher(Person publisher) {
         this.publisher = publisher;
     }
 

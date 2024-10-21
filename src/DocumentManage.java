@@ -83,7 +83,7 @@ public class DocumentManage {
                 return document;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Không tìm thấy tài liệu với tiêu đề: " + id);
     }
 
     /**
@@ -98,6 +98,9 @@ public class DocumentManage {
             if (document.getTitle().equals(title)) {
                 tmpList.add(document);
             }
+        }
+        if (tmpList.isEmpty()) {
+            throw new IllegalArgumentException("Không tìm thấy tài liệu với tiêu đề: " + title);
         }
         return tmpList;
     }
@@ -114,6 +117,9 @@ public class DocumentManage {
             if (document.getAuthor().equals(author)) {
                tmpList.add(document);
             }
+        }
+        if (tmpList.isEmpty()) {
+            throw new IllegalArgumentException("Không tìm thấy tài liệu với tiêu đề: " + author);
         }
         return tmpList;
     }
