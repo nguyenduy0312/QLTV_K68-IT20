@@ -20,7 +20,7 @@ public class Book extends Document {
      * @param author  the author of the book
      * @param state   the availability state of the book (true if available, false if borrowed)
      */
-    public Book(String id, String title, String author, boolean state) {
+    public Book(String id, Person title, Person author, boolean state) {
         super(id, title, author, state); // Calls the parent class constructor (Document)
     }
 
