@@ -15,13 +15,15 @@ public class Book extends Document {
      * Parameterized constructor for the Book class.
      * Used to create a Book object with specific details.
      *
-     * @param id      the ID of the book
-     * @param title   the title of the book
-     * @param author  the author of the book
-     * @param state   the availability state of the book (true if available, false if borrowed)
+     * @param id        the ID of the book
+     * @param title     the title of the book
+     * @param author    the author of the book
+     * @param publisher the publisher of the book
+     * @param quantity  the number of copies available for the book
+     * @param state     the availability state of the book (true if available, false if borrowed)
      */
-    public Book(String id, String title, Person author, boolean state) {
-        super(id, title, author, state); // Calls the parent class constructor (Document)
+    public Book(String id, String title, Person author,Person publisher, int quantity, boolean state) {
+        super(id, title, author,publisher,quantity, state); // Calls the parent class constructor (Document)
     }
 
     /**

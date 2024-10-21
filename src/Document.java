@@ -8,6 +8,7 @@ public abstract class Document {
     private String title;
     private Person author;
     private Person publisher;
+    private int quantity;
     private boolean state;
     private int maxBorrowDays;
 
@@ -25,11 +26,12 @@ public abstract class Document {
      * @param author The author of the document.
      * @param state  The availability state of the document (true if available, false if borrowed).
      */
-    public Document(String id, String title, Person author, Person publisher, boolean state, int maxBorrowDays) {
+    public Document(String id, String title, Person author, Person publisher, int quantity, boolean state) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
+        this.quantity = quantity;
         this.state = state;
         this.maxBorrowDays = maxBorrowDays;
     }
@@ -86,6 +88,24 @@ public abstract class Document {
      */
     public void setAuthor(Person author) {
         this.author = author;
+    }
+
+    /**
+     * Gets the quantity of the document.
+     *
+     * @return The quantity of the document.
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * Sets a new quantity for the document.
+     *
+     * @param quantity The new quantity of the document.
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     /**
