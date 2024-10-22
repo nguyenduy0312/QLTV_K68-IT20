@@ -129,16 +129,16 @@ public class Admin extends Person{
      * Kích hoạt tài khoản quản trị viên.
      * Phương thức này sẽ thiết lập trạng thái kích hoạt của tài khoản quản trị viên là {@code true}.
      */
-    public void activateAdmin() {
-        this.account.setActive(true);
+    public void activateAdmin(Account account) {
+        account.setActive(true);
     }
 
     /**
      * Hủy kích hoạt tài khoản quản trị viên.
      * Phương thức này sẽ thiết lập trạng thái kích hoạt của tài khoản quản trị viên là {@code false}.
      */
-    public void deactiveAdmin() {
-        this.account.setActive(false);
+    public void deactiveAdmin(Account account) {
+        account.setActive(false);
     }
 
     /**

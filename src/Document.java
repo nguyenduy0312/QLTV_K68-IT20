@@ -10,6 +10,7 @@ public abstract class Document {
     private Person publisher;
     private int quantity;
     private boolean state;
+    private int maxBorrowDays;
 
     /**
      * Default constructor for Document.
@@ -25,6 +26,7 @@ public abstract class Document {
      * @param author The author of the document.
      * @param state  The availability state of the document (true if available, false if borrowed).
      */
+
     public Document(String id, String title, Person author, Person publisher, int quantity, boolean state) {
         this.id = id;
         this.title = title;
@@ -32,6 +34,7 @@ public abstract class Document {
         this.publisher = publisher;
         this.quantity = quantity;
         this.state = state;
+        this.maxBorrowDays = maxBorrowDays;
     }
 
     /**
@@ -143,6 +146,28 @@ public abstract class Document {
     }
 
     /**
+     * Retrieves the maximum number of days allowed for borrowing the document.
+     *
+     * @return The maximum number of days the document can be borrowed.
+     */
+    public int getMaxBorrowDays() {
+        return maxBorrowDays;
+    }
+
+    /**
+     * Sets the maximum number of days allowed for borrowing the document.
+     *
+     * @param maxBorrowDays The new maximum number of days for borrowing.
+     * @throws IllegalArgumentException if the provided maxBorrowDays is less than or equal to zero.
+     */
+    public void setMaxBorrowDays(int maxBorrowDays) {
+        if (maxBorrowDays <= 0) {
+            throw new IllegalArgumentException("Max borrow days must be greater than 0.");
+        }
+        this.maxBorrowDays = maxBorrowDays;
+    }
+
+    /**
      * Returns the document type.
      * This method can be overridden in subclasses to return more specific document types.
      *
@@ -155,7 +180,5 @@ public abstract class Document {
      *
      * @return A string containing the document's ID, title, and author.
      */
-    public String getInfo() {
-        return "Document ID: " + id + ", Title: " + title + ", Author: " + author;
-    }
+
 }
