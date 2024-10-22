@@ -27,7 +27,7 @@ public abstract class Document {
      * @param state  The availability state of the document (true if available, false if borrowed).
      */
 
-    public Document(String id, String title, Person author, Person publisher, int quantity, boolean state) {
+    public Document(String id, String title, Person author, Person publisher, int quantity, boolean state, int maxBorrowDays ) {
         this.id = id;
         this.title = title;
         this.author = author;
