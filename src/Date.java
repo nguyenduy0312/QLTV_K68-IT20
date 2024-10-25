@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+import java.time.DateTimeException;
+import java.util.Scanner;
 
 /**
  * Lớp Date đại diện cho một ngày cụ thể, bao gồm ngày, tháng và năm.
@@ -17,6 +19,76 @@ public class Date {
         this.day = currentDate.getDayOfMonth();
         this.month = currentDate.getMonthValue();
         this.year = currentDate.getYear();
+    }
+
+    /**
+     * Đặt ngày, tháng và năm theo giá trị được cung cấp nếu hợp lệ.
+     *
+     * @param day ngày (1-31)
+     * @param month tháng (1-12)
+     * @param year năm
+     */
+    public void setDate(int day, int month, int year) {
+        if (isValidDate(day, month, year)) {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        } else {
+            System.out.println("Ngày tháng năm không hợp lệ!");
+        }
+    }
+
+    /**
+     * Nhập ngày, tháng, và năm từ người dùng qua console.
+     */
+    public void inputDate() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Nhập ngày: ");
+        int day = scanner.nextInt();
+
+        System.out.print("Nhập tháng: ");
+        int month = scanner.nextInt();
+
+        System.out.print("Nhập năm: ");
+        int year = scanner.nextInt();
+
+        if (isValidDate(day, month, year)) {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        } else {
+            System.out.println("Ngày tháng năm không hợp lệ!");
+        }
+    }
+
+    /**
+     * Kiểm tra xem ngày, tháng, năm có hợp lệ không.
+     *
+     * @param day ngày (1-31)
+     * @param month tháng (1-12)
+     * @param year năm
+     * @return true nếu ngày, tháng, năm hợp lệ; ngược lại false
+     */
+    public boolean isValidDate(int day, int month, int year) {
+        try {
+            LocalDate.of(year, month, day);
+            return true;
+        } catch (DateTimeException e) {
+            return false;
+        }
+    }
+
+    /**
+     * So sánh ngày hiện tại với một đối tượng Date khác.
+     *
+     * @param other đối tượng Date khác để so sánh
+     * @return 0 nếu hai ngày bằng nhau, >0 nếu ngày hiện tại lớn hơn, <0 nếu ngày hiện tại nhỏ hơn
+     */
+    public int compareTo(Date other) {
+        LocalDate currentDate = LocalDate.of(this.year, this.month, this.day);
+        LocalDate otherDate = LocalDate.of(other.year, other.month, other.day);
+        return currentDate.compareTo(otherDate);
     }
 
     /**
