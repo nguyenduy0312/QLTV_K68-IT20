@@ -19,6 +19,8 @@ public class MasterAccount {
         return USERNAME.equals(username) && PASSWORD.equals(password);
     }
 
+
+
     /**
      * Tạo tài khoản admin mới.
      *

@@ -15,6 +15,8 @@ public class Admin extends Person{
     // Quản lý tài liệu
     private DocumentManage documentManage;
 
+    private BorrowReturnManage borrowReturnManage;
+
     /**
      * Hàm khởi tạo cho lớp Admin với tất cả các tham số.
      *
@@ -83,12 +85,8 @@ public class Admin extends Person{
 
 
         if(account.getUserName().equals(userName) && account.getPassWord().equals(passWord)) {
-            if(account.getActive()) {
-                return true;
-            } else {
-                System.out.println("Error: Your account is locked.");
-                return false;
-            }
+            System.out.println("Login successful");
+            return true;
         }
 
         System.out.println("Error: Invalid username or password.");
@@ -106,9 +104,6 @@ public class Admin extends Person{
      *         hoặc mật khẩu mới giống với mật khẩu cũ.
      */
     public void resetPassWord(String newPassWord) {
-        if(this.getAccount().isActive.equals(false)) {
-            throw new IllegalArgumentException("Error: Your account is locked. Cannot reset password.");
-        }
 
         if (newPassWord == null || newPassWord.isEmpty() || this.getAccount().isValidPassword(newPassWord)) {
             throw new IllegalArgumentException("Invalid new password.");
@@ -120,32 +115,8 @@ public class Admin extends Person{
         this.getAccount().setPassWord(newPassWord);
     }
 
-    public void editAdmin() {
-        ;
-    }
 
 
-    /**
-     * Kích hoạt tài khoản quản trị viên.
-     * Phương thức này sẽ thiết lập trạng thái kích hoạt của tài khoản quản trị viên là {@code true}.
-     */
-    public void activateAdmin(Account account) {
-        account.setActive(true);
-    }
-
-    /**
-     * Hủy kích hoạt tài khoản quản trị viên.
-     * Phương thức này sẽ thiết lập trạng thái kích hoạt của tài khoản quản trị viên là {@code false}.
-     */
-    public void deactiveAdmin(Account account) {
-        account.setActive(false);
-    }
-
-    /**
-     * Phương thức hiển thị thông tin của admin.
-     *
-     * @return Chuỗi thông tin của người dùng
-     */
     @Override
     public String toString() {
         return super.toString();

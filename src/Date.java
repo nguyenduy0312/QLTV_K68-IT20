@@ -22,13 +22,14 @@ public class Date {
     }
 
     /**
-     * Đặt ngày, tháng và năm theo giá trị được cung cấp nếu hợp lệ.
+     * Khởi tạo một đối tượng Date mới với ngày, tháng và năm được chỉ định.
      *
-     * @param day ngày (1-31)
-     * @param month tháng (1-12)
-     * @param year năm
+     * @param day Ngày trong tháng (1-31).
+     * @param month Tháng trong năm (1-12).
+     * @param year Năm (ví dụ: 2024).
+     * @throws IllegalArgumentException nếu ngày, tháng hoặc năm được cung cấp không hợp lệ.
      */
-    public void setDate(int day, int month, int year) {
+    public Date(int day, int month, int year) {
         if (isValidDate(day, month, year)) {
             this.day = day;
             this.month = month;
@@ -43,22 +44,24 @@ public class Date {
      */
     public void inputDate() {
         Scanner scanner = new Scanner(System.in);
+        boolean valid = false;
 
-        System.out.print("Nhập ngày: ");
-        int day = scanner.nextInt();
+        while (!valid) {
+            System.out.print("Nhập ngày (dd): ");
+            int day = scanner.nextInt();
+            System.out.print("Nhập tháng (MM): ");
+            int month = scanner.nextInt();
+            System.out.print("Nhập năm (yyyy): ");
+            int year = scanner.nextInt();
 
-        System.out.print("Nhập tháng: ");
-        int month = scanner.nextInt();
-
-        System.out.print("Nhập năm: ");
-        int year = scanner.nextInt();
-
-        if (isValidDate(day, month, year)) {
-            this.day = day;
-            this.month = month;
-            this.year = year;
-        } else {
-            System.out.println("Ngày tháng năm không hợp lệ!");
+            if (isValidDate(day, month, year)) {
+                this.day = day;
+                this.month = month;
+                this.year = year;
+                valid = true;
+            } else {
+                System.out.println("Ngày không hợp lệ, vui lòng thử lại.");
+            }
         }
     }
 
@@ -129,6 +132,11 @@ public class Date {
         this.day = newDate.getDayOfMonth();
         this.month = newDate.getMonthValue();
         this.year = newDate.getYear();
+    }
+
+    // Phương pháp chuyển đổi Date thành LocalDate
+    public LocalDate toLocalDate() {
+        return LocalDate.of(year, month, day);
     }
 
     /**

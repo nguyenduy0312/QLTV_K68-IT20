@@ -9,7 +9,6 @@ public abstract class Document {
     private Person author;
     private Person publisher;
     private int quantity;
-    private boolean state;
     private int maxBorrowDays;
 
     /**
@@ -19,20 +18,21 @@ public abstract class Document {
     public Document() {}
 
     /**
-     * Constructs a new Document with the specified details.
+     * Initializes a new Document object with the specified details.
      *
-     * @param id     The document's unique identifier.
-     * @param title  The title of the document.
-     * @param author The author of the document.
-     * @param state  The availability state of the document (true if available, false if borrowed).
+     * @param id The unique identifier for the document.
+     * @param title The title of the document.
+     * @param author The author of the document, represented by a {@link Person} object.
+     * @param publisher The publisher of the document, represented by a {@link Person} object.
+     * @param quantity The number of copies of the document available for borrowing.
+     * @param maxBorrowDays The maximum number of days the document can be borrowed.
      */
-    public Document(String id, String title, Person author, Person publisher, int quantity, boolean state) {
+    public Document(String id, String title, Person author, Person publisher, int quantity, int maxBorrowDays) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.quantity = quantity;
-        this.state = state;
         this.maxBorrowDays = maxBorrowDays;
     }
 
@@ -109,24 +109,6 @@ public abstract class Document {
     }
 
     /**
-     * Gets the current state of the document.
-     *
-     * @return True if the document is available, false if it is borrowed.
-     */
-    public boolean getState() {
-        return state;
-    }
-
-    /**
-     * Sets the availability state of the document.
-     *
-     * @param state True if the document is available, false if it is borrowed.
-     */
-    public void setState(boolean state) {
-        this.state = state;
-    }
-
-    /**
      * Retrieves the name of the book's publisher.
      *
      * @return The name of the publisher as a string.
@@ -174,10 +156,22 @@ public abstract class Document {
      */
     public abstract String getDocumentType();
 
+
     /**
      * Returns a string representation of the document information.
      *
      * @return A string containing the document's ID, title, and author.
      */
 
+    @Override
+    public String toString() {
+        return "Document{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", author=" + author +
+                ", publisher=" + publisher +
+                ", quantity=" + quantity +
+                ", maxBorrowDays=" + maxBorrowDays +
+                '}';
+    }
 }

@@ -19,10 +19,10 @@ public class Magazine extends Document {
      * @param author    the author of the magazine
      * @param publisher the publisher of the magazine
      * @param quantity  the number of copies available for the magazine
-     * @param state     the availability state of the magazine (true if available, false if borrowed)
+     * @param maxBorrowDays The maximum number of days the document can be borrowed
      */
-    public Magazine(String id, String title, Person author,Person publisher, int quantity, boolean state) {
-        super(id, title, author,publisher,quantity, state); // Calls the parent class constructor (Document)
+    public Magazine(String id, String title, Person author,Person publisher, int quantity, int maxBorrowDays) {
+        super(id, title, author,publisher,quantity, maxBorrowDays); // Calls the parent class constructor (Document)
     }
 
     /**

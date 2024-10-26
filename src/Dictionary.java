@@ -19,10 +19,10 @@ public class Dictionary extends Document {
      * @param author    the author of the book
      * @param publisher the publisher of the book
      * @param quantity  the number of copies available for the book
-     * @param state     the availability state of the dictionary (true if available, false if borrowed)
+     * @param maxBorrowDays The maximum number of days the document can be borrowed
      */
-    public Dictionary(String id, String title, Person author, Person publisher, int quantity, boolean state) {
-        super(id, title, author,publisher,quantity, state); // Calls the parent class constructor (Document)
+    public Dictionary(String id, String title, Person author, Person publisher, int quantity, int maxBorrowDays) {
+        super(id, title, author,publisher,quantity, maxBorrowDays); // Calls the parent class constructor (Document)
     }
 
     /**
