@@ -20,10 +20,10 @@ public class Book extends Document {
      * @param author    the author of the book
      * @param publisher the publisher of the book
      * @param quantity  the number of copies available for the book
-     * @param state     the availability state of the book (true if available, false if borrowed)
+     * @param maxBorrowDays The maximum number of days the document can be borrowed/
      */
-    public Book(String id, String title, Person author,Person publisher, int quantity, boolean state) {
-        super(id, title, author,publisher,quantity, state); // Calls the parent class constructor (Document)
+    public Book(String id, String title, Person author,Person publisher, int quantity, int maxBorrowDays) {
+        super(id, title, author,publisher,quantity, maxBorrowDays); // Calls the parent class constructor (Document)
     }
 
     /**

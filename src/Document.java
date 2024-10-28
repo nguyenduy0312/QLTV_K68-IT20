@@ -26,8 +26,8 @@ public abstract class Document {
      * @param quantity The number of copies of the document available for borrowing.
      * @param maxBorrowDays The maximum number of days the document can be borrowed.
      */
+    public Document(String id, String title, Person author, Person publisher, int quantity, int maxBorrowDays) {
 
-    public Document(String id, String title, Person author, Person publisher, int quantity, int maxBorrowDays ) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -156,10 +156,22 @@ public abstract class Document {
      */
     public abstract String getDocumentType();
 
+
     /**
      * Returns a string representation of the document information.
      *
      * @return A string containing the document's ID, title, and author.
      */
 
+    @Override
+    public String toString() {
+        return "Document{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", author=" + author +
+                ", publisher=" + publisher +
+                ", quantity=" + quantity +
+                ", maxBorrowDays=" + maxBorrowDays +
+                '}';
+    }
 }

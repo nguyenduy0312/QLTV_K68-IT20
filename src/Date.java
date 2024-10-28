@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+import java.time.DateTimeException;
+import java.util.Scanner;
 
 /**
  * Lớp Date đại diện cho một ngày cụ thể, bao gồm ngày, tháng và năm.
@@ -17,6 +19,79 @@ public class Date {
         this.day = currentDate.getDayOfMonth();
         this.month = currentDate.getMonthValue();
         this.year = currentDate.getYear();
+    }
+
+    /**
+     * Khởi tạo một đối tượng Date mới với ngày, tháng và năm được chỉ định.
+     *
+     * @param day Ngày trong tháng (1-31).
+     * @param month Tháng trong năm (1-12).
+     * @param year Năm (ví dụ: 2024).
+     * @throws IllegalArgumentException nếu ngày, tháng hoặc năm được cung cấp không hợp lệ.
+     */
+    public Date(int day, int month, int year) {
+        if (isValidDate(day, month, year)) {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        } else {
+            System.out.println("Ngày tháng năm không hợp lệ!");
+        }
+    }
+
+    /**
+     * Nhập ngày, tháng, và năm từ người dùng qua console.
+     */
+    public void inputDate() {
+        Scanner scanner = new Scanner(System.in);
+        boolean valid = false;
+
+        while (!valid) {
+            System.out.print("Nhập ngày (dd): ");
+            int day = scanner.nextInt();
+            System.out.print("Nhập tháng (MM): ");
+            int month = scanner.nextInt();
+            System.out.print("Nhập năm (yyyy): ");
+            int year = scanner.nextInt();
+
+            if (isValidDate(day, month, year)) {
+                this.day = day;
+                this.month = month;
+                this.year = year;
+                valid = true;
+            } else {
+                System.out.println("Ngày không hợp lệ, vui lòng thử lại.");
+            }
+        }
+    }
+
+    /**
+     * Kiểm tra xem ngày, tháng, năm có hợp lệ không.
+     *
+     * @param day ngày (1-31)
+     * @param month tháng (1-12)
+     * @param year năm
+     * @return true nếu ngày, tháng, năm hợp lệ; ngược lại false
+     */
+    public boolean isValidDate(int day, int month, int year) {
+        try {
+            LocalDate.of(year, month, day);
+            return true;
+        } catch (DateTimeException e) {
+            return false;
+        }
+    }
+
+    /**
+     * So sánh ngày hiện tại với một đối tượng Date khác.
+     *
+     * @param other đối tượng Date khác để so sánh
+     * @return 0 nếu hai ngày bằng nhau, >0 nếu ngày hiện tại lớn hơn, <0 nếu ngày hiện tại nhỏ hơn
+     */
+    public int compareTo(Date other) {
+        LocalDate currentDate = LocalDate.of(this.year, this.month, this.day);
+        LocalDate otherDate = LocalDate.of(other.year, other.month, other.day);
+        return currentDate.compareTo(otherDate);
     }
 
     /**
@@ -57,6 +132,11 @@ public class Date {
         this.day = newDate.getDayOfMonth();
         this.month = newDate.getMonthValue();
         this.year = newDate.getYear();
+    }
+
+    // Phương pháp chuyển đổi Date thành LocalDate
+    public LocalDate toLocalDate() {
+        return LocalDate.of(year, month, day);
     }
 
     /**

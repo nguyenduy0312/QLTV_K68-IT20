@@ -9,25 +9,20 @@ public class Account {
     // Mật khẩu
     String passWord;
 
-    // Trạng thái
-    Boolean isActive;
+
 
     /**
      * Khởi tạo đối tượng Account với tên đăng nhập, mật khẩu và trạng thái kích hoạt.
      *
      * @param userName tên đăng nhập của tài khoản
      * @param passWord mật khẩu của tài khoản
-     * @param isActive trạng thái kích hoạt của tài khoản,
-     *                 {@code true} nếu tài khoản đang hoạt động,
-     *                 {@code false} nếu chưa kích hoạt hoặc bị vô hiệu hóa
      */
-    public Account(String userName, String passWord, Boolean isActive) {
+    public Account(String userName, String passWord) {
         if(!isValidPassword(passWord)) {
             throw new IllegalArgumentException("Invalid password.");
         }
         this.userName = userName;
         this.passWord = passWord;
-        this.isActive = isActive;
     }
 
     /**
@@ -69,23 +64,7 @@ public class Account {
         this.passWord = passWord;
     }
 
-    /**
-     * Lấy trạng thái kích hoạt của tài khoản.
-     *
-     * @return {@code true} nếu tài khoản đang hoạt động, {@code false} nếu chưa kích hoạt hoặc bị vô hiệu hóa
-     */
-    public Boolean getActive() {
-        return isActive;
-    }
 
-    /**
-     * Thiết lập trạng thái kích hoạt cho tài khoản.
-     *
-     * @param active trạng thái mới của tài khoản, {@code true} nếu kích hoạt, {@code false} nếu vô hiệu hóa
-     */
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
 
     /**
      * Kiểm tra xem mật khẩu có hợp lệ hay không.
