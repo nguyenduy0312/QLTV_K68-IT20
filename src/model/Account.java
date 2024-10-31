@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Lớp đại diện cho tài khoản đăng nhập trong hệ thống
  */

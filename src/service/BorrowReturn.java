@@ -1,3 +1,7 @@
+package service;
+
+import util.Date;
+import model.Document;
 import java.time.LocalDate;
 
 public class BorrowReturn {
@@ -93,16 +97,6 @@ public class BorrowReturn {
 
     }
 
-    public static void main(String argc[]) {
-        Date date = new Date();
-        Person author = new Person("Đào Huy Hoàng", date, "23020666", "Yên Đồng", "0352712366", "Nam");
-        Book book = new Book("B111", "CTDL_GT", author, author, 4, 10);
-        Book book1 = new Book("B111", "CTDL_GT", author, author, 4, 10);
-        BorrowReturn borrowDocument = new BorrowReturn();
-        borrowDocument.borrowDocument(book);
-        borrowDocument.printInfo();
-        borrowDocument.borrowDocument(book1);
-        borrowDocument.printInfo();
 
-    }
 }
+

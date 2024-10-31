@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Class Document represents a document in the library system.
  * Each document has an ID, title, author, and availability state (available or not).
@@ -175,3 +177,4 @@ public abstract class Document {
                 '}';
     }
 }
+

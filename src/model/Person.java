@@ -1,6 +1,10 @@
+package model;
 /**
  * Lớp đại diện cho một người dùng trong hệ thống thư viện.
  */
+
+import util.Date;
+
 public class Person {
     // Tên của người dùng
     private String name;
@@ -111,3 +115,4 @@ public class Person {
                 ", Số điện thoại: " + phoneNumber + ", Giới tính: " + gender;
     }
 }
+

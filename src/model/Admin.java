@@ -1,10 +1,17 @@
+package model;
+
 /**
  * Lớp đại diện cho người quản lý trong hệ thống
  */
 
+import util.Date;
+import service.UserManage;
+import service.DocumentManage;
+import service.BorrowReturnManage;
+
 import java.util.ArrayList;
 
-public class Admin extends Person{
+public class Admin extends Person {
 
     // Tài khoản đăng nhập
     private Account account;
@@ -122,3 +129,4 @@ public class Admin extends Person{
         return super.toString();
     }
 }
+

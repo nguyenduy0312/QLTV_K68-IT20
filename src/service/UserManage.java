@@ -1,3 +1,7 @@
+package service;
+
+import model.Person;
+import model.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -104,3 +108,4 @@ public class UserManage {
         return new ArrayList<>(users);
     }
 }
+
