@@ -1,5 +1,7 @@
 package service;
 
+import model.User;
+import model.Document;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,6 +91,7 @@ public class BorrowReturnManage {
         System.out.println("This user has not borrowed this document.");
 
     }
+
 
 }
 

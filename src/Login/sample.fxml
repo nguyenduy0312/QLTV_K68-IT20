@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" styleClass="vbox_background_center" stylesheets="@loginPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <VBox alignment="CENTER" prefHeight="500.0" prefWidth="426.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="402.0">
+               <children>
+                  <TextField prefHeight="31.0" prefWidth="187.0" promptText="Username" style="-fx-background-radius: 50;" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="51.0" prefWidth="356.0">
+               <children>
+                  <TextField prefHeight="31.0" prefWidth="187.0" promptText="Password" style="-fx-background-radius: 50;" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </right>
+   <top>
+      <AmbientLight color="CHARTREUSE" lightOn="true" BorderPane.alignment="CENTER" />
+   </top>
+</BorderPane>
