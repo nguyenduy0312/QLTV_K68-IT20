@@ -92,7 +92,7 @@ public class Admin extends Person {
 
 
         if(account.getUserName().equals(userName) && account.getPassWord().equals(passWord)) {
-            System.out.println("Login successful");
+            System.out.println("LoginView successful");
             return true;
         }
 
