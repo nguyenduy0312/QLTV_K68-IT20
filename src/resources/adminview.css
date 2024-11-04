@@ -1,0 +1,48 @@
+.top_form{
+    -fx-background-color: #FCFCFC;
+    -fx-border-color: #dcdcc4;
+    -fx-border-width: 4px 4px 2px 4px;
+}
+
+.semi-top-form{
+    -fx-background-color:#FCFCFC;
+    -fx-border-color: #dcdcc4;
+    -fx-border-width: 2px 2px 2px 4px;
+}
+
+.nav-form{
+    -fx-background-color: linear-gradient(to bottom right, #B87543, #FCA05C);
+}
+
+.cursor_hand{
+    -fx-cursor:hand
+}
+
+.nav-button-form{
+    -fx-background-color: transparent;
+}
+
+.nav-button-form:hover{
+    -fx-background-color: linear-gradient(to bottom right, #B87543, #FCA05C);
+}
+
+.exit-button{
+    -fx-background-color: transparent;
+}
+.exit-button:hover{
+    -fx-background-color: #ec0d0d;
+}
+
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 6, 0, 0, 0);
+}
+.anchorPane-border1{
+    -fx-background-color: #ffff;
+    -fx-background-radius: 8px;
+}
+.top_form{
+    -fx-background-color: #D3D3D3;
+}
+
+
+

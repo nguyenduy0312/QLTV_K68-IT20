@@ -1,3 +1,5 @@
+package util;
+
 import java.time.LocalDate;
 import java.time.DateTimeException;
 import java.util.Scanner;
@@ -149,3 +151,4 @@ public class Date {
         return String.format("%02d/%02d/%04d", day, month, year);
     }
 }
+

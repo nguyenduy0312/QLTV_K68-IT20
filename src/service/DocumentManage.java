@@ -1,3 +1,6 @@
+package service;
+
+import model.Document;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,7 +118,7 @@ public class DocumentManage {
         List<Document> tmpList = new ArrayList<>();
         for (Document document : documentList) {
             if (document.getAuthor().equals(author)) {
-               tmpList.add(document);
+                tmpList.add(document);
             }
         }
         if (tmpList.isEmpty()) {
@@ -133,3 +136,4 @@ public class DocumentManage {
         return new ArrayList<>(documentList);
     }
 }
+

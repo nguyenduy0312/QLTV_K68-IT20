@@ -1,3 +1,7 @@
+package model;
+
+import util.Date;
+import service.BorrowReturn;
 import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
@@ -87,19 +91,5 @@ public class User extends Person {
         }
     }
 
-    public static void main(String argc[]) {
-        Date date = new Date(23, 12, 2005);
-        User user = new User("Hoàng", date, "23020666", "Nam Định", "0352712366", "Nam");
-        User user1 = new User("Huy", date, "23020677", "Nam Định", "0352712366", "Nam");
-        Person author = new Person("Đào Huy Hoàng", date, "23020666", "Yên Đồng", "0352712366", "Nam");
-        Book book = new Book("B111", "CTDL_GT", author, author, 1, 10);
-        Book book1 = new Book("B112", "CTDL_GT1", author, author, 1, 10);
-
-
-        user1.borrowDocument(book);
-        user1.borrowDocument(book1);
-
-        user1.printBorrowingInfo();
-
-    }
 }
+
