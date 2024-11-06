@@ -90,9 +90,9 @@ public class BorrowReturn {
 
     public void printInfo() {
         if(state.equals(NOT_RETURNED)) {
-            System.out.println(document.getId() + " " + document.getTitle() + " " + borrowDate + " " + this.getDueDate() + " ------ " + state);
+            System.out.println(document.getId() + " " + document.getTitle() + " " + document.getCategory() + " " + borrowDate + " " + this.getDueDate() + " ------ " + state);
         } else {
-            System.out.println(document.getId() + " " + document.getTitle() + " " + borrowDate + " " + this.getDueDate() + " " + actualReturnDate + " " + state);
+            System.out.println(document.getId() + " " + document.getTitle() + " " + document.getCategory() + " " + " " + borrowDate + " " + this.getDueDate() + " " + actualReturnDate + " " + state);
         }
 
     }

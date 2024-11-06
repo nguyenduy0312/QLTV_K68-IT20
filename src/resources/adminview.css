@@ -11,7 +11,7 @@
 }
 
 .nav-form{
-    -fx-background-color: linear-gradient(to bottom right, #B87543, #FCA05C);
+    -fx-background-color: linear-gradient(to bottom right, #c44d09, #cc844e);
 }
 
 .cursor_hand{
@@ -43,6 +43,9 @@
 .top_form{
     -fx-background-color: #D3D3D3;
 }
-
-
-
+.logout-button{
+    -fx-background-color: transparent;
+}
+.logout-button:hover{
+    -fx-background-color: #178c13;
+}

@@ -1,4 +1,4 @@
-package view.admin;
+package view.borrowcard;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class AdminView extends Application {
+public class BorrowCardView extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -16,7 +16,7 @@ public class AdminView extends Application {
     @Override
     public void start(Stage primaryStage) {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("adminview.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("borrowcardview.fxml"));
             primaryStage.initStyle(StageStyle.UNDECORATED);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
