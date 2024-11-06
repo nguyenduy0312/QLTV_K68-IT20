@@ -5,7 +5,6 @@ package model;
  * Each document has an ID, title, author, and availability state (available or not).
  */
 public abstract class Document {
-
     private String id;
     private String title;
     private String category;
@@ -32,6 +31,7 @@ public abstract class Document {
      * @param maxBorrowDays The maximum number of days the document can be borrowed.
      */
     public Document(String id, String title, String category, Person author, Person publisher, int quantity, int maxBorrowDays) {
+
         this.id = id;
         this.title = title;
         this.category = category;
