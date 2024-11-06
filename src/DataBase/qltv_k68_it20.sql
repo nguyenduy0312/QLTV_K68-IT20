@@ -17,12 +17,13 @@ create table Document
     STT int,
 	MaSach varchar(50) not null,
 	TenSach varchar(50) not null,
-	TacGia varchar(50) not null,
+	TacGia varchar(255) not null,
     QRCode blob,
     TheLoaiSach varchar(50) not null,
-	NhaXuatBan varchar(50) not null,
+	NhaXuatBan varchar(255) not null,
 	SoLuong int not null,
     SoNgayMuon int not null,
+    Picture mediumblob,
 	constraint pk_MaSach primary key (MaSach)
 );
 -- drop table Document;

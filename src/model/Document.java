@@ -4,7 +4,7 @@ package model;
  * Class Document represents a document in the library system.
  * Each document has an ID, title, author, and availability state (available or not).
  */
-public abstract class Document {
+public class Document {
     private String id;
     private String title;
     private String category;
@@ -113,33 +113,6 @@ public abstract class Document {
             throw new IllegalArgumentException("Max borrow days must be greater than 0.");
         }
         this.maxBorrowDays = maxBorrowDays;
-    }
-
-    /**
-     * Returns the document type.
-     * This method can be overridden in subclasses to return more specific document types.
-     *
-     * @return The string "Document" representing the general type of the document.
-     */
-    public abstract String getDocumentType();
-
-
-    /**
-     * Returns a string representation of the document information.
-     *
-     * @return A string containing the document's ID, title, and author.
-     */
-
-    @Override
-    public String toString() {
-        return "Document{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", author=" + author +
-                ", publisher=" + publisher +
-                ", quantity=" + quantity +
-                ", maxBorrowDays=" + maxBorrowDays +
-                '}';
     }
 }
 
