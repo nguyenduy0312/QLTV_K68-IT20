@@ -21,6 +21,9 @@ public class Person {
     // Số điện thoại của người dùng
     private String phoneNumber;
 
+    // Email của người dùng
+    private String email;
+
     // Giới tính của người dùng
     private String gender;
 
