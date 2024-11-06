@@ -19,3 +19,6 @@
 .close_button:hover{
     -fx-background-color: #ec0d0d;
 }
+.success.login{
+    -fx-background-color: GREEN;
+}
