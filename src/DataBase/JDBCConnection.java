@@ -1,5 +1,7 @@
 package DataBase;
 
+import model.Document;
+
 import java.sql.*;
 
 public class JDBCConnection {
@@ -9,7 +11,7 @@ public class JDBCConnection {
 
     public static Connection getJDBCConnection() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -36,15 +38,6 @@ public class JDBCConnection {
                 System.out.println(data.getDatabaseProductName());
                 System.out.println(data.getDatabaseProductVersion());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) {
-        try {
-            Connection connection = getJDBCConnection(); // tạo kết nối
-            JDBCConnection.closeConnection(connection);  // ngắt ket nối
         } catch (Exception e) {
             e.printStackTrace();
         }
