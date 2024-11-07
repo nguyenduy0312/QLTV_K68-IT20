@@ -1,13 +1,13 @@
-package model;
+package main.java.model;
 
 /**
  * Lớp đại diện cho người quản lý trong hệ thống
  */
 
-import util.Date;
-import service.UserManage;
-import service.DocumentManage;
-import service.BorrowReturnManage;
+import main.java.util.Date;
+import main.java.service.UserManage;
+import main.java.service.DocumentManage;
+import main.java.service.BorrowReturnManage;
 
 import java.util.ArrayList;
 

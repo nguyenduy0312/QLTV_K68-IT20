@@ -1,4 +1,4 @@
-package model;
+package main.java.model;
 
 /**
  * Class Document represents a document in the library system.
@@ -25,8 +25,8 @@ public class Document {
      * @param id The unique identifier for the document.
      * @param title The title of the document.
      * @param category The category of the document.
-     * @param author The author of the document, represented by a {@link Person} object.
-     * @param publisher The publisher of the document, represented by a {@link Person} object.
+     * @param author The author of the document, represented by a {@link String} object.
+     * @param publisher The publisher of the document, represented by a {@link String} object.
      * @param quantity The number of copies of the document available for borrowing.
      * @param maxBorrowDays The maximum number of days the document can be borrowed.
      */

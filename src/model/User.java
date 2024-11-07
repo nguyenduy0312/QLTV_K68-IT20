@@ -1,7 +1,7 @@
-package model;
+package main.java.model;
 
-import util.Date;
-import service.BorrowReturn;
+import main.java.util.Date;
+import main.java.service.BorrowReturn;
 import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;

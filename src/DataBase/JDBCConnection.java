@@ -1,6 +1,6 @@
-package DataBase;
+package main.java.DataBase;
 
-import model.Document;
+import main.java.model.Document;
 
 import java.sql.*;
 

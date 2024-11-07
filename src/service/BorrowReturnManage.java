@@ -1,7 +1,7 @@
-package service;
+package main.java.service;
 
-import model.User;
-import model.Document;
+import main.java.model.User;
+import main.java.model.Document;
 import java.util.ArrayList;
 import java.util.List;
 

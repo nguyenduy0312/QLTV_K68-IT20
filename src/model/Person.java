@@ -1,9 +1,9 @@
-package model;
+package main.java.model;
 /**
  * Lớp đại diện cho một người dùng trong hệ thống thư viện.
  */
 
-import util.Date;
+import main.java.util.Date;
 
 public class Person {
     // Tên của người dùng
