@@ -1,6 +1,7 @@
 package test;
 
 import DAO.DocumentDAO;
+import DataBase.GoogleBooksImporter;
 import model.Document;
 import model.Person;
 import util.Date;
@@ -12,7 +13,7 @@ public class TestDocumentDAO  {
 
         Document document = new Document("INT1017","NMLT","Sach tham khao","Duy","Duy",100,7);
         //DocumentDAO.getInstance().addDocument(document);       // Thêm sách
-        DocumentDAO.getInstance().deleteDocument("INT1017");  // Xóa sách
+      //  DocumentDAO.getInstance().deleteDocument("INT1017");  // Xóa sách
 //        GoogleBooksImporter importer = new GoogleBookImporter();
 //        importer.importBooksToDatabase();
 
