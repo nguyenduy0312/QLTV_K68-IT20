@@ -1,3 +1,5 @@
+package DataBase;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -97,4 +99,9 @@ public class GoogleBooksImporter {
             System.out.println("Kết nối cơ sở dữ liệu thất bại!");
         }
     }
+    public static void main(String argc[]) {
+        GoogleBooksImporter importer = new GoogleBooksImporter();
+        importer.importBooksToDatabase();
+    }
+
 }
