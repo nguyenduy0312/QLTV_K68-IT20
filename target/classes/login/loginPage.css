@@ -1,0 +1,24 @@
+.vbox_background_center{
+    -fx-background-image: url("img.png");
+    -fx-background-size: cover;
+    -fx-background-position: center; /* Căn giữa hình nền */
+}
+
+.login_button{
+    -fx-background-color:  #F5F5DC
+}
+.login_button:hover{
+    -fx-background-color: #2e8bea;
+}
+.cursor_hand{
+    -fx-cursor:hand
+}
+.close_button{
+    -fx-background-color:  #F5F5DC
+}
+.close_button:hover{
+    -fx-background-color: #ec0d0d;
+}
+.success.login{
+    -fx-background-color: GREEN;
+}
