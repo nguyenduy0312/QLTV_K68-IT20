@@ -1,7 +1,7 @@
-package main.java.service;
+package service;
 
-import main.java.util.Date;
-import main.java.model.Document;
+import util.Date;
+import model.Document;
 import java.time.LocalDate;
 
 public class BorrowReturn {

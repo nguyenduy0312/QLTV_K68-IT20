@@ -1,7 +1,7 @@
-package main.java.service;
+package service;
 
-import main.java.model.Person;
-import main.java.model.User;
+import model.Person;
+import model.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

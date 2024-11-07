@@ -9,8 +9,12 @@
         <module name="iml" />
       </profile>
     </annotationProcessing>
+<<<<<<< HEAD
     <bytecodeTargetLevel>
       <module name="untitled.iml" target="1.7" />
     </bytecodeTargetLevel>
+=======
+    <bytecodeTargetLevel target="1.8" />
+>>>>>>> nguyenDuy
   </component>
 </project>

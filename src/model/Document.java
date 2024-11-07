@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 /**
  * Class Document represents a document in the library system.
