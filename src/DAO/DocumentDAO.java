@@ -1,10 +1,12 @@
 package DAO;
+
 import DataBase.JDBCConnection;
 import model.Document;
-import model.Person;
-import org.jetbrains.annotations.Nullable;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class DocumentDAO implements DocumentDAOInterface {
         return new DocumentDAO();
     }
     @Override
-    public void addDocument(@Nullable Document document) {
+    public void addDocument( Document document) {
         String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -41,7 +43,7 @@ public class DocumentDAO implements DocumentDAOInterface {
     }
 
     @Override
-    public void deleteDocument(@Nullable String maSach) {
+    public void deleteDocument( String maSach) {
         // Tạo câu lệnh truy vấn sql
         String sql = "DELETE FROM Document WHERE MaSach = ?";
 
@@ -66,7 +68,7 @@ public class DocumentDAO implements DocumentDAOInterface {
     }
 
     @Override
-    public void updateDocument(@Nullable Document document) {
+    public void updateDocument(Document document) {
         // Tạo câu lệnh truy vấn SQL
         String sql ="";
 
@@ -83,25 +85,22 @@ public class DocumentDAO implements DocumentDAOInterface {
         // In ra kết quả
     }
 
-    @Nullable
     @Override
-    public Document findDocumentById(@Nullable String maSach) {
+    public Document findDocumentById(String maSach) {
         return null;
     }
 
-    @Nullable
+
     @Override
-    public Document findDocumentByTitle(@Nullable String tenSach) {
+    public Document findDocumentByTitle(String tenSach) {
         return null;
     }
 
-    @Nullable
     @Override
-    public Document findDocumentByCategory(@Nullable String theLoai) {
+    public Document findDocumentByCategory(String theLoai) {
         return null;
     }
 
-    @Nullable
     @Override
     public List<Document> findAllDocuments() {
         ArrayList<Document> documentList = new ArrayList<>();

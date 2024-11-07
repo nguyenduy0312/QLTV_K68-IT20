@@ -1,0 +1,8 @@
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 6, 0, 0, 0);
+}
+.image_border{
+    -fx-background-color: #ffff;
+    -fx-background-radius: 8px;
+}
+
