@@ -8,8 +8,8 @@ public class Document {
     private String id;
     private String title;
     private String category;
-    private Person author;
-    private Person publisher;
+    private String author;
+    private String publisher;
     private int quantity;
     private int maxBorrowDays;
 
@@ -31,7 +31,7 @@ public class Document {
      * @param maxBorrowDays The maximum number of days the document can be borrowed.
      */
 
-    public Document(String id, String title, String category, Person author, Person publisher, int quantity, int maxBorrowDays) {
+    public Document(String id, String title, String category, String author, String publisher, int quantity, int maxBorrowDays) {
         this.id = id;
         this.title = title;
         this.category = category;
@@ -69,12 +69,12 @@ public class Document {
         this.category = category;
     }
 
-    public Person getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
 
-    public void setAuthor(Person author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
@@ -88,12 +88,12 @@ public class Document {
         this.quantity = quantity;
     }
 
-    public Person getPublisher() {
+    public String getPublisher() {
         return publisher;
     }
 
 
-    public void setPublisher(Person publisher) {
+    public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
 

@@ -10,7 +10,8 @@ public class TestDocumentDAO  {
         Date date = new Date(4,5,2005);
         Person person = new Person("Duy",date,"12345","HY","1234567","Nam");
 
-        Document document = new Document("INT1008","NMLT","Sach tham khao",person,person,100,7);
-        DocumentDAO.getInstance().addDocument(document);
+        Document document = new Document("INT1010","NMLT","Sach tham khao",person,person,100,7);
+       // DocumentDAO.getInstance().addDocument(document);       // Thêm sách
+       // DocumentDAO.getInstance().deleteDocument("INT1010");  // Xóa sách
     }
 }
