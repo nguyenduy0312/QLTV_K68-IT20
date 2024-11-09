@@ -1,5 +1,7 @@
 package test;
 
+import DataBase.GoogleBooksImporter;
+import DataBase.JDBCConnection;
 import DAO.DocumentDAO;
 import model.Document;
 import model.Person;
@@ -12,10 +14,9 @@ public class TestDocumentDAO  {
 
 
         Document document = new Document("INT1017","NMLT","Sach tham khao","Duy","Duy",100,7);
-        //DocumentDAO.getInstance().addDocument(document);       // Thêm sách
-        DocumentDAO.getInstance().deleteDocument("INT1017");  // Xóa sách
-        // GoogleBooksImporter importer = new GoogleBookImporter();
-       //importer.importBooksToDatabase();
+        DocumentDAO.getInstance().addDocument(document);       // Thêm sách
+        //DocumentDAO.getInstance().deleteDocument("INT1017");  // Xóa sách
+
 
     }
 }

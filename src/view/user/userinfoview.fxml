@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="839.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserInfoController">
+   <children>
+      <AnchorPane prefHeight="613.0" prefWidth="807.0">
+         <children>
+            <AnchorPane prefHeight="93.0" prefWidth="839.0" style="-fx-background-color: FCA05CFF;">
+               <children>
+                  <Label layoutX="268.0" layoutY="27.0" text="Thông Tin Người Dùng">
+                     <font>
+                        <Font name="Tahoma Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIcon glyphName="USER" layoutX="219.0" layoutY="57.0" size="30" />
+                  <Button fx:id="closeButton" layoutX="784.0" layoutY="-1.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-radius: 5;" styleClass="exit-button" stylesheets="@../../resources/userinfoview.css">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="CLOSE" size="20" />
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="644.0" layoutY="114.0" prefHeight="145.0" prefWidth="150.0" stylesheets="@../../resources/userinfoview.css">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/avatar.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="image_border" />
+               </styleClass>
+            </AnchorPane>
+            <TextField layoutX="145.0" layoutY="201.0" prefHeight="30.0" prefWidth="253.0" style="-fx-background-radius: 10; -fx-border-radius: 10;">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="145.0" layoutY="135.0" prefHeight="31.0" prefWidth="253.0" promptText="Mã/ID" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+            <TextField layoutX="145.0" layoutY="354.0" prefHeight="31.0" prefWidth="253.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+            <TextField layoutX="145.0" layoutY="288.0" prefHeight="31.0" prefWidth="78.0" style="-fx-background-radius: 5; -fx-background-radius: 5;" />
+            <Label layoutX="46.0" layoutY="138.0" text="Mã /ID:">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="38.0" layoutY="208.0" text="Họ tên:">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="291.0" text="Giới tính:">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="272.0" layoutY="291.0" text="Ngày sinh:">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <TextField layoutX="392.0" layoutY="288.0" prefHeight="31.0" prefWidth="175.0" style="-fx-background-radius: 5; -fx-background-radius: 5;" />
+            <Label layoutX="58.0" layoutY="357.0" text="SĐT:">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="46.0" layoutY="420.0" text="Địa chỉ:">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <TextField layoutX="145.0" layoutY="417.0" prefHeight="31.0" prefWidth="404.0" style="-fx-background-radius: 5; -fx-background-radius: 5;" />
+            <Label layoutX="46.0" layoutY="483.0" text="Email:">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <TextField layoutX="145.0" layoutY="480.0" prefHeight="31.0" prefWidth="302.0" style="-fx-background-radius: 5; -fx-background-radius: 5;" />
+            <Label layoutX="486.0" layoutY="590.0" text="Mật khẩu:">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <TextField layoutX="597.0" layoutY="587.0" prefHeight="31.0" prefWidth="145.0" style="-fx-background-radius: 5; -fx-background-radius: 5;" />
+            <Label layoutX="61.0" layoutY="539.0" text="Tài khoản:">
+               <font>
+                  <Font name="Tahoma Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="42.0" layoutY="590.0" text="Tên đăng nhập:">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <TextField layoutX="194.0" layoutY="587.0" prefHeight="31.0" prefWidth="233.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
