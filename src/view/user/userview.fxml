@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="738.0" prefWidth="1432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane prefHeight="738.0" prefWidth="1432.0">
+               <left>
+                  <AnchorPane prefHeight="671.0" prefWidth="331.0" stylesheets="@../../resources/userview.css" BorderPane.alignment="CENTER">
+                     <styleClass>
+                        <String fx:value="semi-top-form" />
+                        <String fx:value="nav-form" />
+                     </styleClass>
+                     <children>
+                        <FontAwesomeIcon fill="#ebe3e3" glyphName="USER" layoutX="136.0" layoutY="101.0" size="5em" text="" />
+                        <Label layoutX="121.0" layoutY="126.0" text="Xin chào,">
+                           <font>
+                              <Font name="Tahoma" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="138.0" layoutY="154.0" text="User">
+                           <font>
+                              <Font name="Tahoma Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Line endX="100.0" layoutX="166.0" layoutY="213.0" startX="-100.0" />
+                        <Button layoutX="55.0" layoutY="275.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="220.0" text="Trang chủ">
+                           <graphic>
+                              <FontAwesomeIcon glyphName="HOME" size="25" />
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="nav-button-form" />
+                              <String fx:value="cursor_hand" />
+                           </styleClass>
+                        </Button>
+                        <Button layoutX="56.0" layoutY="340.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="220.0" text="Mượn/Trả sách">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon glyphName="BOOK" size="25" />
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="nav-button-form" />
+                              <String fx:value="cursor_hand" />
+                           </styleClass>
+                        </Button>
+                        <Button layoutX="23.0" layoutY="613.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="54.0">
+                           <styleClass>
+                              <String fx:value="cursor_hand" />
+                              <String fx:value="logout-button" />
+                           </styleClass>
+                        </Button>
+                        <FontAwesomeIcon glyphName="SIGN_OUT" layoutX="38.0" layoutY="643.0" size="25" />
+                     </children></AnchorPane>
+               </left>
+               <top>
+                  <AnchorPane prefHeight="59.0" prefWidth="1338.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="96.0" layoutY="13.0" text="Libhub HHD" textFill="#1691c6">
+                           <font>
+                              <Font name="Cooper Black" size="28.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIcon fill="#a82424" glyphName="UNIVERSITY" layoutX="36.0" layoutY="38.0" size="25" />
+                        <Button layoutX="1375.0" layoutY="2.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="57.0" styleClass="exit-button" stylesheets="@../../resources/userview.css" />
+                        <FontAwesomeIcon glyphName="CLOSE" layoutX="1396.0" layoutY="24.0" size="20" />
+                        <Button layoutX="1316.0" layoutY="2.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="52.0" styleClass="exit-button" stylesheets="@../../resources/userview.css" />
+                        <FontAwesomeIcon glyphName="MINUS" layoutX="1336.0" layoutY="24.0" size="20" wrappingWidth="12.785714149475098" />
+                     </children>
+                  </AnchorPane>
+               </top>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

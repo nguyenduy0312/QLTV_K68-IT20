@@ -8,9 +8,10 @@ import javafx.scene.control.ButtonType;
 
 import java.util.Optional;
 
-public class ReturnCardController {
+public class AddDocumentController {
     @FXML
     private Button closeButton;
+
 
     public void closeButtonOnAction(ActionEvent e) {
         // Tạo hộp thoại xác nhận với hai nút OK và Hủy
@@ -25,6 +26,7 @@ public class ReturnCardController {
             // Thực hiện hành động hủy ở đây
             closeButton.getScene().getWindow().hide();
         } else {
+
             // Không thực hiện gì nếu người dùng hủy
         }
     }

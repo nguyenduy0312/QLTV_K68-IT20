@@ -5,12 +5,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 
 import java.util.Optional;
 
-public class ReturnCardController {
+public class EditUserController {
     @FXML
     private Button closeButton;
+    @FXML
+    private ChoiceBox<String> genderChoiceBox;
+
+
 
     public void closeButtonOnAction(ActionEvent e) {
         // Tạo hộp thoại xác nhận với hai nút OK và Hủy
@@ -27,5 +32,11 @@ public class ReturnCardController {
         } else {
             // Không thực hiện gì nếu người dùng hủy
         }
+    }
+
+    // gender
+    public void initialize() {
+        // Thêm các giá trị vào ChoiceBox
+        genderChoiceBox.getItems().addAll("Nam", "Nữ", "Khác");
     }
 }

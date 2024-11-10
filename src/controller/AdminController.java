@@ -7,6 +7,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import login.LoginView;
 import view.admin.AdminView;
+import view.borrowcard.BorrowCardView;
+import view.document.AddDocument;
+import view.document.EditDocument;
+import view.document.DocumentView;
+import view.returncard.ReturnCardView;
+import view.user.AddUser;
+import view.user.EditUser;
+import view.user.UserInfoView;
 
 import java.awt.*;
 
@@ -39,6 +47,23 @@ public class AdminController {
     private Button qlNguoiDungButton;
     @FXML
     private AnchorPane quanLyNguoiDung;
+    @FXML
+    private Button addBookButton;
+    @FXML
+    private Button editBookButton;
+    @FXML
+    private Button viewInfoBookButton;
+    @FXML
+    private Button addUserButton;
+    @FXML
+    private Button editUserButton;
+    @FXML
+    private Button viewInfoUserButton;
+    @FXML
+    private Button borrowBookButton;
+    @FXML
+    private Button returnBookButton;
+
     public void closeButtonOnAction(ActionEvent e) {
         closeButton.getScene().getWindow().hide();
     }
@@ -112,4 +137,83 @@ public class AdminController {
         quanLyNguoiDung.setVisible(!quanLyNguoiDung.isVisible());
     }
 
+    // Add book
+    public void addBookButtonOnAction(ActionEvent e) {
+        AddDocument addDocument = new AddDocument();
+        try {
+            addDocument.start(new Stage()); // Mở cửa sổ addDocument
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    // Edit book
+    public void editBookButtonOnAction(ActionEvent e) {
+        EditDocument editDocument = new EditDocument();
+        try {
+           editDocument.start(new Stage()); // Mở cửa sổ editdocument
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    // Infor book
+    public void viewInfoBookButtonOnAction(ActionEvent e) {
+        DocumentView documentView = new DocumentView();
+        try {
+           documentView.start(new Stage()); // Mở cửa sổ documentview
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    // Add user
+    public void addUserButtonOnAction(ActionEvent e) {
+        AddUser addUser = new AddUser();
+        try {
+            addUser.start(new Stage()); // Mở cửa sổ addUser
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    // Edit user
+    public void editUserButtonOnAction(ActionEvent e) {
+        EditUser editUser = new EditUser();
+        try {
+            editUser.start(new Stage()); // Mở cửa sổ editUser
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    // Infor user
+    public void viewInfoUserButtonOnAction(ActionEvent e) {
+        UserInfoView userInfoView = new UserInfoView();
+        try {
+           userInfoView.start(new Stage()); // Mở cửa sổ xem thông tin người dùng
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    // Borrow book
+    public void borrowBookButtonOnAction(ActionEvent e) {
+        BorrowCardView borrowCardView = new BorrowCardView();
+        try {
+            borrowCardView.start(new Stage()); // Mở cửa sổ mượn sách
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    // Return book
+    public void returnBookButtonOnAction(ActionEvent e) {
+        ReturnCardView returnCardView = new ReturnCardView();
+        try {
+           returnCardView.start(new Stage()); // Mở cửa sổ mượn sách
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }

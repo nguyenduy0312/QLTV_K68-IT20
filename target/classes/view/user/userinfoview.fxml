@@ -9,18 +9,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="839.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserInfoController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="839.0" style="-fx-border-color: #FF99CC; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserInfoController">
    <children>
       <AnchorPane prefHeight="613.0" prefWidth="807.0">
          <children>
-            <AnchorPane prefHeight="93.0" prefWidth="839.0" style="-fx-background-color: FCA05CFF;">
+            <AnchorPane prefHeight="84.0" prefWidth="839.0" style="-fx-background-color: #FF99CC;">
                <children>
                   <Label layoutX="268.0" layoutY="27.0" text="Thông Tin Người Dùng">
                      <font>
                         <Font name="Tahoma Bold" size="30.0" />
                      </font>
                   </Label>
-                  <FontAwesomeIcon glyphName="USER" layoutX="219.0" layoutY="57.0" size="30" />
+                  <FontAwesomeIcon glyphName="USER" layoutX="222.0" layoutY="56.0" size="35" />
                   <Button fx:id="closeButton" layoutX="784.0" layoutY="-1.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-radius: 5;" styleClass="exit-button" stylesheets="@../../resources/userinfoview.css">
                      <graphic>
                         <FontAwesomeIcon glyphName="CLOSE" size="20" />

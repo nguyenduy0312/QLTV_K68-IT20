@@ -11,7 +11,7 @@
 }
 
 .nav-form{
-    -fx-background-color: linear-gradient(to bottom right, #c44d09, #cc844e);
+    -fx-background-color: linear-gradient(to bottom right, #c44d09, #f3beae);
 }
 
 .cursor_hand{
@@ -48,4 +48,13 @@
 }
 .logout-button:hover{
     -fx-background-color: #178c13;
+}
+
+.crud-button{
+    -fx-background-color:  #F5F5DC;
+    -fx-background-radius: 5;
+}
+
+.crud-button:hover{
+    -fx-background-color: #dede9c;
 }
