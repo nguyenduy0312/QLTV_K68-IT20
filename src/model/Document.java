@@ -114,5 +114,19 @@ public class Document {
         }
         this.maxBorrowDays = maxBorrowDays;
     }
+
+    @Override
+    public String toString() {
+        return "Document {" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", author='" + author + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", quantity=" + quantity +
+                ", maxBorrowDays=" + maxBorrowDays +
+                '}';
+    }
+
 }
 
