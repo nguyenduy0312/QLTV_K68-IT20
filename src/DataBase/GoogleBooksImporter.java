@@ -12,32 +12,18 @@ import DataBase.JDBCConnection;  // Import lớp JDBCConnection của bạn
 
 public class GoogleBooksImporter {
 
-    // API key của bạn
-    private static final String API_KEY = "AIzaSyDKISCdSGCglV6eeYaRHvncSQxL4Wr6LDU";
-    private static final String API_URL = "https://www.googleapis.com/books/v1/volumes?q=";
-
-    // Phương thức tạo URL với từ khóa tìm kiếm và số lượng kết quả
-    private static String createFullApiUrl(String query, int maxResults) {
-        return API_URL + query + "&maxResults=" + maxResults + "&key=" + API_KEY;
-    }
+    // URL của Google Books API
+    private static final String API_URL = "https://www.googleapis.com/books/v1/volumes?q=book&maxResults=40"; // Lấy 62 cuốn sách ngẫu nhiên
 
     // Phương thức này dùng để lấy sách từ Google Books API và bơm vào cơ sở dữ liệu
     public void importBooksToDatabase() {
         try {
-            // Tạo URL với từ khóa và số lượng kết quả mong muốn
-            String apiUrl = createFullApiUrl("book", 40);
-
             // Lấy dữ liệu sách từ Google Books API
-            JSONArray booksArray = getBooksFromApi(apiUrl);
-
+            JSONArray booksArray = getBooksFromApi(API_URL);
             // Bơm dữ liệu vào cơ sở dữ liệu
             insertBooksIntoDatabase(booksArray);
-
-            // In ra thông báo thành công
-            System.out.println("Đã tải và thêm sách thành công vào cơ sở dữ liệu!");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Đã xảy ra lỗi khi tải hoặc bơm sách vào cơ sở dữ liệu.");
         }
     }
 
@@ -114,12 +100,11 @@ public class GoogleBooksImporter {
         }
     }
 
-    public static void main(String[] args) {
-        // Tạo một đối tượng của GoogleBooksImporter
+    public static void main(String argc[]) {
         GoogleBooksImporter importer = new GoogleBooksImporter();
 
-        // Gọi phương thức để nhập sách vào cơ sở dữ liệu
         System.out.println("Bắt đầu quá trình nhập sách...");
         importer.importBooksToDatabase();
     }
+
 }

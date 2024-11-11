@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/QLTV_K68-IT20.test.iml" filepath="$PROJECT_DIR$/.idea/modules/QLTV_K68-IT20.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/library-management.iml" filepath="$PROJECT_DIR$/library-management.iml" />
     </modules>
   </component>

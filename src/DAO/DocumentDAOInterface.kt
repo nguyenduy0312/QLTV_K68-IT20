@@ -1,6 +1,6 @@
-package DAO
+package DAO;
 
-import model.Document
+import model.Document;
 
 interface DocumentDAOInterface {
     // Phương thức thêm tài liệu

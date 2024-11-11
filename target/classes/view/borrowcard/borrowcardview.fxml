@@ -10,11 +10,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1202.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1202.0" style="-fx-border-color: #EEE8AA; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BorrowCardController">
    <children>
       <AnchorPane prefHeight="605.0" prefWidth="657.0">
          <children>
-            <AnchorPane prefHeight="76.0" prefWidth="1202.0" style="-fx-background-color: #FCA05C;">
+            <AnchorPane prefHeight="76.0" prefWidth="1202.0" style="-fx-background-color: #EEE8AA;">
                <children>
                   <Label alignment="CENTER" layoutX="519.0" layoutY="19.0" text="Mượn sách">
                      <font>
@@ -100,7 +100,7 @@
                            </font>
                         </Label>
                         <TextField layoutX="309.0" layoutY="161.0" prefHeight="31.0" prefWidth="218.0" style="-fx-background-radius: 5;" />
-                        <Button layoutX="39.0" layoutY="314.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="87.0" style="-fx-background-radius: 5;" text="Hủy" />
+                        <Button fx:id="closeButton" layoutX="39.0" layoutY="314.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="38.0" prefWidth="87.0" style="-fx-background-radius: 5;" text="Hủy" />
                      </children>
                   </AnchorPane>
                   <Button layoutX="484.0" layoutY="492.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="87.0" style="-fx-background-radius: 5;" text="Mượn" />
@@ -109,7 +109,7 @@
                         <Font name="Tahoma" size="20.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="133.0" layoutY="419.0" prefHeight="31.0" prefWidth="137.0" style="-fx-background-radius: 5;" />
+                  <TextField layoutX="133.0" layoutY="419.0" prefHeight="31.0" prefWidth="170.0" style="-fx-background-radius: 5;" />
                   <Label layoutX="308.0" layoutY="422.0" text="Ngày trả:">
                      <font>
                         <Font name="Tahoma" size="20.0" />
