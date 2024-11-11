@@ -56,22 +56,34 @@
                   <AnchorPane layoutX="13.0" layoutY="14.0" prefHeight="671.0" prefWidth="286.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
                      <children>
                         <Line endX="100.0" layoutX="113.0" layoutY="199.0" startX="-100.0" AnchorPane.leftAnchor="30.0" />
-                        <Button fx:id="homeButton" alignment="CENTER" layoutX="2.0" layoutY="251.0" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="44.0" prefWidth="237.0" styleClass="nav-button-form" stylesheets="@../../resources/adminview.css" text="Trang chủ" AnchorPane.leftAnchor="2.0">
+                        <Button fx:id="homeButton" alignment="CENTER" layoutX="2.0" layoutY="251.0" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="44.0" prefWidth="237.0" stylesheets="@../../resources/adminview.css" text="Trang chủ" AnchorPane.leftAnchor="2.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="nav-button-form" />
+                              <String fx:value="cursor_hand" />
+                           </styleClass>
                         </Button>
                         <FontAwesomeIcon glyphName="HOME" layoutX="16.0" layoutY="283.0" size="28" text="" />
-                        <Button fx:id="qlSachButton" alignment="CENTER" layoutX="-4.0" layoutY="315.0" mnemonicParsing="false" onAction="#qlSachButtonOnAction" prefHeight="44.0" prefWidth="248.0" styleClass="nav-button-form" stylesheets="@../../resources/adminview.css" text="Quản lý sách" AnchorPane.leftAnchor="-4.0">
+                        <Button fx:id="qlSachButton" alignment="CENTER" layoutX="-4.0" layoutY="315.0" mnemonicParsing="false" onAction="#qlSachButtonOnAction" prefHeight="44.0" prefWidth="248.0" stylesheets="@../../resources/adminview.css" text="Quản lý sách" AnchorPane.leftAnchor="-4.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="nav-button-form" />
+                              <String fx:value="cursor_hand" />
+                           </styleClass>
                         </Button>
                         <FontAwesomeIcon glyphName="" layoutX="16.0" layoutY="347.0" size="28" text="" />
-                        <Button fx:id="qlMuonSachButton" alignment="CENTER_RIGHT" layoutX="3.0" layoutY="381.0" mnemonicParsing="false" onAction="#qlMuonSachButtonOnAction" prefHeight="44.0" prefWidth="255.0" styleClass="nav-button-form" stylesheets="@../../resources/adminview.css" text="Quản lý mượn sách">
+                        <Button fx:id="qlMuonSachButton" alignment="CENTER_RIGHT" layoutX="3.0" layoutY="381.0" mnemonicParsing="false" onAction="#qlMuonSachButtonOnAction" prefHeight="44.0" prefWidth="255.0" stylesheets="@../../resources/adminview.css" text="Quản lý mượn sách">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="nav-button-form" />
+                              <String fx:value="cursor_hand" />
+                           </styleClass>
                         </Button>
                         <FontAwesomeIcon glyphName="BOOKMARK" layoutX="20.0" layoutY="413.0" size="28" />
                         <Button fx:id="qlTraSachButton" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="449.0" mnemonicParsing="false" onAction="#qlTraSachButtonOnAction" prefHeight="44.0" prefWidth="255.0" styleClass="nav-button-form" stylesheets="@../../resources/adminview.css" text="Quản lý trả sách">
@@ -80,10 +92,14 @@
                            </font>
                         </Button>
                         <FontAwesomeIcon glyphName="UNDO" layoutX="18.0" layoutY="481.0" size="28" text="" />
-                        <Button fx:id="qlNguoiDungButton" alignment="CENTER_RIGHT" layoutX="3.0" layoutY="515.0" mnemonicParsing="false" onAction="#qlNguoiDungButtonOnAction" prefHeight="44.0" prefWidth="255.0" styleClass="nav-button-form" stylesheets="@../../resources/adminview.css" text="Quản lý người dùng">
+                        <Button fx:id="qlNguoiDungButton" alignment="CENTER_RIGHT" layoutX="3.0" layoutY="515.0" mnemonicParsing="false" onAction="#qlNguoiDungButtonOnAction" prefHeight="44.0" prefWidth="255.0" stylesheets="@../../resources/adminview.css" text="Quản lý người dùng">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="nav-button-form" />
+                              <String fx:value="cursor_hand" />
+                           </styleClass>
                         </Button>
                         <FontAwesomeIcon glyphName="USERS" layoutX="14.0" layoutY="547.0" size="28" text="" />
                         <Button fx:id="logoutButton" layoutX="13.0" layoutY="614.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="39.0" prefWidth="47.0" stylesheets="@../../resources/adminview.css">

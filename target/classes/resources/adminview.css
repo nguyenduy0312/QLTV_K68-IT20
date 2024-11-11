@@ -11,7 +11,7 @@
 }
 
 .nav-form{
-    -fx-background-color: linear-gradient(to bottom right, #c44d09, #f3beae);
+    -fx-background-color: linear-gradient(to bottom right, #4babbe,#539FBE, #6385bd);
 }
 
 .cursor_hand{
@@ -23,7 +23,7 @@
 }
 
 .nav-button-form:hover{
-    -fx-background-color: linear-gradient(to bottom right, #B87543, #FCA05C);
+    -fx-background-color: linear-gradient(to bottom right, #4babbe,#539FBE, #6385bd);
 }
 
 .exit-button{

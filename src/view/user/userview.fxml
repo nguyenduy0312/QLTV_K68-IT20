@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.text.*?>
@@ -7,80 +10,468 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="738.0" prefWidth="1432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="stackPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="851.0" prefWidth="1433.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane prefHeight="791.0" prefWidth="1433.0">
          <children>
-            <BorderPane prefHeight="738.0" prefWidth="1432.0">
-               <left>
-                  <AnchorPane prefHeight="671.0" prefWidth="331.0" stylesheets="@../../resources/userview.css" BorderPane.alignment="CENTER">
+            <AnchorPane layoutY="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="1433.0" style="-fx-background-color: #D3E3FD;">
+               <children>
+                  <Button fx:id="maximizeButton" layoutX="1341.0" layoutY="-1.0" mnemonicParsing="false" onAction="#maximizeButtonOnAction" prefHeight="30.0" prefWidth="42.0" styleClass="exit-button" stylesheets="@../../resources/userview.css">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="SQUARE" size="15" wrappingWidth="14.857142448425293" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="closeButton" layoutX="1390.0" layoutY="-1.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="30.0" prefWidth="42.0" styleClass="exit-button" stylesheets="@../../resources/userview.css">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="CLOSE" size="18" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="minimizeButton" layoutX="1290.0" layoutY="-1.0" mnemonicParsing="false" onAction="#minimizeButtonOnAction" prefHeight="30.0" prefWidth="42.0" styleClass="exit-button" stylesheets="@../../resources/userview.css">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="MINUS" size="15" wrappingWidth="14.857142448425293" />
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="44.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="62.0" prefWidth="1433.0" styleClass="nav-form" stylesheets="@../../resources/userview.css">
+               <children>
+                  <Label layoutX="53.0" layoutY="17.0" text="Lihhub">
+                     <font>
+                        <Font name="Cooper Black" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="145.0" layoutY="17.0" text="HHD" textFill="#83d0ee">
+                     <font>
+                        <Font name="Cooper Black" size="25.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIcon fill="#1e1e1d" glyphName="UNIVERSITY" layoutX="20.0" layoutY="39.0" size="23" text="" />
+                  <Button fx:id="homeButton" layoutX="267.0" layoutY="12.0" mnemonicParsing="false" onAction="#homeButtonOnAction" text="Trang chủ" textFill="#ebe7e7">
+                     <font>
+                        <Font name="Tahoma Bold" size="20.0" />
+                     </font>
                      <styleClass>
-                        <String fx:value="semi-top-form" />
-                        <String fx:value="nav-form" />
+                        <String fx:value="nav-button-form" />
+                        <String fx:value="cursor_hand" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="actionButton" layoutX="434.0" layoutY="12.0" mnemonicParsing="false" onAction="#actionButtonOnAction" text="Mượn/Trả sách" textFill="#ebe7e7">
+                     <font>
+                        <Font name="Tahoma Bold" size="20.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="nav-button-form" />
+                        <String fx:value="cursor_hand" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="circleButton" layoutX="1332.0" layoutY="5.0" mnemonicParsing="false" onAction="#circleButtonOnAction" prefHeight="50.0" prefWidth="50.0">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../../resources/avatar1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="cursor_hand" />
+                        <String fx:value="circle-button" />
+                     </styleClass>
+                  </Button>
+                  <Label alignment="TOP_RIGHT" layoutX="1064.0" layoutY="18.0" prefHeight="25.0" prefWidth="253.0" textFill="#ebebeb">
+                     <font>
+                        <Font name="Tahoma Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <AnchorPane fx:id="home" layoutY="107.0" prefHeight="603.0" prefWidth="1433.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="182.0" stylesheets="@../../resources/userview.css" text="Trang chủ" textFill="#4babbe">
+                     <font>
+                        <Font name="Tahoma" size="20.0" />
+                     </font>
+                  </Label>
+                  <Line endX="1310.0" layoutX="115.0" layoutY="40.0" startX="-110.0" />
+                  <AnchorPane layoutX="27.0" layoutY="54.0" prefHeight="551.0" prefWidth="1378.0" stylesheets="@../../resources/userview.css">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="anchorPane-border1" />
                      </styleClass>
                      <children>
-                        <FontAwesomeIcon fill="#ebe3e3" glyphName="USER" layoutX="136.0" layoutY="101.0" size="5em" text="" />
-                        <Label layoutX="121.0" layoutY="126.0" text="Xin chào,">
-                           <font>
-                              <Font name="Tahoma" size="22.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="138.0" layoutY="154.0" text="User">
-                           <font>
-                              <Font name="Tahoma Bold" size="24.0" />
-                           </font>
-                        </Label>
-                        <Line endX="100.0" layoutX="166.0" layoutY="213.0" startX="-100.0" />
-                        <Button layoutX="55.0" layoutY="275.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="220.0" text="Trang chủ">
-                           <graphic>
-                              <FontAwesomeIcon glyphName="HOME" size="25" />
-                           </graphic>
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
+                        <AnchorPane prefHeight="80.0" prefWidth="1378.0" style="-fx-background-color: #3BB3BD;" stylesheets="@../../resources/userview.css">
                            <styleClass>
-                              <String fx:value="nav-button-form" />
-                              <String fx:value="cursor_hand" />
+                              <String fx:value="shadow" />
+                              <String fx:value="anchorPane-border1" />
                            </styleClass>
-                        </Button>
-                        <Button layoutX="56.0" layoutY="340.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="220.0" text="Mượn/Trả sách">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIcon glyphName="BOOK" size="25" />
-                           </graphic>
+                           <children>
+                              <Label alignment="CENTER" layoutX="46.0" layoutY="21.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-radius: 10; -fx-background-color: #20A8D8;" text="Mới nhất" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <FontAwesomeIcon fill="#ebe9e9" glyphName="ALIGN_JUSTIFY" layoutX="94.0" layoutY="47.0" size="20" />
+                           </children>
+                        </AnchorPane>
+                        <ScrollPane layoutY="78.0" prefHeight="597.0" prefWidth="1378.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1393.0">
+                                 <children>
+                                    <HBox layoutX="7.0" layoutY="14.0" prefHeight="243.0" prefWidth="1345.0">
+                                       <children>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox layoutX="6.0" layoutY="245.0" prefHeight="243.0" prefWidth="1353.0">
+                                       <children>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox layoutX="7.0" layoutY="475.0" prefHeight="243.0" prefWidth="1345.0">
+                                       <children>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../resources/default.jpg" />
+                                             </image>
+                                             <styleClass>
+                                                <String fx:value="shadow" />
+                                                <String fx:value="anchorPane-border1" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                          </content>
                            <styleClass>
-                              <String fx:value="nav-button-form" />
-                              <String fx:value="cursor_hand" />
+                              <String fx:value="shadow" />
+                              <String fx:value="anchorPane-border1" />
                            </styleClass>
-                        </Button>
-                        <Button layoutX="23.0" layoutY="613.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="54.0">
-                           <styleClass>
-                              <String fx:value="cursor_hand" />
-                              <String fx:value="logout-button" />
-                           </styleClass>
-                        </Button>
-                        <FontAwesomeIcon glyphName="SIGN_OUT" layoutX="38.0" layoutY="643.0" size="25" />
-                     </children></AnchorPane>
-               </left>
-               <top>
-                  <AnchorPane prefHeight="59.0" prefWidth="1338.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label layoutX="96.0" layoutY="13.0" text="Libhub HHD" textFill="#1691c6">
-                           <font>
-                              <Font name="Cooper Black" size="28.0" />
-                           </font>
-                        </Label>
-                        <FontAwesomeIcon fill="#a82424" glyphName="UNIVERSITY" layoutX="36.0" layoutY="38.0" size="25" />
-                        <Button layoutX="1375.0" layoutY="2.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="57.0" styleClass="exit-button" stylesheets="@../../resources/userview.css" />
-                        <FontAwesomeIcon glyphName="CLOSE" layoutX="1396.0" layoutY="24.0" size="20" />
-                        <Button layoutX="1316.0" layoutY="2.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="52.0" styleClass="exit-button" stylesheets="@../../resources/userview.css" />
-                        <FontAwesomeIcon glyphName="MINUS" layoutX="1336.0" layoutY="24.0" size="20" wrappingWidth="12.785714149475098" />
+                        </ScrollPane>
                      </children>
                   </AnchorPane>
-               </top>
-            </BorderPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="muonTra" layoutX="-6.0" layoutY="107.0" prefHeight="606.0" prefWidth="1433.0" visible="false">
+               <children>
+                  <Label layoutX="49.0" layoutY="14.0" text="Mượn/Trả sách" textFill="#20b0e3">
+                     <font>
+                        <Font name="Tahoma" size="20.0" />
+                     </font>
+                  </Label>
+                  <Line endX="1320.0" layoutX="116.0" layoutY="51.0" startX="-100.0" />
+                  <AnchorPane layoutX="46.0" layoutY="69.0" prefHeight="665.0" prefWidth="1378.0" stylesheets="@../../resources/userview.css">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="anchorPane-border1" />
+                     </styleClass>
+                     <children>
+                        <TableView layoutX="28.0" layoutY="363.0" prefHeight="236.0" prefWidth="1298.0">
+                          <columns>
+                            <TableColumn prefWidth="83.0" text="STT" />
+                            <TableColumn prefWidth="119.0" text="Mã sách" />
+                              <TableColumn prefWidth="262.0" text="Tên sách" />
+                              <TableColumn prefWidth="262.0" text="Thể loại" />
+                              <TableColumn prefWidth="262.0" text="Tác giả" />
+                              <TableColumn prefWidth="144.0" text="Số lượng" />
+                              <TableColumn prefWidth="165.0" text="Số ngày mượn tối đa" />
+                          </columns>
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="anchorPane-border1" />
+                           </styleClass>
+                        </TableView>
+                        <AnchorPane layoutX="505.0" layoutY="10.0" prefHeight="309.0" prefWidth="861.0" style="-fx-background-color: #F0F3F5;">
+                           <children>
+                              <TableView layoutX="21.0" layoutY="35.0" prefHeight="200.0" prefWidth="824.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="STT" />
+                                  <TableColumn prefWidth="75.0" text="Mã sách" />
+                                    <TableColumn prefWidth="154.0" text="Tên sách" />
+                                    <TableColumn prefWidth="124.0" text="Ngày mượn" />
+                                    <TableColumn prefWidth="135.0" text="Hẹn trả" />
+                                    <TableColumn prefWidth="163.0" text="Ngày trả" />
+                                    <TableColumn prefWidth="98.0" text="Trạng thái" />
+                                </columns>
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="anchorPane-border1" />
+                                 </styleClass>
+                              </TableView>
+                              <Button layoutX="387.0" layoutY="256.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="92.0" text="Trả sách" />
+                              <Label layoutX="33.0" layoutY="4.0" text="Sách đã mượn:">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Button layoutX="526.0" layoutY="610.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="94.0" text="Mượn sách" />
+                        <Button layoutX="851.0" layoutY="610.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="94.0" text="Xem sách" />
+                        <AnchorPane layoutX="24.0" layoutY="257.0" prefHeight="69.0" prefWidth="451.0" style="-fx-background-color: #F0F3F5;">
+                           <children>
+                              <TextField layoutX="14.0" layoutY="15.0" prefHeight="39.0" prefWidth="349.0" promptText="Tìm kiếm" style="-fx-background-radius: 10;" />
+                              <Button layoutX="373.0" layoutY="15.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="57.0">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphName="SEARCH" size="20" text="" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <ImageView fitHeight="200.0" fitWidth="198.0" layoutX="123.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/book-reader.png" />
+                           </image>
+                        </ImageView>
+                     </children></AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="infoAnchorPane" style="-fx-background-color: #FFFFFF;" visible="false">
+               <children>
+                  <VBox fx:id="infoVbox" prefHeight="140.0" prefWidth="216.0" style="-fx-background-radius: 10; -fx-border-radius: 10;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="246.0" style="-fx-background-color: #D1D3D6;" text="Tài khoản">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="infoButton" mnemonicParsing="false" onAction="#infoButtonOnAction" prefHeight="46.0" prefWidth="218.0" stylesheets="@../../resources/userview.css" text="Trang cá nhân">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon glyphName="USER" />
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="info-button-form" />
+                              <String fx:value="cursor_hand" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="57.0" prefWidth="216.0" stylesheets="@../../resources/userview.css" text="Đăng xuất">
+                           <styleClass>
+                              <String fx:value="cursor_hand" />
+                              <String fx:value="info-button-form" />
+                           </styleClass>
+                           <graphic>
+                              <FontAwesomeIcon glyphName="SIGN_OUT" size="20" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

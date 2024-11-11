@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import view.user.UserView;
 
 
 import java.io.IOException;
@@ -55,11 +56,25 @@ public class Controller {
                 }
             });
             pause.play(); // Chạy PauseTransition
-        }
-        else {
+        }  else if(userRadioButton.isSelected() && usernameTextField.getText().equals("user") && passwordPasswordField.getText().equals("abc")) {
+            // Hiển thị thông báo
+            successLogin.setVisible(true);
+
+            // Sử dụng PauseTransition để trì hoãn chuyển đổi
+            PauseTransition pause = new PauseTransition(Duration.seconds(1.5)); // Thời gian chờ 3 giây
+            pause.setOnFinished(event -> {
+                UserView userView = new UserView();
+                try {
+                    userView.start(new Stage()); // Mở cửa sổ UserView
+                    closeButton.getScene().getWindow().hide(); // Đóng cửa sổ đăng nhập
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+            pause.play(); // Chạy PauseTransition
+        } else {
             loginMessageLabel.setText("Tên đăng nhập hoặc mật khẩu không chính xác!");
         }
-
     }
 
 

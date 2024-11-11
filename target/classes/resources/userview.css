@@ -11,7 +11,7 @@
 }
 
 .nav-form{
-    -fx-background-color: linear-gradient(to bottom right, #c44d09, #f6b89e);
+    -fx-background-color: linear-gradient(to bottom right, #4babbe,#539FBE, #6385bd);
 }
 
 .cursor_hand{
@@ -31,7 +31,7 @@
     -fx-background-color: transparent;
 }
 .exit-button:hover{
-    -fx-background-color: #ec0d0d;
+    -fx-background-color: #ce1616;
 }
 
 .nav-button-form{
@@ -40,8 +40,7 @@
 }
 
 .nav-button-form:hover{
-
-    -fx-background-color: linear-gradient(to bottom right, #ec8437, #efa97c);
+    -fx-background-color: linear-gradient(to bottom right, #4babbe,#539FBE, #6385bd);
 }
 
 .logout-button{
@@ -50,3 +49,23 @@
 .logout-button:hover{
     -fx-background-color: #178c13;
 }
+
+.circle-button{
+    -fx-background-radius: 25;    /* Góc bo rất lớn giúp button trở thành hình tròn */
+    -fx-background-color: white;  /* Màu nền cho button */
+    -fx-text-fill: black;           /* Màu chữ */
+    -fx-border-radius: 25;
+}
+
+.info-button-form{
+    -fx-background-radius: 7;
+    -fx-background-color: transparent;
+    -fx-border-color: #E4E7EA;
+    -fx-border-width: 2px 2px 2px 4px;
+}
+
+.info-button-form:hover{
+
+    -fx-background-color: #949496
+}
+

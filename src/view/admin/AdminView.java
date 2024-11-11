@@ -16,7 +16,7 @@ public class AdminView extends Application {
     @Override
     public void start(Stage primaryStage) {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("adminview.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("adminview1.fxml"));
             primaryStage.initStyle(StageStyle.UNDECORATED);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
