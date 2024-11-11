@@ -106,6 +106,14 @@ public class Person {
         this.gender = gender;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     /**
      * Phương thức hiển thị thông tin của người dùng.
      *
