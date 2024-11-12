@@ -75,8 +75,20 @@ public class GoogleBooksImporter {
         Connection connection = JDBCConnection.getJDBCConnection();
         if (connection != null) {
             System.out.println("Kết nối cơ sở dữ liệu thành công!");
+
+//            STT int,
+//            MaSach varchar(50) not null,
+//                    TenSach varchar(50) not null,
+//                    TacGia varchar(255) not null,
+//                    QRCode blob,
+//                    TheLoaiSach varchar(50) not null,
+//                    NhaXuatBan varchar(255) not null,
+//                    SoLuong int not null,
+//                    SoNgayMuon int not null,
+//                    Picture mediumblob,
+//                    constraint pk_MaSach primary key (MaSach)
             // Chuẩn bị câu lệnh SQL để chèn dữ liệu vào bảng Document
-            String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, QRCode , TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             // Lặp qua các cuốn sách và bơm vào cơ sở dữ liệu
@@ -86,8 +98,19 @@ public class GoogleBooksImporter {
                 // Lấy các thông tin sách từ API response
                 String maSach = "Book" + (i + 1); // Tạo mã sách tạm thời
                 String tenSach = book.optString("title", "Chưa có tên sách");
-                String tacGia = book.optJSONArray("authors") != null ? book.getJSONArray("authors").join(", ") : "Chưa có tác giả";
-                String theLoaiSach = "Chưa có thể loại"; // API không cung cấp trực tiếp thể loại
+                // Kiểm tra tác giả
+                String tacGia = "Chưa có tác giả";
+                JSONArray authorsArray = book.optJSONArray("authors");
+                if (authorsArray != null && authorsArray.length() > 0) {
+                    tacGia = authorsArray.join(", ");
+                }
+
+                // Lấy thể loại sách, kiểm tra có tồn tại không
+                String theLoaiSach = "Chưa có thể loại";
+                JSONArray categoriesArray = book.optJSONArray("categories");
+                if (categoriesArray != null && categoriesArray.length() > 0) {
+                    theLoaiSach = categoriesArray.join(", ");
+                }
                 String nhaXuatBan = book.optString("publisher", "Chưa có nhà xuất bản");
                 int soLuong = 100; // Giả định số lượng là 100
                 int soNgayMuon = 30; // Giả định thời gian mượn mặc định là 30 ngày
@@ -114,12 +137,12 @@ public class GoogleBooksImporter {
         }
     }
 
-    public static void main(String[] args) {
-        // Tạo một đối tượng của GoogleBooksImporter
-        GoogleBooksImporter importer = new GoogleBooksImporter();
-
-        // Gọi phương thức để nhập sách vào cơ sở dữ liệu
-        System.out.println("Bắt đầu quá trình nhập sách...");
-        importer.importBooksToDatabase();
-    }
+//    public static void main(String[] args) {
+//        // Tạo một đối tượng của GoogleBooksImporter
+//        GoogleBooksImporter importer = new GoogleBooksImporter();
+//
+//        // Gọi phương thức để nhập sách vào cơ sở dữ liệu
+//        System.out.println("Bắt đầu quá trình nhập sách...");
+//        importer.importBooksToDatabase();
+//    }
 }

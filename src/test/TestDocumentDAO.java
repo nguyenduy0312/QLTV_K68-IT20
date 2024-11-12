@@ -16,6 +16,12 @@ public class TestDocumentDAO  {
       //  DocumentDAO.getInstance().deleteDocument("INT1017");  // Xóa sách
 //        GoogleBooksImporter importer = new GoogleBookImporter();
 //        importer.importBooksToDatabase();
+        // Tạo một đối tượng của GoogleBooksImporter
+//        GoogleBooksImporter importer = new GoogleBooksImporter();
+//
+//        // Gọi phương thức để nhập sách vào cơ sở dữ liệu
+//        System.out.println("Bắt đầu quá trình nhập sách...");
+//        importer.importBooksToDatabase();
 
     }
 }
