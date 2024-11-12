@@ -10,125 +10,215 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the {@link DocumentDAOInterface} for managing documents in the database.
+ */
 public class DocumentDAO implements DocumentDAOInterface {
+
+    /**
+     * Returns a singleton instance of DocumentDAO.
+     *
+     * @return an instance of {@link DocumentDAO}.
+     */
     public static DocumentDAO getInstance() {
         return new DocumentDAO();
     }
+
     @Override
-    public void addDocument( Document document) {
-        String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
+    /**
+     * Adds a new document to the database.
+     *
+     * @param document the {@link Document} object to be added.
+     */
+    public void addDocument(Document document) {
+        String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection connection = JDBCConnection.getJDBCConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-                // Gán giá trị cho các tham số trong câu lệnh SQL
-                preparedStatement.setString(1, document.getId());
-                preparedStatement.setString(2, document.getTitle());
-                preparedStatement.setString(3, document.getAuthor());
-                preparedStatement.setString(4, document.getCategory());
-                preparedStatement.setString(5, document.getPublisher());
-                preparedStatement.setInt(6, document.getQuantity());
-                preparedStatement.setInt(7, document.getMaxBorrowDays());
+            preparedStatement.setString(1, document.getId());
+            preparedStatement.setString(2, document.getTitle());
+            preparedStatement.setString(3, document.getAuthor());
+            preparedStatement.setString(4, document.getCategory());
+            preparedStatement.setString(5, document.getPublisher());
+            preparedStatement.setInt(6, document.getQuantity());
+            preparedStatement.setInt(7, document.getMaxBorrowDays());
 
-                // Thực thi câu lệnh SQL
-                int result = preparedStatement.executeUpdate();
-
-                // In kết quả
-                System.out.println(result + " row(s) inserted.");
-            }
+            int result = preparedStatement.executeUpdate();
+            System.out.println(result + " row(s) affected.");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Error adding document: " + e.getMessage());
         }
     }
 
     @Override
-    public void deleteDocument( String maSach) {
-        // Tạo câu lệnh truy vấn sql
+    /**
+     * Deletes a document from the database by its ID.
+     *
+     * @param maSach the ID of the document to be deleted.
+     */
+    public void deleteDocument(String maSach) {
         String sql = "DELETE FROM Document WHERE MaSach = ?";
 
-        // Tạo kết nối tới csdl
-        try (Connection connection = JDBCConnection.getJDBCConnection()) {
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-            // Tạo đối tượng thực thi câu lệnh sql
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-                // Gán giá trị cho các tham số trong câu lệnh sql
-                preparedStatement.setString(1,maSach);
-
-                // Thực thi câu lệnh
-                int result = preparedStatement.executeUpdate();
-
-                // In kết quả
-                System.out.println(result);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            preparedStatement.setString(1, maSach);
+            int result = preparedStatement.executeUpdate();
+            System.out.println(result + " row(s) deleted.");
+        } catch (SQLException e) {
+            System.err.println("Error deleting document: " + e.getMessage());
         }
     }
 
     @Override
+    /**
+     * Updates an existing document in the database.
+     *
+     * @param document the {@link Document} object containing updated information.
+     */
     public void updateDocument(Document document) {
-        // Tạo câu lệnh truy vấn SQL
-        String sql ="";
+        String sql = "UPDATE document SET TacGia = ?, TenSach = ?, TheLoaiSach = ?, NhaXuatBan = ?, SoLuong = ?, SoNgayMuon = ? WHERE MaSach = ?";
 
-        // Tạo kết nối tới CSDL
-        try (Connection connection = JDBCConnection.getJDBCConnection()) {
-            // Tạo đối tượng thực thi câu lệnh SQL
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                // Gán giá trị cho tham số trong câu lệnh SQL
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, document.getAuthor());
+            preparedStatement.setString(2, document.getTitle());
+            preparedStatement.setString(3, document.getCategory());
+            preparedStatement.setString(4, document.getPublisher());
+            preparedStatement.setInt(5, document.getQuantity());
+            preparedStatement.setInt(6, document.getMaxBorrowDays());
+            preparedStatement.setString(7, document.getId());
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Document updated successfully.");
+            } else {
+                System.out.println("No document found with the given ID.");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("Error updating document: " + e.getMessage());
         }
-        // Thực thi câu lệnh SQL
-        // In ra kết quả
     }
 
     @Override
+    /**
+     * Finds a document by its ID.
+     *
+     * @param maSach the ID of the document to search for.
+     * @return a {@link Document} object if found, or {@code null} if no document with the given ID exists.
+     */
     public Document findDocumentById(String maSach) {
-        return null;
-    }
+        String sql = "SELECT * FROM document WHERE MaSach = ?";
 
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-    @Override
-    public Document findDocumentByTitle(String tenSach) {
-        return null;
-    }
+            preparedStatement.setString(1, maSach);
 
-    @Override
-    public Document findDocumentByCategory(String theLoai) {
-        return null;
-    }
-
-    @Override
-    public List<Document> findAllDocuments() {
-        ArrayList<Document> documentList = new ArrayList<>();
-        // Tạo câu lệnh truy vấn.
-        String sql ="SELECT * FROM Document";
-        // Tạo kết nối tới CSDL.
-        try (Connection connection = JDBCConnection.getJDBCConnection()) {
-            // Tạo đối tượng thực thi câu lệnh sql.
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                // resultSet lưu trữ dữ liệu lấy ra từ CSDL
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    // lấy dữ liệu từ resultSet gán vào biến
-                    while (resultSet.next()) {
-                        String id = resultSet.getString("MaSach");
-                        String title = resultSet.getString("TenSach");
-                        String category = resultSet.getString("TheLoai");
-                        String author = resultSet.getString("TacGia");
-                        String publisher = resultSet.getString("NhaXuatBan");
-                        int quantity = resultSet.getInt("SoLuong");
-                        int maxBorrowed = resultSet.getInt("SoNgayMuon");
-                       Document document = new Document(id,title,category,author, publisher, quantity,maxBorrowed);
-                       documentList.add(document);
-                    }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return extractDocumentFromResultSet(resultSet);
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("Error finding document by ID: " + e.getMessage());
         }
         return null;
+    }
+
+    @Override
+    /**
+     * Finds a document by its title.
+     *
+     * @param tenSach the title of the document to search for.
+     * @return a {@link Document} object if found, or {@code null} if no document with the given title exists.
+     */
+    public Document findDocumentByTitle(String tenSach) {
+        String sql = "SELECT * FROM document WHERE TenSach = ?";
+
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, tenSach);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return extractDocumentFromResultSet(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error finding document by title: " + e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    /**
+     * Finds a document by its category.
+     *
+     * @param theLoai the category of the document to search for.
+     * @return a {@link Document} object if found, or {@code null} if no document with the given category exists.
+     */
+    public Document findDocumentByCategory(String theLoai) {
+        String sql = "SELECT * FROM document WHERE TheLoaiSach = ?";
+
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, theLoai);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return extractDocumentFromResultSet(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error finding document by category: " + e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    /**
+     * Retrieves all documents from the database.
+     *
+     * @return a list of all {@link Document} objects.
+     */
+    public List<Document> findAllDocuments() {
+        List<Document> documentList = new ArrayList<>();
+        String sql = "SELECT * FROM Document";
+
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                documentList.add(extractDocumentFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving all documents: " + e.getMessage());
+        }
+        return documentList;
+    }
+
+    /**
+     * Extracts a {@link Document} object from the given {@link ResultSet}.
+     *
+     * @param resultSet the {@link ResultSet} containing document data.
+     * @return a {@link Document} object.
+     * @throws SQLException if a database access error occurs.
+     */
+    private Document extractDocumentFromResultSet(ResultSet resultSet) throws SQLException {
+        Document document = new Document();
+        document.setId(resultSet.getString("MaSach"));
+        document.setTitle(resultSet.getString("TenSach"));
+        document.setAuthor(resultSet.getString("TacGia"));
+        document.setCategory(resultSet.getString("TheLoaiSach"));
+        document.setPublisher(resultSet.getString("NhaXuatBan"));
+        document.setQuantity(resultSet.getInt("SoLuong"));
+        document.setMaxBorrowDays(resultSet.getInt("SoNgayMuon"));
+        return document;
     }
 }
