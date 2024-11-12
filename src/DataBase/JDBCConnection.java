@@ -7,7 +7,7 @@ import java.sql.*;
 public class JDBCConnection {
     private static final String url = "jdbc:mysql://localhost:3306/qltv_k68_it20"; // Cấu trúc kết nối hệ quản trị mySQL.
     private static final String user = "root";
-    private static final String password = "hoang123";
+    private static final String password = "123456789";
 
     public static Connection getJDBCConnection() {
         try {
