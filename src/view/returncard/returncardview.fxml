@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="711.0" style="-fx-border-color: #999999; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReturnCardController">
+   <children>
+      <AnchorPane prefHeight="527.0" prefWidth="712.0">
+         <children>
+            <AnchorPane prefHeight="84.0" prefWidth="712.0" style="-fx-background-color: #999999;">
+               <children>
+                  <Label alignment="CENTER" layoutX="242.0" layoutY="26.0" prefHeight="38.0" prefWidth="228.0" text="Trả Sách">
+                     <font>
+                        <Font name="Tahoma Bold" size="30.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon glyphName="BOOK" />
+                     </graphic>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label layoutX="128.0" layoutY="131.0" text="Mã sách: ">
+               <font>
+                  <Font name="Tahoma" size="25.0" />
+               </font>
+            </Label>
+            <TextField layoutX="280.0" layoutY="132.0" prefHeight="31.0" prefWidth="185.0" style="-fx-background-radius: 5;" />
+            <Label layoutX="43.0" layoutY="192.0" text="Mã người mượn: ">
+               <font>
+                  <Font name="Tahoma" size="25.0" />
+               </font>
+            </Label>
+            <TextField layoutX="280.0" layoutY="193.0" prefHeight="31.0" prefWidth="162.0" style="-fx-background-radius: 5;" />
+            <Label layoutX="144.0" layoutY="245.0" text="Họ tên: ">
+               <font>
+                  <Font name="Tahoma" size="25.0" />
+               </font>
+            </Label>
+            <TextField layoutX="280.0" layoutY="246.0" prefHeight="31.0" prefWidth="219.0" style="-fx-background-radius: 5;" />
+            <Label layoutX="23.0" layoutY="320.0" text="Ngày mượn:">
+               <font>
+                  <Font name="Tahoma" size="25.0" />
+               </font>
+            </Label>
+            <TextField layoutX="166.0" layoutY="320.0" prefHeight="31.0" prefWidth="179.0" style="-fx-background-radius: 5;" />
+            <TextField layoutX="505.0" layoutY="320.0" prefHeight="31.0" prefWidth="179.0" style="-fx-background-radius: 5;" />
+            <Label layoutX="389.0" layoutY="320.0" text="Ngày trả:">
+               <font>
+                  <Font name="Tahoma" size="25.0" />
+               </font>
+            </Label>
+            <TextField layoutX="295.0" layoutY="387.0" prefHeight="31.0" prefWidth="341.0" style="-fx-background-radius: 5;" />
+            <Label layoutX="69.0" layoutY="386.0" text="Phạt:">
+               <font>
+                  <Font name="Tahoma" size="25.0" />
+               </font>
+            </Label>
+            <TextField layoutX="144.0" layoutY="387.0" prefHeight="31.0" prefWidth="137.0" style="-fx-background-radius: 5;" />
+            <Button layoutX="248.0" layoutY="448.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="87.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" text="Trả" />
+            <Button fx:id="closeButton" layoutX="422.0" layoutY="448.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="38.0" prefWidth="87.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" text="Hủy" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import controller.AdminController.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="1432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="top_form" stylesheets="@../../resources/adminview.css" />
+        <BorderPane prefHeight="720.0" prefWidth="930.0">
+            <top>
+                <AnchorPane prefHeight="77.0" prefWidth="1433.0" style="-fx-background-color: #D3E3FD;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="minimizeButton" layoutX="1338.0" layoutY="-1.0" mnemonicParsing="false" onAction="#minimizeButtonOnAction" prefHeight="31.0" prefWidth="40.0" styleClass="exit-button" stylesheets="@../../resources/adminview.css" AnchorPane.rightAnchor="55.0">
+                            <graphic>
+                                <FontAwesomeIcon glyphName="MINUS" size="15" text="" />
+                            </graphic>
+                        </Button>
+                        <Button fx:id="closeButton" layoutX="1389.0" layoutY="-1.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="31.0" prefWidth="44.0" styleClass="exit-button" stylesheets="@../../resources/adminview.css">
+                            <graphic>
+                                <FontAwesomeIcon glyphName="CLOSE" size="20" text="" />
+                            </graphic>
+                        </Button>
+                  <AnchorPane layoutY="30.0" prefHeight="50.0" prefWidth="1433.0" style="-fx-background-color: #2BB7BB;" styleClass="semi-top-form" stylesheets="@../../resources/adminview.css">
+                     <children>
+                              <Label alignment="CENTER" layoutX="26.0" layoutY="4.0" prefHeight="42.0" prefWidth="143.0" text="Libhub">
+                                  <font>
+                                      <Font name="Cooper Black" size="25.0" />
+                                  </font>
+                           <graphic>
+                                    <FontAwesomeIcon glyphName="UNIVERSITY" size="25" text="" />
+                           </graphic>
+                              </Label>
+                        <Label layoutX="162.0" layoutY="11.0" text="HHD" textFill="#cbdde4">
+                           <font>
+                              <Font name="Cooper Black" size="25.0" />
+                           </font></Label>
+                     </children>
+                  </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </top>
+            <left>
+                <AnchorPane prefHeight="643.0" prefWidth="311.0" stylesheets="@../../resources/adminview.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <FontAwesomeIcon fill="#eee0e0" glyphName="USER" layoutX="74.0" layoutY="92.0" size="5em" text="" AnchorPane.leftAnchor="110.0" />
+                        <Label alignment="CENTER" layoutX="52.0" layoutY="114.0" prefHeight="28.0" prefWidth="104.0" text="Xin Chào," AnchorPane.leftAnchor="90.0">
+                            <font>
+                                <Font name="Tahoma" size="22.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="142.0" prefHeight="30.0" prefWidth="91.0" text="Admin" AnchorPane.leftAnchor="90.0">
+                            <font>
+                                <Font name="Tahoma Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <AnchorPane layoutX="13.0" layoutY="14.0" prefHeight="671.0" prefWidth="286.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
+                            <children>
+                                <Line endX="100.0" layoutX="113.0" layoutY="199.0" startX="-100.0" AnchorPane.leftAnchor="30.0" />
+                                <Button fx:id="homeButton" alignment="CENTER" layoutX="2.0" layoutY="251.0" mnemonicParsing="false" onAction="#homeButtonOnAction" prefHeight="44.0" prefWidth="237.0" stylesheets="@../../resources/adminview.css" text="Trang chủ" AnchorPane.leftAnchor="2.0">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                    <styleClass>
+                                        <String fx:value="nav-button-form" />
+                                        <String fx:value="cursor_hand" />
+                                    </styleClass>
+                                </Button>
+                                <FontAwesomeIcon glyphName="HOME" layoutX="16.0" layoutY="283.0" size="28" text="" />
+                                <Button fx:id="qlSachButton" alignment="CENTER" layoutX="-4.0" layoutY="315.0" mnemonicParsing="false" onAction="#qlSachButtonOnAction" prefHeight="44.0" prefWidth="248.0" stylesheets="@../../resources/adminview.css" text="Quản lý sách" AnchorPane.leftAnchor="-4.0">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                    <styleClass>
+                                        <String fx:value="nav-button-form" />
+                                        <String fx:value="cursor_hand" />
+                                    </styleClass>
+                                </Button>
+                                <FontAwesomeIcon glyphName="" layoutX="16.0" layoutY="347.0" size="28" text="" />
+                                <Button fx:id="qlMuonSachButton" alignment="CENTER_RIGHT" layoutX="3.0" layoutY="381.0" mnemonicParsing="false" onAction="#qlMuonSachButtonOnAction" prefHeight="44.0" prefWidth="255.0" stylesheets="@../../resources/adminview.css" text="Quản lý mượn sách">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                    <styleClass>
+                                        <String fx:value="nav-button-form" />
+                                        <String fx:value="cursor_hand" />
+                                    </styleClass>
+                                </Button>
+                                <FontAwesomeIcon glyphName="BOOKMARK" layoutX="20.0" layoutY="413.0" size="28" />
+                                <Button fx:id="qlTraSachButton" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="449.0" mnemonicParsing="false" onAction="#qlTraSachButtonOnAction" prefHeight="44.0" prefWidth="255.0" styleClass="nav-button-form" stylesheets="@../../resources/adminview.css" text="Quản lý trả sách">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Button>
+                                <FontAwesomeIcon glyphName="UNDO" layoutX="18.0" layoutY="481.0" size="28" text="" />
+                                <Button fx:id="qlNguoiDungButton" alignment="CENTER_RIGHT" layoutX="3.0" layoutY="515.0" mnemonicParsing="false" onAction="#qlNguoiDungButtonOnAction" prefHeight="44.0" prefWidth="255.0" stylesheets="@../../resources/adminview.css" text="Quản lý người dùng">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                    <styleClass>
+                                        <String fx:value="nav-button-form" />
+                                        <String fx:value="cursor_hand" />
+                                    </styleClass>
+                                </Button>
+                                <FontAwesomeIcon glyphName="USERS" layoutX="14.0" layoutY="547.0" size="28" text="" />
+                                <Button fx:id="logoutButton" layoutX="13.0" layoutY="614.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="39.0" prefWidth="47.0" stylesheets="@../../resources/adminview.css">
+                                    <graphic>
+                                        <FontAwesomeIcon glyphName="SIGN_OUT" size="25" text="" />
+                                    </graphic>
+                                    <styleClass>
+                                        <String fx:value="logout-button" />
+                                        <String fx:value="cursor_hand" />
+                                    </styleClass>
+                                </Button>
+                                <Label layoutX="74.0" layoutY="621.0" text="Logout">
+                                    <font>
+                                        <Font name="Tahoma Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                    <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="nav-form" />
+                        <String fx:value="semi-top-form" />
+                    </styleClass>
+                </AnchorPane>
+            </left>
+            <center>
+                <AnchorPane prefHeight="676.0" prefWidth="1122.0" stylesheets="@../../resources/adminview.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <AnchorPane fx:id="home" layoutX="3.0" layoutY="1.0" prefHeight="689.0" prefWidth="1117.0" style="-fx-background-color: #FCFCFC;">
+                            <children>
+                        <AnchorPane layoutX="3.0" prefHeight="695.0" prefWidth="1112.0">
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="anchorPane-border1" />
+                           </styleClass>
+                           <children>
+                                            <AnchorPane layoutX="18.0" layoutY="71.0" prefHeight="59.0" prefWidth="1085.0" style="-fx-background-color: #20A8D8;">
+                                                <children>
+                                                    <Label layoutX="44.0" layoutY="17.0" text="Mới nhất" textFill="#f5f2f2">
+                                                        <font>
+                                                            <Font name="Tahoma Bold" size="20.0" />
+                                                        </font>
+                                                    </Label>
+                                                </children>
+                                                <styleClass>
+                                                    <String fx:value="shadow" />
+                                                    <String fx:value="anchorPane-border1" />
+                                                </styleClass>
+                                            </AnchorPane>
+                              <ScrollPane layoutX="18.0" layoutY="130.0" prefHeight="551.0" prefWidth="1085.0" stylesheets="@../../resources/adminview.css">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="895.0" prefWidth="1123.0" style="-fx-background-color: userview.fxml;">
+                                       <children>
+                                          <VBox layoutY="-2.0" prefHeight="783.0" prefWidth="1141.0">
+                                             <children>
+                                                <HBox prefHeight="238.0" prefWidth="1121.0">
+                                                   <children>
+                                                      <ImageView fitHeight="219.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="10.0" right="15.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox prefHeight="230.0" prefWidth="1121.0">
+                                                   <children>
+                                                      <ImageView fitHeight="219.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="10.0" right="15.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox prefHeight="242.0" prefWidth="1068.0">
+                                                   <children>
+                                                      <ImageView fitHeight="219.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="10.0" right="15.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                         <image>
+                                                            <Image url="@../../resources/default.jpg" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="anchorPane-border1" />
+                                 </styleClass>
+                              </ScrollPane>
+                              <Label layoutX="41.0" layoutY="27.0" text="Trang Chủ">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="quanLySach" layoutX="-7.0" layoutY="-1.0" prefHeight="692.0" prefWidth="1125.0" stylesheets="@../../resources/adminview.css" visible="false">
+                            <styleClass>
+                                <String fx:value="shadow" />
+                                <String fx:value="anchorPane-border" />
+                            </styleClass>
+                            <children>
+                                <AnchorPane layoutX="8.0" layoutY="6.0" prefHeight="98.0" prefWidth="1110.0" stylesheets="@../../resources/adminview.css">
+                                    <children>
+                                        <AnchorPane layoutX="3.0" layoutY="63.0" prefHeight="128.0" prefWidth="1105.0" stylesheets="@../../resources/adminview.css">
+                                            <children>
+                                                <TextField layoutX="344.0" layoutY="47.0" prefHeight="35.0" prefWidth="403.0" promptText="Tìm kiếm" />
+                                                <RadioButton layoutX="36.0" layoutY="14.0" mnemonicParsing="false" text="Tìm kiếm theo mã sách" />
+                                                <RadioButton layoutX="36.0" layoutY="54.0" mnemonicParsing="false" text="Tìm kiếm theo tên sách" />
+                                                <RadioButton layoutX="36.0" layoutY="93.0" mnemonicParsing="false" text="Tìm kiếm theo thể loại sách" />
+                                                <FontAwesomeIcon glyphName="SEARCH" layoutX="313.0" layoutY="72.0" size="20" text="" />
+                                                <Button layoutX="808.0" layoutY="49.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="87.0" text="Xác nhận" />
+                                            </children>
+                                        </AnchorPane>
+                                        <Label alignment="CENTER" layoutX="27.0" layoutY="14.0" prefHeight="39.0" prefWidth="186.0" text="Quản Lý Sách">
+                                            <font>
+                                                <Font name="Tahoma Bold" size="25.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <styleClass>
+                                        <String fx:value="shadow" />
+                                        <String fx:value="anchorPane-border1" />
+                                    </styleClass>
+                                </AnchorPane>
+                                <TableView layoutX="14.0" layoutY="232.0" prefHeight="327.0" prefWidth="1102.0" stylesheets="@../../resources/adminview.css">
+                                    <columns>
+                                        <TableColumn minWidth="0.0" text="STT" />
+                                        <TableColumn minWidth="2.0" prefWidth="119.0" text="Mã sách" />
+                                        <TableColumn minWidth="0.0" prefWidth="372.0" text="Tên sách" />
+                                        <TableColumn minWidth="0.0" prefWidth="305.0" text="Thể loại" />
+                                        <TableColumn minWidth="0.0" prefWidth="120.0" text="Số lượng" />
+                                        <TableColumn minWidth="0.0" prefWidth="105.0" text="Số ngày  mượn tối đa" />
+                                    </columns>
+                                    <styleClass>
+                                        <String fx:value="anchorPane-border1" />
+                                        <String fx:value="shadow" />
+                                    </styleClass>
+                                </TableView>
+                                <Button fx:id="editBookButton" layoutX="663.0" layoutY="603.0" mnemonicParsing="false" onAction="#editBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" styleClass="crud-button" stylesheets="@../../resources/adminview.css" text="Sửa">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <graphic>
+                                        <FontAwesomeIcon glyphName="EDIT" size="20" text="" />
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="addBookButton" layoutX="139.0" layoutY="603.0" mnemonicParsing="false" onAction="#addBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-radius: 7;" styleClass="crud-button" stylesheets="@../../resources/adminview.css" text="Thêm">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <graphic>
+                                        <FontAwesomeIcon glyphName="PLUS_CIRCLE" size="20" />
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="deleteBookButton" layoutX="394.0" layoutY="603.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="136.0" style=": ;" styleClass="crud-button" stylesheets="@../../resources/adminview.css" text="Xóa">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <graphic>
+                                        <FontAwesomeIcon glyphName="TIMES_CIRCLE" size="20" />
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="viewInfoBookButton" alignment="CENTER" layoutX="912.0" layoutY="603.0" mnemonicParsing="false" onAction="#viewInfoBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" styleClass="crud-button" stylesheets="@../../resources/adminview.css" text="Xem">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <graphic>
+                                        <FontAwesomeIcon glyphName="EYE" size="20" text="" />
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="quanLyMuonSach" layoutX="-4.0" layoutY="-3.0" prefHeight="696.0" prefWidth="1120.0" visible="false">
+                            <children>
+                                <AnchorPane layoutX="8.0" layoutY="5.0" prefHeight="190.0" prefWidth="1105.0" stylesheets="@../../resources/adminview.css">
+                                    <styleClass>
+                                        <String fx:value="shadow" />
+                                        <String fx:value="anchorPane-border1" />
+                                    </styleClass>
+                                    <children>
+                                        <Label layoutX="39.0" layoutY="14.0" text="Quản Lý Mượn sách">
+                                            <font>
+                                                <Font name="Tahoma Bold" size="25.0" />
+                                            </font>
+                                        </Label>
+                                        <AnchorPane layoutX="2.0" layoutY="61.0" prefHeight="124.0" prefWidth="1103.0">
+                                            <children>
+                                                <RadioButton layoutX="62.0" layoutY="14.0" mnemonicParsing="false" text="Tìm kiếm theo mã mượn sách" />
+                                                <RadioButton layoutX="62.0" layoutY="51.0" mnemonicParsing="false" text="Tìm kiếm theo mã người mượn" />
+                                                <RadioButton layoutX="62.0" layoutY="90.0" mnemonicParsing="false" text="Tìm kiếm theo mã sách" />
+                                                <TextField layoutX="452.0" layoutY="46.0" prefHeight="31.0" prefWidth="428.0" />
+                                                <FontAwesomeIcon glyphName="SEARCH" layoutX="422.0" layoutY="67.0" size="20" />
+                                                <Button layoutX="915.0" layoutY="46.0" mnemonicParsing="false" text="Xác nhận" />
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                                <TableView layoutX="8.0" layoutY="238.0" prefHeight="332.0" prefWidth="1108.0" stylesheets="@../../resources/adminview.css">
+                                    <columns>
+                                        <TableColumn prefWidth="75.0" text="STT" />
+                                        <TableColumn prefWidth="143.0" text="Mã người mượn" />
+                                        <TableColumn prefWidth="132.0" text="Mã sách" />
+                                        <TableColumn prefWidth="175.0" text="Ngày mượn" />
+                                        <TableColumn prefWidth="203.0" text="Ngày hẹn trả" />
+                                        <TableColumn prefWidth="217.0" text="Ngày trả" />
+                                        <TableColumn prefWidth="197.0" text="Tình trạng" />
+                                    </columns>
+                                    <styleClass>
+                                        <String fx:value="shadow" />
+                                        <String fx:value="anchorPane-border1" />
+                                    </styleClass>
+                                </TableView>
+                                <Button fx:id="borrowBookButton" layoutX="745.0" layoutY="609.0" mnemonicParsing="false" onAction="#borrowBookButtonOnAction" prefHeight="54.0" prefWidth="317.0" style="-fx-background-radius: 10;" styleClass="crud-button" text="Ghi phiếu mượn">
+                                    <font>
+                                        <Font name="Tahoma Bold" size="22.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="quanLyTraSach" layoutX="3.0" layoutY="2.0" prefHeight="686.0" prefWidth="1115.0" visible="false">
+                            <children>
+                                <AnchorPane prefHeight="190.0" prefWidth="1105.0" stylesheets="@../../resources/adminview.css">
+                                    <children>
+                                        <Label layoutX="39.0" layoutY="14.0" text="Quản Lý Trả Sách">
+                                            <font>
+                                                <Font name="Tahoma Bold" size="25.0" />
+                                            </font>
+                                        </Label>
+                                        <AnchorPane layoutX="2.0" layoutY="61.0" prefHeight="124.0" prefWidth="1103.0">
+                                            <children>
+                                                <RadioButton layoutX="62.0" layoutY="14.0" mnemonicParsing="false" text="Tìm kiếm theo mã mượn sách" />
+                                                <RadioButton layoutX="62.0" layoutY="51.0" mnemonicParsing="false" text="Tìm kiếm theo mã người mượn" />
+                                                <RadioButton layoutX="62.0" layoutY="90.0" mnemonicParsing="false" text="Tìm kiếm theo mã sách" />
+                                                <TextField layoutX="452.0" layoutY="46.0" prefHeight="31.0" prefWidth="428.0" />
+                                                <FontAwesomeIcon glyphName="SEARCH" layoutX="422.0" layoutY="67.0" size="20" />
+                                                <Button layoutX="915.0" layoutY="46.0" mnemonicParsing="false" text="Xác nhận" />
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                    <styleClass>
+                                        <String fx:value="shadow" />
+                                        <String fx:value="anchorPane-border1" />
+                                    </styleClass>
+                                </AnchorPane>
+                                <TableView layoutX="4.0" layoutY="221.0" prefHeight="332.0" prefWidth="1108.0" stylesheets="@../../resources/adminview.css">
+                                    <columns>
+                                        <TableColumn prefWidth="75.0" text="STT" />
+                                        <TableColumn prefWidth="143.0" text="Mã người mượn" />
+                                        <TableColumn prefWidth="132.0" text="Mã sách" />
+                                        <TableColumn prefWidth="175.0" text="Ngày mượn" />
+                                        <TableColumn prefWidth="203.0" text="Ngày hẹn trả" />
+                                        <TableColumn prefWidth="217.0" text="Ngày trả" />
+                                        <TableColumn prefWidth="197.0" text="Tình trạng" />
+                                    </columns>
+                                    <styleClass>
+                                        <String fx:value="shadow" />
+                                        <String fx:value="anchorPane-border1" />
+                                    </styleClass>
+                                </TableView>
+                                <Button fx:id="returnBookButton" layoutX="736.0" layoutY="603.0" mnemonicParsing="false" onAction="#returnBookButtonOnAction" prefHeight="54.0" prefWidth="317.0" style="-fx-background-radius: 10;" styleClass="crud-button" text="Xác nhận trả sách">
+                                    <font>
+                                        <Font name="Tahoma Bold" size="22.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="quanLyNguoiDung" prefHeight="696.0" prefWidth="1122.0" visible="false">
+                            <children>
+                                <AnchorPane layoutX="5.0" prefHeight="178.0" prefWidth="1112.0" stylesheets="@../../resources/adminview.css">
+                                    <styleClass>
+                                        <String fx:value="shadow" />
+                                        <String fx:value="anchorPane-border1" />
+                                    </styleClass>
+                                    <children>
+                                        <Label layoutX="39.0" layoutY="22.0" text="Quản Lý Người Dùng">
+                                            <font>
+                                                <Font name="Tahoma Bold" size="25.0" />
+                                            </font>
+                                        </Label>
+                                        <RadioButton layoutX="85.0" layoutY="86.0" mnemonicParsing="false" text="Tìm kiếm theo mã người dùng" />
+                                        <RadioButton layoutX="84.0" layoutY="122.0" mnemonicParsing="false" text="Tìm kiếm theo tên người dùng" />
+                                        <TextField layoutX="463.0" layoutY="92.0" prefHeight="31.0" prefWidth="383.0" />
+                                        <FontAwesomeIcon glyphName="SEARCH" layoutX="425.0" layoutY="114.0" size="20" />
+                                        <Button layoutX="889.0" layoutY="92.0" mnemonicParsing="false" text="Xác nhận" />
+                                    </children>
+                                </AnchorPane>
+                                <TableView layoutX="6.0" layoutY="230.0" prefHeight="289.0" prefWidth="1106.0" stylesheets="@../../resources/adminview.css">
+                                    <columns>
+                                        <TableColumn prefWidth="75.0" text="STT" />
+                                        <TableColumn prefWidth="124.0" text="Mã người dùng" />
+                                        <TableColumn prefWidth="284.0" text="Họ tên" />
+                                        <TableColumn prefWidth="143.0" text="Giới tính" />
+                                        <TableColumn prefWidth="220.0" text="Ngày sinh" />
+                                        <TableColumn prefWidth="257.0" text="Số điện thoại" />
+                                    </columns>
+                                    <styleClass>
+                                        <String fx:value="shadow" />
+                                        <String fx:value="anchorPane-border1" />
+                                    </styleClass>
+                                </TableView>
+                                <Button fx:id="addUserButton" layoutX="128.0" layoutY="611.0" mnemonicParsing="false" onAction="#addUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style=": ;" styleClass="crud-button" stylesheets="@../../resources/adminview.css" text="Thêm">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="deleteUserButton" layoutX="372.0" layoutY="611.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="136.0" styleClass="crud-button" stylesheets="@../../resources/adminview.css" text="Xóa">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="editUserButton" layoutX="616.0" layoutY="611.0" mnemonicParsing="false" onAction="#editUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style=": ;" styleClass="crud-button" stylesheets="@../../resources/adminview.css" text="Sửa">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="viewUserInfoButton" alignment="CENTER" layoutX="863.0" layoutY="611.0" mnemonicParsing="false" onAction="#viewInfoUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style=": ;" styleClass="crud-button" text="Xem">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Button>
+                                <FontAwesomeIcon glyphName="TIMES_CIRCLE" layoutX="403.0" layoutY="645.0" size="20" text="" />
+                                <FontAwesomeIcon glyphName="PLUS_CIRCLE" layoutX="154.0" layoutY="645.0" size="20" />
+                                <FontAwesomeIcon glyphName="EDIT" layoutX="642.0" layoutY="646.0" size="20" text="" />
+                                <FontAwesomeIcon glyphName="EYE" layoutX="878.0" layoutY="645.0" size="20" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                    <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="anchorPane-border" />
+                    </styleClass>
+                </AnchorPane>
+            </center>
+        </BorderPane>
+    </children>
+</StackPane>

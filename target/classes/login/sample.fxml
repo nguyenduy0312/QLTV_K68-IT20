@@ -9,7 +9,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="925.0" styleClass="vbox_background_center" stylesheets="@loginPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="937.0" styleClass="vbox_background_center" stylesheets="@loginPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.Controller">
    <right>
       <AnchorPane prefHeight="500.0" prefWidth="439.0" BorderPane.alignment="CENTER">
          <children>
@@ -49,7 +49,7 @@
                   <String fx:value="cursor_hand" />
                </styleClass>
             </Button>
-            <Label fx:id="loginMessageLabel" layoutX="140.0" layoutY="277.0" prefHeight="21.0" prefWidth="250.0" textFill="#da1010">
+            <Label fx:id="loginMessageLabel" layoutX="140.0" layoutY="277.0" prefHeight="21.0" prefWidth="269.0" textFill="#da1010">
                <font>
                   <Font size="12.0" />
                </font></Label>

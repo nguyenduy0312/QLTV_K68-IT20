@@ -1,5 +1,7 @@
 package test;
 
+import DataBase.GoogleBooksImporter;
+import DataBase.JDBCConnection;
 import DAO.DocumentDAO;
 import DataBase.GoogleBooksImporter;
 import model.Document;
@@ -10,6 +12,7 @@ public class TestDocumentDAO  {
     public static void main(String[] args) {
         Date date = new Date(4,5,2005);
         Person person = new Person("Duy",date,"12345","HY","1234567","Nam");
+
 
         Document document = new Document("INT1017","NMLT","Sach tham khao","Duy","Duy",100,7);
         //DocumentDAO.getInstance().addDocument(document);       // Thêm sách

@@ -38,6 +38,7 @@ public class GoogleBooksImporter {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Đã xảy ra lỗi khi tải hoặc bơm sách vào cơ sở dữ liệu.");
+
         }
     }
 
@@ -76,6 +77,7 @@ public class GoogleBooksImporter {
         if (connection != null) {
             System.out.println("Kết nối cơ sở dữ liệu thành công!");
 
+
 //            STT int,
 //            MaSach varchar(50) not null,
 //                    TenSach varchar(50) not null,
@@ -89,6 +91,7 @@ public class GoogleBooksImporter {
 //                    constraint pk_MaSach primary key (MaSach)
             // Chuẩn bị câu lệnh SQL để chèn dữ liệu vào bảng Document
             String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, QRCode , TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             // Lặp qua các cuốn sách và bơm vào cơ sở dữ liệu
@@ -98,6 +101,7 @@ public class GoogleBooksImporter {
                 // Lấy các thông tin sách từ API response
                 String maSach = "Book" + (i + 1); // Tạo mã sách tạm thời
                 String tenSach = book.optString("title", "Chưa có tên sách");
+
                 // Kiểm tra tác giả
                 String tacGia = "Chưa có tác giả";
                 JSONArray authorsArray = book.optJSONArray("authors");
@@ -111,6 +115,7 @@ public class GoogleBooksImporter {
                 if (categoriesArray != null && categoriesArray.length() > 0) {
                     theLoaiSach = categoriesArray.join(", ");
                 }
+
                 String nhaXuatBan = book.optString("publisher", "Chưa có nhà xuất bản");
                 int soLuong = 100; // Giả định số lượng là 100
                 int soNgayMuon = 30; // Giả định thời gian mượn mặc định là 30 ngày
