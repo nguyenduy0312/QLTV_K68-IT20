@@ -10,7 +10,7 @@ create table Document
 	SoLuong int not null,
     SoNgayMuon int not null,
     Picture mediumblob,
-	constraint pk_MaSach primary key (MaSach
+	constraint pk_MaSach primary key (MaSach)
 );
 -- drop table Document;
 
