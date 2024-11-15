@@ -33,13 +33,14 @@ public class Admin extends Person {
      * @param address Địa chỉ của người quản lý
      * @param phoneNumber Số điện thoại của người quản lý
      * @param gender Giới tính của người quản lý
+     * @param email Email
      * @param account Tài khoản người dùng mà quản lý này có quyền quản lý
      * @param userManage Đối tượng quản lý người dùng
      * @param documentManage Đối tượng quản lý tài liệu
      */
-    public Admin(String name, Date dateOfBirth, String id, String address, String phoneNumber, String gender,
+    public Admin(String name, Date dateOfBirth, String id, String address, String phoneNumber, String gender, String email,
                  Account account, UserManage userManage, DocumentManage documentManage) {
-        super(name, dateOfBirth, id, address, phoneNumber, gender);
+        super(name, dateOfBirth, id, address, phoneNumber, gender, email);
         this.account = account;
         this.userManage = userManage;
         this.documentManage = documentManage;

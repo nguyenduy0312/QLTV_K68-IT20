@@ -26,9 +26,9 @@ public class Date {
     /**
      * Khởi tạo một đối tượng Date mới với ngày, tháng và năm được chỉ định.
      *
-     * @param day Ngày trong tháng (1-31).
+     * @param day   Ngày trong tháng (1-31).
      * @param month Tháng trong năm (1-12).
-     * @param year Năm (ví dụ: 2024).
+     * @param year  Năm (ví dụ: 2024).
      * @throws IllegalArgumentException nếu ngày, tháng hoặc năm được cung cấp không hợp lệ.
      */
     public Date(int day, int month, int year) {
@@ -70,9 +70,9 @@ public class Date {
     /**
      * Kiểm tra xem ngày, tháng, năm có hợp lệ không.
      *
-     * @param day ngày (1-31)
+     * @param day   ngày (1-31)
      * @param month tháng (1-12)
-     * @param year năm
+     * @param year  năm
      * @return true nếu ngày, tháng, năm hợp lệ; ngược lại false
      */
     public boolean isValidDate(int day, int month, int year) {
@@ -150,5 +150,32 @@ public class Date {
     public String toString() {
         return String.format("%02d/%02d/%04d", day, month, year);
     }
-}
 
+    /**
+     * Chuyển đổi đối tượng Date thành java.sql.Date.
+     *
+     * @return đối tượng java.sql.Date tương ứng
+     */
+    public java.sql.Date toSqlDate() {
+        return java.sql.Date.valueOf(LocalDate.of(year, month, day));
+    }
+
+    /**
+     * Converts a java.sql.Date to a custom Date object.
+     *
+     * @param sqlDate the java.sql.Date to convert
+     * @return a new Date object with corresponding day, month, and year
+     */
+    public  static Date fromSqlDate(java.sql.Date sqlDate) {
+        if (sqlDate == null) {
+            return null;
+        }
+
+        java.time.LocalDate localDate = sqlDate.toLocalDate();
+        int day = localDate.getDayOfMonth();
+        int month = localDate.getMonthValue();
+        int year = localDate.getYear();
+
+        return new Date(day, month, year);
+    }
+}

@@ -27,6 +27,7 @@ public class Person {
     // Giới tính của người dùng
     private String gender;
 
+    public Person () {}
     /**
      * Hàm khởi tạo cho lớp Person.
      *
@@ -37,13 +38,14 @@ public class Person {
      * @param phoneNumber Số điện thoại của người dùng
      * @param gender Giới tính của người dùng
      */
-    public Person(String name, Date dateOfBirth, String id, String address, String phoneNumber, String gender) {
+    public Person(String name, Date dateOfBirth, String id, String address, String phoneNumber, String gender,String email) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.id = id;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
+        this.email = email;
     }
 
     // Phương thức lấy tên của người dùng
@@ -104,6 +106,14 @@ public class Person {
     // Phương thức thiết lập giới tính cho người dùng
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**

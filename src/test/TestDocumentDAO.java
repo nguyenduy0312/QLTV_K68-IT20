@@ -1,22 +1,30 @@
 package test;
 
+import DAO.UserDAO;
 import DataBase.GoogleBooksImporter;
 import DataBase.JDBCConnection;
 import DAO.DocumentDAO;
+import model.Account;
 import model.Document;
 import model.Person;
+import model.User;
 import util.Date;
 
-public class TestDocumentDAO  {
+
+
+
+public class TestDocumentDAO {
     public static void main(String[] args) {
-        Date date = new Date(4,5,2005);
-        Person person = new Person("Duy",date,"12345","HY","1234567","Nam");
+        // Document document2 = new Document("Book1", "Bí kíp tán gái", "Sach tán gái", "HoangDiem", "HoangOanh", 1, 1000);
 
+        // DocumentDAO.getInstance().addDocument(document1);                                         // Thêm sách thành công
 
-        Document document = new Document("INT1017","NMLT","Sach tham khao","Duy","Duy",100,7);
-        DocumentDAO.getInstance().addDocument(document);       // Thêm sách
-        //DocumentDAO.getInstance().deleteDocument("INT1017");  // Xóa sách
+        // DocumentDAO.getInstance().updateDocument(document2);                                       // Cập nhật sách thành công
 
+        // Document documentSearchh = DocumentDAO.getInstance().findDocumentById("Book1");            // Tìm sach theo id thành công
 
+        // Document documentSearch = DocumentDAO.getInstance().findDocumentByTitle("Bí kíp tán gái"); // Tìm sách theo tên thành công
+
+        // Document documentSearch = DocumentDAO.getInstance().findDocumentByCategory("Sach tán gái"); // Tìm sách theo tiêu đề thành công
     }
 }

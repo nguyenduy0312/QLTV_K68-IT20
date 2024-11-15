@@ -20,12 +20,10 @@ public class Account {
      * @param passWord mật khẩu của tài khoản
      */
     public Account(String userName, String passWord) {
-        if(!isValidPassword(passWord)) {
-            throw new IllegalArgumentException("Invalid password.");
-        }
         this.userName = userName;
         this.passWord = passWord;
     }
+
 
     /**
      * Lấy tên đăng nhập của tài khoản.
@@ -60,9 +58,6 @@ public class Account {
      * @param passWord mật khẩu mới cho tài khoản
      */
     public void setPassWord(String passWord) {
-        if(!isValidPassword(passWord)) {
-            throw new IllegalArgumentException("Invalid password.");
-        }
         this.passWord = passWord;
     }
 

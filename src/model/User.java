@@ -2,31 +2,35 @@ package model;
 
 import util.Date;
 import service.BorrowReturn;
-import java.util.Collection;
+
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
 
 public class User extends Person {
     private Account account;
-    private List<Document> borrowedDocuments; // Danh sách tài liệu đã mượn
+    private List<Document> borrowedDocuments = new ArrayList<>();  ; // Danh sách tài liệu đã mượn
 
-    private List<BorrowReturn> borrowReturns;  // Danh sách hành động mượn trả
+    private List<BorrowReturn> borrowReturns = new ArrayList<>();  ;  // Danh sách hành động mượn trả
 
     /**
      * Hàm khởi tạo cho lớp User.
      *
      * @param name Tên của người dùng
-     * @param dateOfBirth Ngày sinh của người dùng
-     * @param id ID duy nhất của người dùng
+     * @param birthday Ngày sinh của người dùng
+     * @param personID ID duy nhất của người dùng
      * @param address Địa chỉ của người dùng
      * @param phoneNumber Số điện thoại của người dùng
      * @param gender Giới tính của người dùng
      */
-    public User(String name, Date dateOfBirth, String id, String address, String phoneNumber, String gender) {
-        super(name, dateOfBirth, id, address, phoneNumber, gender); // Gọi constructor lớp cha
-        this.borrowedDocuments = new ArrayList<>();   // Khởi tạo danh sách tài liệu đã mượn
-        this.borrowReturns = new ArrayList<>();      // Khởi tạo danh sách hành động mượn trả
+    public User(String name, Date birthday, String personID, String address, String phoneNumber, String gender, String email, Account account) {
+        super(name, birthday, personID, address, phoneNumber, gender, email); // Gọi constructor lớp cha
+        this.account = new Account(account.userName,account.passWord);
     }
+
+    public User() {}
+
+
     public List<Document> getBorrowedDocuments() {
         return borrowedDocuments;
     }
@@ -91,5 +95,17 @@ public class User extends Person {
         }
     }
 
+    @Override
+    public String toString() {
+        return "User {" +
+                "Name='" + getName() + '\'' +
+                ", Date of Birth = " + getBirthday() +
+                ", ID = '" + getId() + '\'' +
+                ", Address ='" + getAddress() + '\'' +
+                ", Phone Number ='" + getPhoneNumber() + '\'' +
+                ", Gender ='" + getGender()+ '\'' +
+                ", Email ='" + getEmail() + '\'' +
+                ", Account = { Username='" + account.userName + "', passWord='" + account.passWord + "' }";
+    }
 }
 
