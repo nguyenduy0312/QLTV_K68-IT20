@@ -48,6 +48,17 @@ public class Document {
         this.qrCode = qrCode;
         this.picture = picture;
     }
+    public Document(String id, String title, String category, String author, String publisher, int quantity,
+                    int maxBorrowDays) {
+        this.id = id;
+        this.title = title;
+        this.category = category;
+        this.author = author;
+        this.publisher = publisher;
+        this.quantity = quantity;
+        this.maxBorrowDays = maxBorrowDays;
+    }
+
 
     public String getId() {
         return id;

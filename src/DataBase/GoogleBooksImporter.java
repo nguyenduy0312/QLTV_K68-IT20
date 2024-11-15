@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.net.URL;
 import java.awt.image.BufferedImage;
+import java.sql.ResultSet;
 import javax.imageio.ImageIO;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,7 +32,7 @@ public class GoogleBooksImporter {
     public void importBooksToDatabase() {
         try {
             // Tạo URL với từ khóa và số lượng kết quả mong muốn
-            String apiUrl = createFullApiUrl("book", 40);
+            String apiUrl = createFullApiUrl("hary", 20);
 
             // Lấy dữ liệu sách từ Google Books API
             JSONArray booksArray = getBooksFromApi(apiUrl);
@@ -83,36 +84,51 @@ public class GoogleBooksImporter {
             System.out.println("Kết nối cơ sở dữ liệu thành công!");
 
             // Chuẩn bị câu lệnh SQL để chèn dữ liệu vào bảng Document
-            String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, QRCode, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlInsert = "INSERT INTO Document (MaSach, TenSach, TacGia, QRCode, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlCheck = "SELECT COUNT(*) FROM Document WHERE MaSach = ?";
 
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmtInsert = connection.prepareStatement(sqlInsert);
+            PreparedStatement stmtCheck = connection.prepareStatement(sqlCheck);
 
             // Lặp qua các cuốn sách và bơm vào cơ sở dữ liệu
             for (int i = 0; i < booksArray.length(); i++) {
                 JSONObject book = booksArray.getJSONObject(i).getJSONObject("volumeInfo");
 
-                // Lấy các thông tin sách từ API response
-
                 // Mã sách
                 JSONArray industryIdentifiersArray = book.optJSONArray("industryIdentifiers");
-                String isbn = industryIdentifiersArray.getJSONObject(0).optString("identifier", ""); // Lấy ISBN đầu tiên
-                String maSach = isbn; // Sử dụng ISBN làm mã sách
+                String maSach;
+                if (industryIdentifiersArray != null && industryIdentifiersArray.length() > 0) {
+                    maSach = industryIdentifiersArray.getJSONObject(0).optString("identifier", "null");
+                } else {
+                    maSach = "NO_ISBN_" + System.currentTimeMillis(); // Tạo mã dựa trên thời gian hiện tại để duy nhất
+                }
 
+                // Kiểm tra nếu mã sách đã tồn tại
+                stmtCheck.setString(1, maSach);
+                ResultSet rs = stmtCheck.executeQuery();
+                rs.next();
+                if (rs.getInt(1) > 0) {
+                    System.out.println("Sách với mã " + maSach + " đã tồn tại trong cơ sở dữ liệu, bỏ qua bản ghi này.");
+                    rs.close();
+                    continue; // Bỏ qua sách này nếu đã tồn tại
+                }
+                rs.close();
 
+                // Lấy các thông tin sách từ API response
                 String tenSach = book.optString("title", "Chưa có tên sách");
 
                 // Kiểm tra tác giả
                 String tacGia = "Chưa có tác giả";
                 JSONArray authorsArray = book.optJSONArray("authors");
                 if (authorsArray != null && authorsArray.length() > 0) {
-                    tacGia = authorsArray.join(", ");
+                    tacGia = authorsArray.getString(0); // Lấy tác giả đầu tiên
                 }
 
                 // Lấy thể loại sách
                 String theLoaiSach = "Chưa có thể loại";
                 JSONArray categoriesArray = book.optJSONArray("categories");
                 if (categoriesArray != null && categoriesArray.length() > 0) {
-                    theLoaiSach = categoriesArray.join(", ");
+                    theLoaiSach = categoriesArray.getString(0); // Lấy thể loại đầu tiên
                 }
 
                 String nhaXuatBan = book.optString("publisher", "Chưa có nhà xuất bản");
@@ -131,28 +147,30 @@ public class GoogleBooksImporter {
                 }
 
                 // Thiết lập các tham số cho câu lệnh SQL
-                stmt.setString(1, maSach);
-                stmt.setString(2, tenSach);
-                stmt.setString(3, tacGia);
-                stmt.setBytes(4, qrCode);  // Chèn QR Code vào cơ sở dữ liệu
-                stmt.setString(5, theLoaiSach);
-                stmt.setString(6, nhaXuatBan);
-                stmt.setInt(7, soLuong);
-                stmt.setInt(8, soNgayMuon);
-                stmt.setBytes(9, picture);  // Chèn hình ảnh vào cơ sở dữ liệu
+                stmtInsert.setString(1, maSach);
+                stmtInsert.setString(2, tenSach);
+                stmtInsert.setString(3, tacGia);
+                stmtInsert.setBytes(4, qrCode);  // Chèn QR Code vào cơ sở dữ liệu
+                stmtInsert.setString(5, theLoaiSach);
+                stmtInsert.setString(6, nhaXuatBan);
+                stmtInsert.setInt(7, soLuong);
+                stmtInsert.setInt(8, soNgayMuon);
+                stmtInsert.setBytes(9, picture);  // Chèn hình ảnh vào cơ sở dữ liệu
 
                 // Thực thi câu lệnh chèn dữ liệu
-                stmt.executeUpdate();
+                stmtInsert.executeUpdate();
             }
 
             // Đóng câu lệnh và kết nối
-            stmt.close();
+            stmtInsert.close();
+            stmtCheck.close();
             connection.close();
             System.out.println("Dữ liệu đã được bơm thành công vào cơ sở dữ liệu!");
         } else {
             System.out.println("Kết nối cơ sở dữ liệu thất bại!");
         }
     }
+
 
     // Hàm để tạo mã QR từ liên kết và chuyển nó thành mảng byte
     private static byte[] generateQRCode(String text) throws IOException {
