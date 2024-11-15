@@ -1,14 +1,19 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import login.LoginView;
 import view.admin.AdminView;
 import view.borrowcard.BorrowCardView;
 import view.document.AddDocument;
+import view.document.DocumentImageDisplay;
 import view.document.EditDocument;
 import view.document.DocumentView;
 import view.returncard.ReturnCardView;
@@ -19,6 +24,9 @@ import view.user.UserInfoView;
 import java.awt.*;
 
 public class AdminController {
+
+    @FXML
+    private Label usernameLabel;
     @FXML
     private Button closeButton;
     @FXML
@@ -63,6 +71,19 @@ public class AdminController {
     private Button borrowBookButton;
     @FXML
     private Button returnBookButton;
+
+    @FXML
+    private VBox vboxImages;
+    public static final int COL = 7;
+
+
+    public void setUsername(String username) {
+        if (username != null) {
+            usernameLabel.setText(username);
+        } else {
+            System.out.println("Username is null!");
+        }
+    }
 
     public void closeButtonOnAction(ActionEvent e) {
         closeButton.getScene().getWindow().hide();
@@ -111,6 +132,7 @@ public class AdminController {
     public void homeButtonOnAction(ActionEvent e) {
         hideAllPanes();
         home.setVisible(!home.isVisible());
+        initialize();
     }
 
     //Cửa sổ quản lý sách
@@ -215,5 +237,11 @@ public class AdminController {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void initialize() {
+        // Gọi phương thức để hiển thị ảnh sách từ cơ sở dữ liệu
+        String sqlQuery = "SELECT Picture FROM document";  // Truy vấn ảnh sách cho Admin
+        DocumentImageDisplay.displayBookImages(vboxImages, sqlQuery, COL);
     }
 }

@@ -1,5 +1,8 @@
 package login;
 
+import controller.AdminController;
+import javafx.stage.StageStyle;
+import login.loginDAO;
 import javafx.util.Duration;
 import javafx.animation.PauseTransition;
 import javafx.util.Duration;
@@ -34,46 +37,73 @@ public class Controller {
     @FXML
     private TextField successLogin;
 
-
+    private loginDAO loginDAO = new loginDAO();
     // Xử lý sự kiện nút Login
     public void loginButtonOnAction(ActionEvent e) {
         if(usernameTextField.getText().trim().isEmpty() || passwordPasswordField.getText().trim().isEmpty()) {
             loginMessageLabel.setText("Vui lòng nhập tên người dùng và mật khẩu của bạn..");
-        } else if(adminRadioButton.isSelected() && usernameTextField.getText().equals("admin") && passwordPasswordField.getText().equals("123")) {
-            // Hiển thị thông báo
-            successLogin.setVisible(true);
+        } else if(adminRadioButton.isSelected()) {
+            String type = loginDAO.authenticate1(usernameTextField.getText(), passwordPasswordField.getText());
+            if(type == null) {
+                loginMessageLabel.setText("Tên đăng nhập hoặc mật khẩu không chính xác!");
+            } else {
+                // Hiển thị thông báo
+                successLogin.setVisible(true);
 
-            // Sử dụng PauseTransition để trì hoãn chuyển đổi
-            PauseTransition pause = new PauseTransition(Duration.seconds(1.5)); // Thời gian chờ 3 giây
-            pause.setOnFinished(event -> {
-                // Mở cửa sổ AdminView
-                AdminView adminView = new AdminView();
-                try {
-                    adminView.start(new Stage()); // Mở cửa sổ AdminView
-                    closeButton.getScene().getWindow().hide(); // Đóng cửa sổ đăng nhập
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            });
-            pause.play(); // Chạy PauseTransition
-        }  else if(userRadioButton.isSelected() && usernameTextField.getText().equals("user") && passwordPasswordField.getText().equals("abc")) {
-            // Hiển thị thông báo
-            successLogin.setVisible(true);
+                // Sử dụng PauseTransition để trì hoãn chuyển đổi
+                PauseTransition pause = new PauseTransition(Duration.seconds(1.5)); // Thời gian chờ 3 giây
+                pause.setOnFinished(event -> {
+                    try {
+                        // Đóng cửa sổ đăng nhập
+                        closeButton.getScene().getWindow().hide();
 
-            // Sử dụng PauseTransition để trì hoãn chuyển đổi
-            PauseTransition pause = new PauseTransition(Duration.seconds(1.5)); // Thời gian chờ 3 giây
-            pause.setOnFinished(event -> {
-                UserView userView = new UserView();
-                try {
-                    userView.start(new Stage()); // Mở cửa sổ UserView
-                    closeButton.getScene().getWindow().hide(); // Đóng cửa sổ đăng nhập
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            });
-            pause.play(); // Chạy PauseTransition
-        } else {
-            loginMessageLabel.setText("Tên đăng nhập hoặc mật khẩu không chính xác!");
+                        // Tạo FXMLLoader để tải Admin.fxml
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/adminview1.fxml"));
+
+                        // Tải FXML và tạo Scene
+                        Parent root = loader.load();
+
+                        // Lấy controller của cửa sổ Admin từ FXMLLoader
+                        AdminController adminController = loader.getController();
+
+                        // Truyền tên người dùng vào controller của Admin
+                        adminController.setUsername(usernameTextField.getText());
+
+                        // Tạo và hiển thị cửa sổ AdminView
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root));
+                        stage.initStyle(StageStyle.UNDECORATED);
+
+                        stage.show();
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                pause.play(); // Chạy PauseTransition
+            }
+        }  else if(userRadioButton.isSelected()) {
+            String type = loginDAO.authenticate2(usernameTextField.getText(), passwordPasswordField.getText());
+            if(type == null) {
+                loginMessageLabel.setText("Tên đăng nhập hoặc mật khẩu không chính xác!");
+            } else {
+                // Hiển thị thông báo
+                successLogin.setVisible(true);
+
+                // Sử dụng PauseTransition để trì hoãn chuyển đổi
+                PauseTransition pause = new PauseTransition(Duration.seconds(1.5)); // Thời gian chờ 3 giây
+                pause.setOnFinished(event -> {
+                    // Mở cửa sổ UserView
+                   UserView userView = new UserView();
+                    try {
+                        userView.start(new Stage()); // Mở cửa sổ AdminView
+                        closeButton.getScene().getWindow().hide(); // Đóng cửa sổ đăng nhập
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                pause.play(); // Chạy PauseTransition
+            }
         }
     }
 
