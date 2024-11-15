@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 /**
  * Class Document represents a document in the library system.
  * Each document has an ID, title, author, and availability state (available or not).
@@ -12,6 +14,8 @@ public class Document {
     private String publisher;
     private int quantity;
     private int maxBorrowDays;
+    private byte[] qrCode;  // Dữ liệu QRCode dạng byte[]
+    private byte[] picture;  // Dữ liệu hình ảnh bìa sách dạng byte[]
 
     /**
      * Default constructor for Document.
@@ -29,9 +33,23 @@ public class Document {
      * @param publisher The publisher of the document, represented by a {@link String} object.
      * @param quantity The number of copies of the document available for borrowing.
      * @param maxBorrowDays The maximum number of days the document can be borrowed.
+     * @param qrCode The QR code data as a byte array.
+     * @param picture The image data of the document's cover as a byte array.
      */
-
-    public Document(String id, String title, String category, String author, String publisher, int quantity, int maxBorrowDays) {
+    public Document(String id, String title, String category, String author, String publisher, int quantity,
+                    int maxBorrowDays, byte[] qrCode, byte[] picture) {
+        this.id = id;
+        this.title = title;
+        this.category = category;
+        this.author = author;
+        this.publisher = publisher;
+        this.quantity = quantity;
+        this.maxBorrowDays = maxBorrowDays;
+        this.qrCode = qrCode;
+        this.picture = picture;
+    }
+    public Document(String id, String title, String category, String author, String publisher, int quantity,
+                    int maxBorrowDays) {
         this.id = id;
         this.title = title;
         this.category = category;
@@ -46,16 +64,13 @@ public class Document {
         return id;
     }
 
-
     public void setId(String id) {
         this.id = id;
     }
 
-
     public String getTitle() {
         return title;
     }
-
 
     public void setTitle(String title) {
         this.title = title;
@@ -73,16 +88,13 @@ public class Document {
         return author;
     }
 
-
     public void setAuthor(String author) {
         this.author = author;
     }
 
-
     public int getQuantity() {
         return quantity;
     }
-
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
@@ -92,27 +104,35 @@ public class Document {
         return publisher;
     }
 
-
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-
 
     public int getMaxBorrowDays() {
         return maxBorrowDays;
     }
 
-    /**
-     * Sets the maximum number of days allowed for borrowing the document.
-     *
-     * @param maxBorrowDays The new maximum number of days for borrowing.
-     * @throws IllegalArgumentException if the provided maxBorrowDays is less than or equal to zero.
-     */
     public void setMaxBorrowDays(int maxBorrowDays) {
         if (maxBorrowDays <= 0) {
             throw new IllegalArgumentException("Max borrow days must be greater than 0.");
         }
         this.maxBorrowDays = maxBorrowDays;
+    }
+
+    public byte[] getQrCode() {
+        return qrCode;
+    }
+
+    public void setQrCode(byte[] qrCode) {
+        this.qrCode = qrCode;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
     }
 
     @Override
@@ -125,8 +145,8 @@ public class Document {
                 ", publisher='" + publisher + '\'' +
                 ", quantity=" + quantity +
                 ", maxBorrowDays=" + maxBorrowDays +
+                ", qrCode=" + (qrCode != null ? Arrays.toString(qrCode) : "null") +
+                ", picture=" + (picture != null ? Arrays.toString(picture) : "null") +
                 '}';
     }
-
 }
-

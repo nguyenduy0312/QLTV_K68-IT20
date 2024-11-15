@@ -9,9 +9,11 @@ import java.sql.SQLException;
  * Provides utility methods for establishing and managing JDBC connections.
  */
 public class JDBCConnection {
+
     private static final String URL = "jdbc:mysql://localhost:3306/qltv_k68_it20"; // Connection URL for MySQL database.
     private static final String USER = "root";
     private static final String PASSWORD = "123456789";
+
 
     /**
      * Establishes and returns a connection to the database.
