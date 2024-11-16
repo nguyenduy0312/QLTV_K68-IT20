@@ -12,3 +12,9 @@
 .exit-button:hover{
     -fx-background-color: #ec0d0d;
 }
+
+.semi-top-form{
+    -fx-background-color:#FCFCFC;
+    -fx-border-color: #8b4513;
+    -fx-border-width: 4px 4px 4px 4px;
+}

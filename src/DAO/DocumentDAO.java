@@ -1,8 +1,10 @@
 package DAO;
 
 import DataBase.JDBCConnection;
+import javafx.scene.image.Image;
 import model.Document;
 
+import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -219,6 +221,16 @@ public class DocumentDAO implements DocumentDAOInterface {
         document.setPublisher(resultSet.getString("NhaXuatBan"));
         document.setQuantity(resultSet.getInt("SoLuong"));
         document.setMaxBorrowDays(resultSet.getInt("SoNgayMuon"));
+
+        document.setPicture(resultSet.getBytes("Picture"));
+        document.setQrCode(resultSet.getBytes("QRCode"));
         return document;
+    }
+
+    public static void main(String argc[]) throws SQLException {
+
+        DocumentDAO documentDAO = new DocumentDAO();
+        List<Document>documents = documentDAO.findAllDocuments();
+        System.out.println(documents + "\n");
     }
 }

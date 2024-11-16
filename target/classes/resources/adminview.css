@@ -58,3 +58,6 @@
 .crud-button:hover{
     -fx-background-color: #dede9c;
 }
+.search-text-form{
+    -fx-background-color: transparent;
+}

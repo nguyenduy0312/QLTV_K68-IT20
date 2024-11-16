@@ -18,6 +18,7 @@ public class AdminView extends Application {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("adminview1.fxml"));
             primaryStage.initStyle(StageStyle.UNDECORATED);
+            primaryStage.setResizable(true); // Đảm bảo cửa sổ có thể thay đổi kích thước
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();

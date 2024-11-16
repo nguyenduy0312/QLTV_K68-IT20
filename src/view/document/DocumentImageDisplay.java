@@ -1,11 +1,18 @@
 package view.document;
 
+import controller.AdminController;
+import controller.DocumentController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import DataBase.JDBCConnection;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.ByteArrayInputStream;
 import java.sql.Connection;
@@ -13,7 +20,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class DocumentImageDisplay {
-
 
     // Phương thức chung để hiển thị tất cả ảnh sách vào VBox
     public static void displayBookImages(VBox vbox, String sqlQuery,  int COL) {
@@ -30,6 +36,7 @@ public class DocumentImageDisplay {
                 // Lặp qua các kết quả từ cơ sở dữ liệu
                 while (rs.next()) {
                     byte[] imageBytes = rs.getBytes("Picture");
+                    String bookId = rs.getString("MaSach");
 
                     if (imageBytes != null) {
                         // Chuyển byte array thành Image
@@ -46,6 +53,37 @@ public class DocumentImageDisplay {
                         imageView.setImage(image);
                         // Giữ tỷ lệ cho ảnh
                         imageView.setPreserveRatio(true);
+
+                        // Gắn mã sách vào UserData của ImageView
+                        imageView.setUserData(bookId);
+
+                        // Gắn sự kiện click vào ImageView
+                        imageView.setOnMouseClicked(event -> {
+                            String clickedBookId = (String) imageView.getUserData();
+                            System.out.println("Mã sách được chọn: " + clickedBookId);
+                            try {
+
+                                // Tạo FXMLLoader để tải doucmentview.fxml
+                                FXMLLoader loader = new FXMLLoader(DocumentImageDisplay.class.getResource("/view/document/documentview.fxml"));
+
+                                // Tải FXML và tạo Scene
+                                Parent root = loader.load();
+
+
+                               DocumentController documentController = loader.getController();
+                               documentController.setInfoById(clickedBookId);
+
+                                // Tạo và hiển thị cửa sổ DocumentView
+                                Stage stage = new Stage();
+                                stage.setScene(new Scene(root));
+                                stage.initStyle(StageStyle.UNDECORATED);
+
+                                stage.show();
+
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
+                        });
 
                         imageCount++;  // Tăng số lượng ảnh đã thêm vào HBox
 

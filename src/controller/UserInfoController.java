@@ -10,4 +10,5 @@ public class UserInfoController {
     public void closeButtonOnAction(ActionEvent e) {
         closeButton.getScene().getWindow().hide();
     }
+
 }

@@ -68,6 +68,7 @@ public class Controller {
 
                         // Truyền tên người dùng vào controller của Admin
                         adminController.setUsername(usernameTextField.getText());
+                        adminController.loadImage();
 
                         // Tạo và hiển thị cửa sổ AdminView
                         Stage stage = new Stage();

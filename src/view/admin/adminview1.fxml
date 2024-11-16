@@ -13,7 +13,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="1432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
+<StackPane fx:id="myPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="1432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="top_form" stylesheets="@../../resources/adminview.css">
          <children>
@@ -21,7 +21,7 @@
                   <top>
                       <AnchorPane prefHeight="77.0" prefWidth="1433.0" style="-fx-background-color: #D3E3FD;" BorderPane.alignment="CENTER">
                           <children>
-                              <Button fx:id="minimizeButton" layoutX="1338.0" layoutY="-1.0" mnemonicParsing="false" onAction="#minimizeButtonOnAction" prefHeight="31.0" prefWidth="40.0" styleClass="exit-button" stylesheets="@../../resources/adminview.css" AnchorPane.rightAnchor="55.0">
+                              <Button fx:id="minimizeButton" layoutX="1285.0" layoutY="-1.0" mnemonicParsing="false" onAction="#minimizeButtonOnAction" prefHeight="31.0" prefWidth="40.0" styleClass="exit-button" stylesheets="@../../resources/adminview.css" AnchorPane.rightAnchor="108.0">
                                   <graphic>
                                       <FontAwesomeIcon glyphName="MINUS" size="15" text="" />
                                   </graphic>
@@ -48,6 +48,11 @@
                               </Label>
                            </children>
                         </AnchorPane>
+                        <Button fx:id="maximizeButton" layoutX="1335.0" layoutY="-1.0" mnemonicParsing="false" onAction="#maximizeButtonOnAction" prefHeight="31.0" prefWidth="41.0" styleClass="exit-button">
+                           <graphic>
+                              <FontAwesomeIcon glyphName="SQUARE" />
+                           </graphic>
+                        </Button>
                           </children>
                       </AnchorPane>
                   </top>
@@ -164,11 +169,11 @@
                                                   </AnchorPane>
                                     <ScrollPane layoutX="18.0" layoutY="139.0" prefHeight="542.0" prefWidth="1085.0" stylesheets="@../../resources/adminview.css">
                                        <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="895.0" prefWidth="1123.0" style="-fx-background-color: adminviewfxml">
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="1400.0" style="-fx-background-color: adminviewfxml">
                                              <children>
-                                                <VBox fx:id="vboxImages" layoutY="-2.0" prefHeight="783.0" prefWidth="1141.0">
+                                                <VBox fx:id="vboxImages" layoutY="-2.0" prefHeight="900.0" prefWidth="1400.0">
                                                    <children>
-                                                      <HBox fx:id="hBox1" prefHeight="238.0" prefWidth="1121.0">
+                                                      <HBox fx:id="hBox1" prefHeight="238.0" prefWidth="1400.0">
                                                          <children>
                                                             <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                                                                <image>
@@ -231,7 +236,7 @@
                                                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                          </VBox.margin>
                                                       </HBox>
-                                                      <HBox fx:id="hBox2" prefHeight="230.0" prefWidth="1121.0">
+                                                      <HBox fx:id="hBox2" prefHeight="230.0" prefWidth="1400.0">
                                                          <children>
                                                             <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                                                                <image>
@@ -294,7 +299,7 @@
                                                             <Insets left="10.0" right="10.0" top="10.0" />
                                                          </VBox.margin>
                                                       </HBox>
-                                                      <HBox fx:id="hBox3" prefHeight="242.0" prefWidth="1068.0">
+                                                      <HBox fx:id="hBox3" prefHeight="242.0" prefWidth="1400.0">
                                                          <children>
                                                             <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                                                                <image>
@@ -379,14 +384,14 @@
                               </AnchorPane>
                               <AnchorPane fx:id="quanLySach" layoutX="-1.0" layoutY="1.0" prefHeight="696.0" prefWidth="1119.0" style="-fx-background-color: #FCFCFC;" styleClass="anchorPane-border1" stylesheets="@../../resources/adminview.css" visible="false">
                                   <children>
-                                      <TableView layoutX="22.0" layoutY="193.0" prefHeight="352.0" prefWidth="1090.0" stylesheets="@../../resources/adminview.css">
+                                      <TableView fx:id="tableViewBook" layoutX="20.0" layoutY="188.0" prefHeight="352.0" prefWidth="1090.0" stylesheets="@../../resources/adminview.css">
                                           <columns>
-                                              <TableColumn minWidth="0.0" text="STT" />
-                                              <TableColumn minWidth="2.0" prefWidth="119.0" text="Mã sách" />
-                                              <TableColumn minWidth="0.0" prefWidth="372.0" text="Tên sách" />
-                                              <TableColumn minWidth="0.0" prefWidth="305.0" text="Thể loại" />
-                                              <TableColumn minWidth="0.0" prefWidth="120.0" text="Số lượng" />
-                                              <TableColumn minWidth="0.0" prefWidth="105.0" text="Số ngày  mượn tối đa" />
+                                              <TableColumn fx:id="STT" minWidth="0.0" text="STT" />
+                                              <TableColumn fx:id="idColumn" minWidth="2.0" prefWidth="119.0" text="Mã sách" />
+                                              <TableColumn fx:id="titleColumn" minWidth="0.0" prefWidth="308.0" text="Tên sách" />
+                                              <TableColumn fx:id="categoryColumn" minWidth="0.0" prefWidth="266.0" text="Thể loại" />
+                                              <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="183.0" text="Số lượng" />
+                                              <TableColumn fx:id="maxBorrowDaysColumn" minWidth="0.0" prefWidth="145.0" text="Số ngày  mượn " />
                                           </columns>
                                           <styleClass>
                                               <String fx:value="anchorPane-border1" />
@@ -431,12 +436,12 @@
                                  </font>
                               </Label>
                               <Line endX="980.0" layoutX="120.0" layoutY="67.0" startX="-100.0" />
-                              <AnchorPane layoutX="235.0" layoutY="87.0" prefHeight="69.0" prefWidth="577.0" style="-fx-background-color: #F0F3F5;">
-                                 <children>
-                                    <Button layoutX="474.0" layoutY="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="65.0" text="Button" />
-                                    <TextField layoutX="45.0" layoutY="10.0" prefHeight="46.0" prefWidth="421.0" style="-fx-background-radius: 10;" />
-                                 </children>
-                              </AnchorPane>
+                              <TextField fx:id="searchBookField" layoutX="332.0" layoutY="106.0" onAction="#searchBookFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </TextField>
+                              <FontAwesomeIcon glyphName="SEARCH" layoutX="305.0" layoutY="136.0" size="20" />
                                   </children>
                               </AnchorPane>
                               <AnchorPane fx:id="quanLyMuonSach" layoutX="-4.0" layoutY="-3.0" prefHeight="696.0" prefWidth="1120.0" visible="false">

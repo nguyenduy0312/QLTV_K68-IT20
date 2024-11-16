@@ -1,6 +1,6 @@
 create table Document 
 (
-    STT int,
+    STT int ,
 	MaSach varchar(50) not null,
 	TenSach text not null,
 	TacGia varchar(5000) not null,
@@ -12,7 +12,7 @@ create table Document
     Picture mediumblob,
 	constraint pk_MaSach primary key (MaSach)
 );
--- drop table Document;
+ drop table Document;
 
 create table Borrowing
 (   
@@ -27,7 +27,7 @@ create table Borrowing
 	constraint pk_MaMuon primary key (MaMuon),
 	constraint fk_MaSach foreign key (MaSach) references Document(MaSach) on update cascade on delete cascade
 );
--- drop table Borrowing;
+drop table Borrowing;
 
 create table user
 (
