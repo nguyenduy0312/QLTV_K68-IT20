@@ -72,12 +72,6 @@ public class AdminController {
     @FXML
     private AnchorPane quanLyNguoiDung;
     @FXML
-    private Button addBookButton;
-    @FXML
-    private Button editBookButton;
-    @FXML
-    private Button viewInfoBookButton;
-    @FXML
     private Button addUserButton;
     @FXML
     private Button editUserButton;
@@ -103,7 +97,16 @@ public class AdminController {
 
     @FXML
     private TextField searchBookField;
-
+    @FXML
+    private Button addBookButton;
+    @FXML
+    private Button deleteBookButton;
+    @FXML
+    private Button editBookButton;
+    @FXML
+    private Button viewInfoBookButton;
+    @FXML
+    private Button refreshBookButton;
 
     public void setUsername(String username) {
         if (username != null) {
@@ -159,14 +162,12 @@ public class AdminController {
     //Cửa sổ chính
     public void homeButtonOnAction(ActionEvent e) {
         hideAllPanes();
-       // loadImage();
         home.setVisible(!home.isVisible());
     }
 
     //Cửa sổ quản lý sách
     public void qlSachButtonOnAction(ActionEvent e) {
         hideAllPanes();
-        loadBook();
         quanLySach.setVisible(!quanLySach.isVisible());
     }
 
@@ -196,6 +197,17 @@ public class AdminController {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        loadBook();
+    }
+
+    // Xóa sách
+    public void deleteBookButtonOnAction(ActionEvent e) {
+        Document selectedBook = tableViewBook.getSelectionModel().getSelectedItem();
+        if(selectedBook != null) {
+            DocumentDAO documentDAO = new DocumentDAO();
+            documentDAO.deleteDocument(selectedBook.getId());
+            loadBook();
+        }
     }
 
     // Edit book
@@ -216,6 +228,11 @@ public class AdminController {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    // Refresh Table View Book
+    public void refreshBookButtonOnAction(ActionEvent e) {
+        loadBook();
     }
 
     // Add user
@@ -311,6 +328,7 @@ public class AdminController {
         });
     }
 
+
     //Update bảng theo từ khóa
     public void updateTableView(String keyword) {
         // Lấy dữ liệu từ cơ sở dữ liệu
@@ -328,8 +346,11 @@ public class AdminController {
         tableViewBook.setItems(FXCollections.observableArrayList(filteredList));
     }
 
+
     public void searchBookFieldOnAction(ActionEvent e) {
         String keyword = searchBookField.getText();
         updateTableView(keyword);
     }
+
+
 }

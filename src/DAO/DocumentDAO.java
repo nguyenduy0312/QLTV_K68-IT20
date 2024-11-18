@@ -46,6 +46,7 @@ public class DocumentDAO implements DocumentDAOInterface {
             preparedStatement.setInt(6, document.getQuantity());
             preparedStatement.setInt(7, document.getMaxBorrowDays());
 
+
             int result = preparedStatement.executeUpdate();
             System.out.println(result + " row(s) affected.");
         } catch (SQLException e) {

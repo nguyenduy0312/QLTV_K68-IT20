@@ -7,6 +7,10 @@ import java.util.Arrays;
  * Each document has an ID, title, author, and availability state (available or not).
  */
 public class Document {
+
+    public static final int QUANTITY = 100;
+    public static final int MAXBORROWDAYS = 30;
+
     private String id;
     private String title;
     private String category;
