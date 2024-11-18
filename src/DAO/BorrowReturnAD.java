@@ -56,12 +56,12 @@ public class BorrowReturnAD {
 
             int rowsUpdated = updateStatement.executeUpdate();
             if (rowsUpdated > 0) {
-                System.out.println("Document quantity updated successfully.");
+                System.out.println("Số lượng tài liệu đã được cập nhật thành công");
             } else {
-                System.out.println("No document was found to update.");
+                System.out.println("Không tìm thấy tài liệu nào để cập nhật");
             }
         } catch (SQLException e) {
-            System.out.println("Error while updating document quantity: " + e.getMessage());
+            System.out.println("Lỗi khi cập nhật số lượng tài liệu " + e.getMessage());
         }
 
 
@@ -99,10 +99,10 @@ public class BorrowReturnAD {
             preparedStatement.setDate(6, java.sql.Date.valueOf(maximumBorrowDate)); // NgayTra (null khi chưa trả)
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("Record inserted successfully into the borrowing table.");
+                System.out.println("Bản ghi đã được chèn thành công vào bảng mượn");
             }
         } catch (SQLException e) {
-            System.out.println("Error while inserting record: " + e.getMessage());
+            System.out.println("Lỗi khi chèn bản ghi " + e.getMessage());
         }
 
 
@@ -140,12 +140,14 @@ public class BorrowReturnAD {
         String getBorrowInfoSql = "SELECT MaSach, NgayHenTra FROM borrowing WHERE MaMuon = ?";
         String updateDocumentSql = "UPDATE document SET SoLuong = SoLuong + 1 WHERE MaSach = ?";
         String updateReturnDateSql = "UPDATE borrowing SET NgayTra = ? WHERE MaMuon = ?";
+        String deleteBorrowInfoSql = "DELETE FROM borrowing WHERE MaMuon = ?"; // Xóa thông tin mượn trả sau khi trả sách
         int finePerDay = 2000; // Phí phạt mỗi ngày
 
         try (Connection connection = JDBCConnection.getJDBCConnection();
              PreparedStatement getBorrowInfoStmt = connection.prepareStatement(getBorrowInfoSql);
              PreparedStatement updateDocumentStmt = connection.prepareStatement(updateDocumentSql);
-             PreparedStatement updateReturnDateStmt = connection.prepareStatement(updateReturnDateSql)) {
+             PreparedStatement updateReturnDateStmt = connection.prepareStatement(updateReturnDateSql);
+             PreparedStatement deleteBorrowInfoStmt = connection.prepareStatement(deleteBorrowInfoSql)) {
 
             // Lấy thông tin mượn sách dựa trên mã mượn
             getBorrowInfoStmt.setString(1, maMuon);
@@ -164,22 +166,27 @@ public class BorrowReturnAD {
                     if (actualReturnDate.isAfter(dueDate)) {
                         long daysLate = java.time.temporal.ChronoUnit.DAYS.between(dueDate, actualReturnDate);
                         long fine = daysLate * finePerDay;
-                        System.out.println("Bị chậm " + daysLate + " ngày. Phạt: " + fine + " VND.");
+                        System.out.println("Bị chậm: " + daysLate + " Ngày. Phạt: " + fine + " VND.");
                     } else {
-                        System.out.println("Sách được trả đúng hạn ");
+                        System.out.println("Trả sách đúng hạn ");
                     }
 
                     // Tăng số lượng sách lên 1
                     updateDocumentStmt.setString(1, maSach);
                     updateDocumentStmt.executeUpdate();
-                    System.out.println("Sách đã được trả thành công và số lượng đã được cập nhật.");
+                    System.out.println("Trả sách thành công :)");
+
+                    // Xóa thông tin mượn trả khỏi bảng borrowing
+                    deleteBorrowInfoStmt.setString(1, maMuon);
+                    deleteBorrowInfoStmt.executeUpdate();
+                    System.out.println("Bản ghi mượn đã được xóa thành công");
 
                 } else {
-                    System.out.println("Không tìm thấy bản ghi mượn sách với mã mượn: " + maMuon);
+                    System.out.println("Không tìm thấy bản ghi với mã mượn: " + maMuon);
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Lỗi khi trả sách: " + e.getMessage());
+            System.out.println("Lỗi khi trả sách : " + e.getMessage());
         }
     }
 
@@ -213,11 +220,11 @@ public class BorrowReturnAD {
         User user1 = new User("Đào Huy Hoàng", date1, "K68_02", "Nam Định", "12345", "Nam", "hoangdao@gmail.com");
 
         // Tạo đối tượng Document
-        Document document = new Document("0935848827", "Lập trình Java cơ bản", "Nguyễn Văn A", "Giáo trình", "NXB Khoa Học", 100, 30);
+        Document document = new Document("UIUC:30112057150333", "Lập trình Java cơ bản", "Nguyễn Văn A", "Giáo trình", "NXB Khoa Học", 100, 30);
 
         // Gọi phương thức borrowDocument từ đối tượng borrowReturnAD
-        borrowReturnAD.borrowDocument(user1, document);
-       // borrowReturnAD.returnDocument("HhD3");
+         // borrowReturnAD.borrowDocument(user1, document);
+         borrowReturnAD.returnDocument("HhD3");
     }
 }
 
