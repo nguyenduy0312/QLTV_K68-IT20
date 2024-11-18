@@ -1,8 +1,10 @@
 package test;
 
 import DAO.UserDAO;
+import model.Document;
 import model.User;
 import model.Account;
+import service.BorrowReturnManage;
 import util.Date;
 
 import javax.rmi.CORBA.Util;
@@ -23,11 +25,19 @@ public class TestUserDAO {
 //        Date date = new Date(1, 1, 2005);
 //        User user = new User("Nguyễn Văn Hoàng", date,"K68_01","Thái Bình", "123456789", "Nam","hoangyd@gmail.com",account);
 //        UserDAO.getInstance().addUser(user);
+//
+//        Account account1 = new Account("hoangdao2005", "hoangdao123");
+//        Date date1 = new Date(23, 12, 2005);
+//        User user1 = new User("Đào Huy Hoàng", date1,"K68_02","Nam Định", "12345", "Nam","hoangdao@gmail.com",account1);
+//        UserDAO.getInstance().addUser(user1);
 
-        Account account1 = new Account("hoangdao2005", "hoangdao123");
-        Date date1 = new Date(23, 12, 2005);
-        User user1 = new User("Đào Huy Hoàng", date1,"K68_02","Nam Định", "12345", "Nam","hoangdao@gmail.com",account1);
-        UserDAO.getInstance().addUser(user1);
+
+//            // Tạo đối tượng Document
+//        Document document = new Document("11","Lậ trìnph Java cơ bản", "Nguyễn Văn A", "Giáo trình", "NXB Khoa Học", 100, 30);
+//
+//        BorrowReturnManage manager = new BorrowReturnManage();
+//        manager.borrowDocumentForUser(user1,document);
+
 
 
         // Xóa người dùng thành công

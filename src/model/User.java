@@ -28,6 +28,10 @@ public class User extends Person {
         this.account = new Account(account.userName,account.passWord);
     }
 
+    public User(String name, Date birthday, String personID, String address, String phoneNumber, String gender, String email){
+        super(name, birthday, personID, address, phoneNumber, gender, email);
+    }
+
     public User() {}
 
 

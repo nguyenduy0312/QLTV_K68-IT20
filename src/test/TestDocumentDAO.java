@@ -16,6 +16,8 @@ import util.Date;
 
 public class TestDocumentDAO {
     public static void main(String[] args) {
+        Document document = new Document("11", "Lập trình Java cơ bản", "Nguyễn Văn A", "Giáo trình", "NXB Khoa Học", 100, 30);
+
 
         // DocumentDAO.getInstance().updateDocument(document2);                                       // Cập nhật sách thành công
 
