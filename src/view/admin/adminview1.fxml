@@ -381,7 +381,7 @@
                               </AnchorPane>
                                   </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="quanLySach" layoutX="-1.0" layoutY="1.0" prefHeight="696.0" prefWidth="1119.0" style="-fx-background-color: #FCFCFC;" styleClass="anchorPane-border1" stylesheets="@../../resources/adminview.css">
+                              <AnchorPane fx:id="quanLySach" layoutX="-1.0" layoutY="1.0" prefHeight="696.0" prefWidth="1119.0" style="-fx-background-color: #FCFCFC;" styleClass="anchorPane-border1" stylesheets="@../../resources/adminview.css" visible="false">
                                   <children>
                                       <TableView fx:id="tableViewBook" layoutX="20.0" layoutY="188.0" prefHeight="352.0" prefWidth="1090.0" stylesheets="@../../resources/adminview.css">
                                           <columns>
@@ -450,7 +450,7 @@
                                  </font>
                               </Label>
                               <Line endX="980.0" layoutX="120.0" layoutY="67.0" startX="-100.0" />
-                              <TextField fx:id="searchBookField" layoutX="332.0" layoutY="106.0" onAction="#searchBookFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
+                              <TextField fx:id="searchBookField" layoutX="332.0" layoutY="106.0" onAction="#searchBookFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css" visible="false">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -553,57 +553,83 @@
                               <FontAwesomeIcon glyphName="SEARCH" layoutX="297.0" layoutY="157.0" size="20" text="" />
                                   </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="quanLyNguoiDung" layoutX="-2.0" layoutY="1.0" prefHeight="696.0" prefWidth="1122.0" style="-fx-background-color: #FFFF;" visible="false">
+                              <AnchorPane fx:id="quanLyNguoiDung" layoutX="-2.0" layoutY="1.0" prefHeight="696.0" prefWidth="1122.0" style="-fx-background-color: #FFFF;">
                                   <children>
-                                      <TableView layoutX="12.0" layoutY="227.0" prefHeight="315.0" prefWidth="1105.0" stylesheets="@../../resources/adminview.css">
+                                      <TableView fx:id="tableViewUser" layoutX="12.0" layoutY="227.0" prefHeight="315.0" prefWidth="1105.0" stylesheets="@../../resources/adminview.css">
                                           <columns>
-                                              <TableColumn prefWidth="162.0" text="Mã người dùng" />
-                                              <TableColumn prefWidth="298.0" text="Họ tên" />
-                                              <TableColumn prefWidth="151.0" text="Giới tính" />
-                                              <TableColumn prefWidth="239.0" text="Ngày sinh" />
-                                              <TableColumn prefWidth="255.0" text="Số điện thoại" />
+                                              <TableColumn fx:id="personIdColumn" prefWidth="162.0" text="Mã người dùng" />
+                                              <TableColumn fx:id="personNameColumn" prefWidth="298.0" text="Họ tên" />
+                                              <TableColumn fx:id="genderColumn" prefWidth="151.0" text="Giới tính" />
+                                              <TableColumn fx:id="dateOfBirthColumn" prefWidth="239.0" text="Ngày sinh" />
+                                              <TableColumn fx:id="phoneNumberColumn" prefWidth="255.0" text="Số điện thoại" />
                                           </columns>
                                           <styleClass>
                                               <String fx:value="shadow" />
                                               <String fx:value="anchorPane-border1" />
                                           </styleClass>
                                       </TableView>
-                                      <Button fx:id="addUserButton" layoutX="128.0" layoutY="611.0" mnemonicParsing="false" onAction="#addUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #A5D6A7;" styleClass="crud-button" stylesheets="@../../resources/adminview.css" text="Thêm">
+                                      <Button fx:id="addUserButton" layoutX="86.0" layoutY="611.0" mnemonicParsing="false" onAction="#addUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #A5D6A7;" stylesheets="@../../resources/adminview.css" text="Thêm">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
+                                 <styleClass>
+                                    <String fx:value="crud-button" />
+                                    <String fx:value="cursor_hand" />
+                                 </styleClass>
                                       </Button>
-                                      <Button fx:id="deleteUserButton" layoutX="372.0" layoutY="611.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #EF9A9A;" styleClass="crud-button" stylesheets="@../../resources/adminview.css" text="Xóa">
+                                      <Button fx:id="deleteUserButton" layoutX="301.0" layoutY="611.0" mnemonicParsing="false" onAction="#deleteUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #EF9A9A;" stylesheets="@../../resources/adminview.css" text="Xóa">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
+                                 <styleClass>
+                                    <String fx:value="crud-button" />
+                                    <String fx:value="cursor_hand" />
+                                 </styleClass>
                                       </Button>
-                                      <Button fx:id="editUserButton" layoutX="616.0" layoutY="611.0" mnemonicParsing="false" onAction="#editUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #FFE082;" styleClass="crud-button" stylesheets="@../../resources/adminview.css" text="Sửa">
+                                      <Button fx:id="editUserButton" layoutX="534.0" layoutY="611.0" mnemonicParsing="false" onAction="#editUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #FFE082;" stylesheets="@../../resources/adminview.css" text="Sửa">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
+                                 <styleClass>
+                                    <String fx:value="crud-button" />
+                                    <String fx:value="cursor_hand" />
+                                 </styleClass>
                                       </Button>
-                                      <Button fx:id="viewUserInfoButton" alignment="CENTER" layoutX="863.0" layoutY="611.0" mnemonicParsing="false" onAction="#viewInfoUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #81D4FA;" styleClass="crud-button" text="Xem">
+                                      <Button fx:id="viewUserInfoButton" alignment="CENTER" layoutX="753.0" layoutY="611.0" mnemonicParsing="false" onAction="#viewInfoUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #81D4FA;" text="Xem">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
+                                 <styleClass>
+                                    <String fx:value="crud-button" />
+                                    <String fx:value="cursor_hand" />
+                                 </styleClass>
                                       </Button>
-                                      <FontAwesomeIcon glyphName="TIMES_CIRCLE" layoutX="403.0" layoutY="645.0" size="20" text="" />
-                                      <FontAwesomeIcon glyphName="PLUS_CIRCLE" layoutX="154.0" layoutY="645.0" size="20" />
-                                      <FontAwesomeIcon glyphName="EDIT" layoutX="642.0" layoutY="646.0" size="20" text="" />
-                                      <FontAwesomeIcon glyphName="EYE" layoutX="878.0" layoutY="645.0" size="20" />
+                                      <FontAwesomeIcon glyphName="TIMES_CIRCLE" layoutX="330.0" layoutY="645.0" size="20" text="" />
+                                      <FontAwesomeIcon glyphName="PLUS_CIRCLE" layoutX="110.0" layoutY="645.0" size="20" />
+                                      <FontAwesomeIcon glyphName="EDIT" layoutX="555.0" layoutY="645.0" size="20" text="" />
+                                      <FontAwesomeIcon glyphName="EYE" layoutX="773.0" layoutY="646.0" size="20" text="" />
                                         <Label layoutX="35.0" layoutY="20.0" text="Quản Lý Người Dùng">
                                             <font>
                                                 <Font name="Tahoma Bold" size="25.0" />
                                             </font>
                                         </Label>
                               <Line endX="950.0" layoutX="157.0" layoutY="60.0" startX="-135.0" />
-                              <TextField fx:id="searchBookField3" layoutX="363.0" layoutY="122.0" onAction="#searchBookFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
+                              <TextField fx:id="searchUserField" layoutX="363.0" layoutY="122.0" onAction="#searchUserFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </TextField>
                               <FontAwesomeIcon glyphName="SEARCH" layoutX="330.0" layoutY="153.0" size="20" />
+                              <Button fx:id="refreshUserButton" alignment="CENTER" layoutX="959.0" layoutY="611.0" mnemonicParsing="false" onAction="#refreshUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #D8B7DD;" stylesheets="@../../resources/adminview.css" text="Làm mới">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="crud-button" />
+                                    <String fx:value="cursor_hand" />
+                                 </styleClass>
+                              </Button>
+                              <FontAwesomeIcon glyphName="UNDO" layoutX="967.0" layoutY="645.0" size="20" text="" />
                                   </children>
                               </AnchorPane>
                           </children>

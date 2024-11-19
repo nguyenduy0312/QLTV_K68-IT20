@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Account;
-import model.Document;
 import model.User;
 
 import javax.imageio.ImageIO;
@@ -29,12 +28,12 @@ public class AddUserController {
     @FXML
     private Button closeButton;
     @FXML
-    private Button addButton;
-    @FXML
     private Button chooseImageButton;
 
     @FXML
     private TextField id;
+    @FXML
+    private Label checkUserNameLabel;
     @FXML
     private TextField name;
     @FXML
@@ -53,8 +52,7 @@ public class AddUserController {
     private TextField password;
     @FXML
     private ImageView imageView;
-    @FXML
-    private Button chooseImageButtonOnAction;
+
 
     public void initialize() {
         setGender(); // Đảm bảo được gọi khi giao diện được tải
@@ -105,11 +103,33 @@ public class AddUserController {
         }
     }
 
+
+    // check userName
+    public void checkUserName() {
+        UserDAO userDAO = new UserDAO();
+
+        this.username.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                checkUserNameLabel.setStyle(""); // Đặt lại style mặc định
+                checkUserNameLabel.setText("");  // Không hiển thị thông báo nếu trống
+            } else if (userDAO.findUserByUserName(newValue) != null) {
+                checkUserNameLabel.setStyle("-fx-text-fill: red;"); // Đặt màu chữ là đỏ
+                checkUserNameLabel.setText("Tên đăng nhập đã tồn tại."); // Hiển thị thông báo lỗi
+            } else {
+                checkUserNameLabel.setStyle("-fx-text-fill: green;"); // Đặt màu chữ là xanh
+                checkUserNameLabel.setText("Tên đăng nhập hợp lệ."); // Hiển thị thông báo hợp lệ
+            }
+        });
+    }
+
     public boolean addUser() {
 
         User user = new User();
 
         user.setId(this.id.getText());
+        if (this.id.getText() == null || this.id.getText().trim().isEmpty()) {
+            return false;
+        }
 
         user.setName(this.name.getText());
         if (this.name.getText() == null || this.name.getText().trim().isEmpty()) {
@@ -139,8 +159,11 @@ public class AddUserController {
 
         Account account = new Account(this.username.getText(), this.password.getText());
         user.setAccount(account);
-        if (this.username.getText() == null || this.username.getText().trim().isEmpty()) {
-            return false;
+        // Kiểm tra tên đăng nhập
+        if ("Tên đăng nhập hợp lệ.".equals(checkUserNameLabel.getText())) {
+            user.setAccount(account);
+        } else {
+            return false;  // Nếu tên đăng nhập không hợp lệ, không thêm người dùng
         }
 
         if (this.password.getText() == null || this.password.getText().trim().isEmpty()) {

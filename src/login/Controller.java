@@ -70,6 +70,7 @@ public class Controller {
                         adminController.setUsername(usernameTextField.getText());
                         adminController.loadImage();
                         adminController.loadBook();
+                        adminController.loadUser();
 
                         // Tạo và hiển thị cửa sổ AdminView
                         Stage stage = new Stage();

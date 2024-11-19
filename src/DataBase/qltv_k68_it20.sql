@@ -31,7 +31,6 @@ drop table Borrowing;
 
 create table user
 (
-    STT int,
 	personID varchar(50) not null,
 	HoTen varchar(100) not null,
 	NgaySinh date not null,
@@ -44,7 +43,7 @@ create table user
     Picture mediumblob,
 	constraint pk_personID primary key (personID)
 );
-drop table user
+-- drop table user
 alter table user
 modify Email varchar(255);
 

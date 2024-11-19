@@ -41,7 +41,7 @@
                         <Font name="Tahoma" size="20.0" />
                     </font>
                 </TextField>
-                <TextField layoutX="145.0" layoutY="135.0" prefHeight="31.0" prefWidth="253.0" promptText="Nhập CMND" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+                <TextField fx:id="id" layoutX="145.0" layoutY="135.0" prefHeight="31.0" prefWidth="253.0" promptText="Nhập CMND" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
                 <TextField fx:id="numberPhone" layoutX="145.0" layoutY="354.0" prefHeight="31.0" prefWidth="253.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
                 <Label layoutX="46.0" layoutY="138.0" text="Mã /ID:">
                     <font>
@@ -96,12 +96,13 @@
                         <Font name="Tahoma" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="username" layoutX="194.0" layoutY="587.0" prefHeight="31.0" prefWidth="233.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+                <TextField fx:id="username" layoutX="194.0" layoutY="587.0" onKeyPressed="#checkUserName" prefHeight="31.0" prefWidth="233.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
             <Button fx:id="addButton" layoutX="278.0" layoutY="658.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="35.0" prefWidth="68.0" text="Thêm" />
             <Button fx:id="closeButton" layoutX="463.0" layoutY="658.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="35.0" prefWidth="68.0" text="Hủy" />
             <DatePicker fx:id="dateOfBirth" layoutX="377.0" layoutY="288.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
             <Button fx:id="chooseImageButton" layoutX="677.0" layoutY="288.0" mnemonicParsing="false" onAction="#chooseImageButtonOnAction" text="Nhập ảnh" />
             <ChoiceBox fx:id="genderChoiceBox" layoutX="145.0" layoutY="288.0" prefHeight="31.0" prefWidth="81.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+            <Label fx:id="checkUserNameLabel" layoutX="194.0" layoutY="618.0" prefHeight="21.0" prefWidth="218.0" />
             </children>
         </AnchorPane>
     </children>
