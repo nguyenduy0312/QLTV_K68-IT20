@@ -1,23 +1,23 @@
 package DataBase;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.net.URL;
-import java.awt.image.BufferedImage;
 import java.sql.ResultSet;
 import javax.imageio.ImageIO;
 
 import model.Document;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import DataBase.JDBCConnection;
-
 
 public class GoogleBooksImporter {
 
@@ -35,7 +35,7 @@ public class GoogleBooksImporter {
     public void importBooksToDatabase() {
         try {
             // Tạo URL với từ khóa và số lượng kết quả mong muốn
-            String apiUrl = createFullApiUrl("nihongo", 21);
+            String apiUrl = createFullApiUrl("business", 20);
 
             // Lấy dữ liệu sách từ Google Books API
             JSONArray booksArray = getBooksFromApi(apiUrl);
@@ -174,19 +174,15 @@ public class GoogleBooksImporter {
         }
     }
 
-
     // Hàm để tạo mã QR từ liên kết và chuyển nó thành mảng byte
-    private static byte[] generateQRCode(String text) throws IOException {
-        // Sử dụng BufferedImage để vẽ QR code (chỉ là hình minh họa, mã QR thực tế sẽ cần thư viện bên ngoài)
-        BufferedImage image = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = image.createGraphics();
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, image.getWidth(), image.getHeight());
-        g.setColor(Color.BLACK);
+    private static byte[] generateQRCode(String text) throws IOException, WriterException {
+        int width = 200;
+        int height = 200;
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
 
-        // Vẽ một số điểm vào BufferedImage (QR code thực tế sẽ phức tạp hơn nhiều)
-        g.fillRect(50, 50, 100, 100);  // Vẽ một hình vuông đơn giản làm ví dụ
-        g.dispose();
+        // Chuyển đổi BitMatrix thành BufferedImage
+        BufferedImage image = MatrixToImageWriter.toBufferedImage(bitMatrix);
 
         // Chuyển BufferedImage thành mảng byte
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -213,7 +209,6 @@ public class GoogleBooksImporter {
         return imageBytes;
     }
 
-
     public static void main(String[] args) {
         // Tạo đối tượng GoogleBooksImporter
         GoogleBooksImporter importer = new GoogleBooksImporter();
@@ -221,5 +216,4 @@ public class GoogleBooksImporter {
         // Chạy phương thức importBooksToDatabase để tải và bơm sách vào cơ sở dữ liệu
         importer.importBooksToDatabase();
     }
-
 }

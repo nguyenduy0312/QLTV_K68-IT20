@@ -63,6 +63,9 @@ public class Document {
         this.maxBorrowDays = maxBorrowDays;
     }
 
+    public Document(String id) {
+        this.id = id;
+    }
 
     public String getId() {
         return id;
