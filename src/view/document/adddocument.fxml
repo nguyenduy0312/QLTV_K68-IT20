@@ -40,7 +40,7 @@
                         <Font name="Tahoma" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="id" layoutX="162.0" layoutY="108.0" prefHeight="31.0" prefWidth="121.0" style="-fx-background-radius: 5; -fx-border-radius: 5;">
+                <TextField fx:id="id" layoutX="162.0" layoutY="108.0" onKeyPressed="#checkId" prefHeight="31.0" prefWidth="121.0" style="-fx-background-radius: 5; -fx-border-radius: 5;">
                <font>
                   <Font name="Tahoma" size="17.0" />
                </font></TextField>
@@ -91,8 +91,8 @@
                 </Label>
             <Button fx:id="addButton" layoutX="278.0" layoutY="467.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="31.0" prefWidth="65.0" style="-fx-background-color: #ADD8E6;" text="Thêm" />
             <Button fx:id="closeButton" layoutX="440.0" layoutY="467.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="31.0" prefWidth="65.0" style="-fx-background-color: #ADD8E6;" text="Hủy" />
-            <Button fx:id="importImageButton" layoutX="612.0" layoutY="266.0" mnemonicParsing="false" style="-fx-background-color: #ADD8E6;" text="Nhập ảnh" />
-            <Label fx:id="checkLabel" layoutX="162.0" layoutY="141.0" prefHeight="21.0" prefWidth="302.0" textFill="#e80b0b" />
+            <Label fx:id="checkLabel" layoutX="162.0" layoutY="141.0" prefHeight="25.0" prefWidth="302.0" textFill="#e80b0b" />
+            <Button fx:id="chooseImageButton" layoutX="612.0" layoutY="273.0" mnemonicParsing="false" onAction="#chooseImageButtonOnAction" text="Nhập ảnh" />
             </children>
         </AnchorPane>
     </children>

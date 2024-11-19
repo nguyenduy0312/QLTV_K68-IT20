@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class User extends Person {
     private Account account;
+
     private List<Document> borrowedDocuments = new ArrayList<>();  ; // Danh sách tài liệu đã mượn
 
     private List<BorrowReturn> borrowReturns = new ArrayList<>();  ;  // Danh sách hành động mượn trả
@@ -23,8 +24,8 @@ public class User extends Person {
      * @param phoneNumber Số điện thoại của người dùng
      * @param gender Giới tính của người dùng
      */
-    public User(String name, Date birthday, String personID, String address, String phoneNumber, String gender, String email, Account account) {
-        super(name, birthday, personID, address, phoneNumber, gender, email); // Gọi constructor lớp cha
+    public User(String name, Date birthday, String personID, String address, String phoneNumber, String gender, String email, Account account, byte[] picture) {
+        super(name, birthday, personID, address, phoneNumber, gender, email, picture); // Gọi constructor lớp cha
         this.account = new Account(account.userName,account.passWord);
     }
 

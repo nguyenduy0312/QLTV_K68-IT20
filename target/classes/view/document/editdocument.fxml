@@ -9,9 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditDocumentController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="757.0" style="-fx-border-color: #828282; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditDocumentController">
     <children>
-        <AnchorPane prefHeight="519.0" prefWidth="757.0" style="-fx-border-color: #828282; -fx-border-width: 4;">
+        <AnchorPane prefHeight="519.0" prefWidth="757.0">
             <children>
                 <AnchorPane prefHeight="69.0" prefWidth="757.0" style="-fx-background-color: #828282;" stylesheets="@../../resources/document.css">
                     <children>
@@ -25,7 +25,7 @@
                 </AnchorPane>
                 <AnchorPane layoutX="577.0" layoutY="83.0" prefHeight="159.0" prefWidth="139.0" stylesheets="@../../resources/document.css">
                     <children>
-                        <ImageView fitHeight="170.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageView" fitHeight="170.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../resources/default.jpg" />
                             </image></ImageView>
@@ -40,40 +40,44 @@
                         <Font name="Tahoma" size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="162.0" layoutY="96.0" prefHeight="31.0" prefWidth="121.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
                 <Label layoutX="42.0" layoutY="154.0" text="Tên sách:">
                     <font>
                         <Font name="Tahoma" size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="162.0" layoutY="151.0" prefHeight="31.0" prefWidth="332.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+                <TextField fx:id="title" layoutX="162.0" layoutY="151.0" prefHeight="31.0" prefWidth="332.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
                 <Label layoutX="58.0" layoutY="207.0" text="Tác giả:">
                     <font>
                         <Font name="Tahoma" size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="162.0" layoutY="204.0" prefHeight="31.0" prefWidth="231.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+                <TextField fx:id="author" layoutX="162.0" layoutY="204.0" prefHeight="31.0" prefWidth="231.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
                 <Label layoutX="58.0" layoutY="269.0" text="Thể loại:">
                     <font>
                         <Font name="Tahoma" size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="162.0" layoutY="266.0" prefHeight="31.0" prefWidth="375.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
-                <TextField layoutX="162.0" layoutY="329.0" prefHeight="31.0" prefWidth="87.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+                <TextField fx:id="category" layoutX="162.0" layoutY="266.0" prefHeight="31.0" prefWidth="375.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+                <TextField fx:id="quantity" layoutX="162.0" layoutY="329.0" prefHeight="31.0" prefWidth="87.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
                 <Label layoutX="51.0" layoutY="332.0" text="Số lượng:">
                     <font>
                         <Font name="Tahoma" size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="162.0" layoutY="389.0" prefHeight="31.0" prefWidth="231.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+                <TextField fx:id="publisher" layoutX="162.0" layoutY="389.0" prefHeight="31.0" prefWidth="231.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
                 <Label layoutX="86.0" layoutY="392.0" text="NXB:">
                     <font>
                         <Font name="Tahoma" size="20.0" />
                     </font>
                 </Label>
-                <Button layoutX="278.0" layoutY="467.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="85.0" text="Xác nhận" />
+                <Button fx:id="confirmButton" layoutX="278.0" layoutY="467.0" mnemonicParsing="false" onAction="#confirmButtonOnAction" prefHeight="31.0" prefWidth="85.0" text="Xác nhận" />
                 <Button fx:id="closeButton" layoutX="440.0" layoutY="467.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="31.0" prefWidth="85.0" text="Hủy" />
-                <Button layoutX="612.0" layoutY="266.0" mnemonicParsing="false" text="Nhập ảnh" />
+            <Button fx:id="chooseImageButton" layoutX="622.0" layoutY="266.0" mnemonicParsing="false" onAction="#chooseImageButtonOnAction" text="Nhập ảnh" />
+            <Label fx:id="id" alignment="CENTER" layoutX="167.0" layoutY="97.0" prefHeight="25.0" prefWidth="223.0" style="-fx-border-width: 2; -fx-border-radius: 5; -fx-border-color: #000000;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </children>

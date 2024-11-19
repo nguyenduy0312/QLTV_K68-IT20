@@ -1,14 +1,22 @@
 package controller;
 
 import DAO.DocumentDAO;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import model.Document;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -18,7 +26,7 @@ public class AddDocumentController {
     @FXML
     private Button addButton;
     @FXML
-    private Button importImageButton;
+    private Button chooseImageButton;
 
     @FXML
     private TextField id;
@@ -36,6 +44,8 @@ public class AddDocumentController {
     private TextField publisher;
     @FXML
     private ImageView imageView;
+    @FXML
+    private Button chooseImageButtonOnAction;
 
     public void closeButtonOnAction(ActionEvent e) {
         // Tạo hộp thoại xác nhận với hai nút OK và Hủy
@@ -54,32 +64,107 @@ public class AddDocumentController {
         }
     }
 
-    public boolean addBook() {
-        Document document = new Document();
+    // check id
+    public void checkId() {
         DocumentDAO documentDAO = new DocumentDAO();
-        // Lắng nghe thay đổi trong TextField khi nhập id
+
         this.id.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.isEmpty()) {
-                checkLabel.setText(""); // Không hiển thị thông báo nếu trống
-                document.setId(this.id.getText());
+            if (newValue.trim().isEmpty()) {
+                checkLabel.setStyle(""); // Đặt lại style mặc định
+                checkLabel.setText("");  // Không hiển thị thông báo nếu trống
             } else if (documentDAO.findDocumentById(newValue) != null) {
+                checkLabel.setStyle("-fx-text-fill: red;"); // Đặt màu chữ là đỏ
                 checkLabel.setText("Mã sách đã tồn tại."); // Hiển thị thông báo lỗi
-                return false;
             } else {
-                checkLabel.setText(""); // Xóa thông báo nếu hợp lệ
+                checkLabel.setStyle("-fx-text-fill: green;"); // Đặt màu chữ là xanh
+                checkLabel.setText("Mã sách hợp lệ."); // Hiển thị thông báo hợp lệ
             }
         });
-        document.setTitle(this.title.getText());
-        document.setAuthor(this.author.getText());
-        document.setCategory(this.category.getText());
-
-        int quantityValue = Integer.parseInt(this.quantity.getText().trim()); // Chuyển đổi chuỗi thành số nguyên
-        document.setQuantity(quantityValue);
-        document.setPublisher(this.publisher.getText());
-        document.setMaxBorrowDays(Document.MAXBORROWDAYS);
-        documentDAO.addDocument(document);
-         return true;
     }
+
+    public void chooseImageButtonOnAction(ActionEvent e) {
+        // Khởi tạo FileChooser
+        FileChooser fileChooser = new FileChooser();
+
+        // Thiết lập bộ lọc file cho phép chọn chỉ những file ảnh
+        FileChooser.ExtensionFilter imageFilter =
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp");
+        fileChooser.getExtensionFilters().add(imageFilter);
+
+        // Mở cửa sổ chọn file
+        Stage stage = (Stage) imageView.getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+            // Nếu người dùng chọn một file, hiển thị ảnh trong ImageView
+            Image image = new Image(selectedFile.toURI().toString());
+            imageView.setImage(image);
+        }
+    }
+
+    public boolean addBook() {
+
+        Document document = new Document();
+
+        // Kiểm tra ID hợp lệ ngay sau khi gọi checkId()
+        if ("Mã sách hợp lệ.".equals(checkLabel.getText())) {
+            document.setId(this.id.getText());
+        } else {
+            return false;  // Nếu ID không hợp lệ, không thêm sách
+        }
+
+        // Kiểm tra các thông tin khác (title, author, category, ...)
+        document.setTitle(this.title.getText());
+        if (this.title.getText() == null || this.title.getText().trim().isEmpty()) {
+            return false;
+        }
+
+        document.setAuthor(this.author.getText());
+        if (this.author.getText() == null || this.author.getText().trim().isEmpty()) {
+            return false;
+        }
+
+        document.setCategory(this.category.getText());
+        if (this.category.getText() == null || this.category.getText().trim().isEmpty()) {
+            return false;
+        }
+
+        // Chuyển đổi và kiểm tra quantity
+        int quantityValue;
+        try {
+            quantityValue = Integer.parseInt(this.quantity.getText().trim());  // Chuyển đổi chuỗi thành số nguyên
+        } catch (NumberFormatException e) {
+            return false;  // Dừng lại nếu không thể chuyển đổi thành số
+        }
+        document.setQuantity(quantityValue);
+
+        // Kiểm tra publisher
+        document.setPublisher(this.publisher.getText());
+        if (this.publisher.getText() == null || this.publisher.getText().trim().isEmpty()) {
+            return false;
+        }
+
+        document.setMaxBorrowDays(Document.MAXBORROWDAYS);
+
+        // Kiểm tra xem có ảnh mới không
+        if (this.imageView.getImage() != null) {
+            // Nếu có ảnh mới, cập nhật ảnh
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(this.imageView.getImage(), null);
+            try {
+                ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+                document.setPicture(byteArrayOutputStream.toByteArray());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Thêm tài liệu vào hệ thống
+        DocumentDAO documentDAO = new DocumentDAO();
+        documentDAO.addDocument(document);
+        return true;  // Trả về true nếu thêm thành công
+    }
+
     public void addButtonOnAction(ActionEvent e) throws IOException {
 
         // Tạo hộp thoại xác nhận với hai nút OK và Hủy
@@ -93,6 +178,7 @@ public class AddDocumentController {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             if(addBook()) {
                 closeButton.getScene().getWindow().hide();
+
             } else {
                 Alert alert1 = new Alert(Alert.AlertType.ERROR);
                 alert1.setTitle("Lỗi Thêm Sách");
@@ -100,7 +186,6 @@ public class AddDocumentController {
                 alert1.setContentText("Vui lòng kiểm tra lại thông tin hoặc thử lại sau.");
                 alert1.showAndWait();
             }
-
         } else {
             // Không thực hiện gì nếu người dùng hủy
         }

@@ -8,6 +8,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,6 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import login.LoginView;
 import model.Document;
 import view.admin.AdminView;
@@ -193,11 +197,11 @@ public class AdminController {
     public void addBookButtonOnAction(ActionEvent e) {
         AddDocument addDocument = new AddDocument();
         try {
-            addDocument.start(new Stage()); // Mở cửa sổ addDocument
+            addDocument.start(new Stage()); // Mở cửa sổ addUser
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        loadBook();
+
     }
 
     // Xóa sách
@@ -212,19 +216,52 @@ public class AdminController {
 
     // Edit book
     public void editBookButtonOnAction(ActionEvent e) {
-        EditDocument editDocument = new EditDocument();
-        try {
-           editDocument.start(new Stage()); // Mở cửa sổ editdocument
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        Document selectedBook = tableViewBook.getSelectionModel().getSelectedItem();
+        if(selectedBook != null) {
+            try {
+                // Tạo FXMLLoader để tải editdocument.fxml
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/document/editdocument.fxml"));
+
+                // Tải FXML và tạo Scene
+                Parent root = loader.load();
+
+                // Lấy controller của cửa sổ Edit Document từ FXMLLoader
+                EditDocumentController editDocumentController = loader.getController();
+                editDocumentController.setDocument(selectedBook);
+                editDocumentController.printInfo(selectedBook);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.initStyle(StageStyle.UNDECORATED);
+
+                stage.show();
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
     // Infor book
     public void viewInfoBookButtonOnAction(ActionEvent e) {
-        DocumentView documentView = new DocumentView();
+        Document selectedBook = tableViewBook.getSelectionModel().getSelectedItem();
         try {
-           documentView.start(new Stage()); // Mở cửa sổ documentview
+            // Tạo FXMLLoader để tải doucmentview.fxml
+            FXMLLoader loader = new FXMLLoader(DocumentImageDisplay.class.getResource("/view/document/documentview.fxml"));
+
+            // Tải FXML và tạo Scene
+            Parent root = loader.load();
+
+
+            DocumentController documentController = loader.getController();
+            documentController.setInfoById(selectedBook.getId());
+
+            // Tạo và hiển thị cửa sổ DocumentView
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            stage.show();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

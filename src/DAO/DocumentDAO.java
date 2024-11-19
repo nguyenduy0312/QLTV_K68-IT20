@@ -33,7 +33,7 @@ public class DocumentDAO implements DocumentDAOInterface {
      * @param document the {@link Document} object to be added.
      */
     public void addDocument(Document document) {
-        String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = JDBCConnection.getJDBCConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -45,7 +45,7 @@ public class DocumentDAO implements DocumentDAOInterface {
             preparedStatement.setString(5, document.getPublisher());
             preparedStatement.setInt(6, document.getQuantity());
             preparedStatement.setInt(7, document.getMaxBorrowDays());
-
+            preparedStatement.setBytes(8, document.getPicture());
 
             int result = preparedStatement.executeUpdate();
             System.out.println(result + " row(s) affected.");
@@ -81,7 +81,7 @@ public class DocumentDAO implements DocumentDAOInterface {
      * @param document the {@link Document} object containing updated information.
      */
     public void updateDocument(Document document) {
-        String sql = "UPDATE document SET TacGia = ?, TenSach = ?, TheLoaiSach = ?, NhaXuatBan = ?, SoLuong = ?, SoNgayMuon = ? WHERE MaSach = ?";
+        String sql = "UPDATE document SET TacGia = ?, TenSach = ?, TheLoaiSach = ?, NhaXuatBan = ?, SoLuong = ?, SoNgayMuon = ?, Picture = ? WHERE MaSach = ?";
 
         try (Connection connection = JDBCConnection.getJDBCConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -92,8 +92,15 @@ public class DocumentDAO implements DocumentDAOInterface {
             preparedStatement.setString(4, document.getPublisher());
             preparedStatement.setInt(5, document.getQuantity());
             preparedStatement.setInt(6, document.getMaxBorrowDays());
-            preparedStatement.setString(7, document.getId());
+            // Set ảnh (Picture) dưới dạng byte[]
+            if (document.getPicture() != null) {
+                preparedStatement.setBytes(7, document.getPicture());  // Chuyển ảnh thành mảng byte
+            } else {
+                preparedStatement.setNull(7, java.sql.Types.BLOB);  // Nếu không có ảnh, set NULL cho Picture
+            }
 
+            // Set ID sách (MaSach)
+            preparedStatement.setString(8, document.getId());
             int rowsUpdated = preparedStatement.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Document updated successfully.");

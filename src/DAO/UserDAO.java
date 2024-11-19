@@ -45,7 +45,7 @@ public class UserDAO implements UserDAOInterface {
             return;
         }
 
-        String sql = "INSERT INTO user (STT,personID, HoTen, NgaySinh, GioiTinh, DiaChi, Email, SoDienThoai, TenDangNhap, MatKhau) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user (STT,personID, HoTen, NgaySinh, GioiTinh, DiaChi, Email, SoDienThoai, TenDangNhap, MatKhau, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = JDBCConnection.getJDBCConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1,STT++);
@@ -58,6 +58,7 @@ public class UserDAO implements UserDAOInterface {
             preparedStatement.setString(8, user.getPhoneNumber());
             preparedStatement.setString(9, user.getAccount().getUserName());
             preparedStatement.setString(10, user.getAccount().getPassWord());
+            preparedStatement.setBytes(11, user.getPicture());
 
             int result = preparedStatement.executeUpdate();
 
@@ -234,6 +235,7 @@ public class UserDAO implements UserDAOInterface {
         String password = resultSet.getString("MatKhau");
 
         Account account = new Account(username, password);
-        return new User(name, birthday, personID, address, phoneNumber, gender, email, account);
+        byte[] picture = resultSet.getBytes("Picture");
+        return new User(name, birthday, personID, address, phoneNumber, gender, email, account, picture);
     }
 }

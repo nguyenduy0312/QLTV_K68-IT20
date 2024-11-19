@@ -26,8 +26,8 @@ public class TestUserDAO {
 
         Account account1 = new Account("hoangdao2005", "hoangdao123");
         Date date1 = new Date(23, 12, 2005);
-        User user1 = new User("Đào Huy Hoàng", date1,"K68_02","Nam Định", "12345", "Nam","hoangdao@gmail.com",account1);
-        UserDAO.getInstance().addUser(user1);
+        //User user1 = new User("Đào Huy Hoàng", date1,"K68_02","Nam Định", "12345", "Nam","hoangdao@gmail.com",account1);
+        //UserDAO.getInstance().addUser(user1);
 
 
         // Xóa người dùng thành công
