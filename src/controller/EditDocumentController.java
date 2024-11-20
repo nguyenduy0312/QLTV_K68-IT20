@@ -50,6 +50,8 @@ public class EditDocumentController {
     private Button chooseImageButton;
     @FXML
     private Button confirmButton;
+    @FXML
+    private ImageView qrCode;
 
     public void closeButtonOnAction(ActionEvent e) {
         // Tạo hộp thoại xác nhận với hai nút OK và Hủy
@@ -105,7 +107,15 @@ public class EditDocumentController {
                 this.imageView.setImage(image);
                 this.imageView.setPreserveRatio(true);
             } else {
+            }
 
+            // Kiểm tra và hiển thị ảnh nếu có
+            if (document.getQrCode() != null && document.getQrCode().length > 0) {
+                ByteArrayInputStream bis = new ByteArrayInputStream(document.getQrCode());
+                Image image = new Image(bis);
+                this.qrCode.setImage(image);
+                this.qrCode.setPreserveRatio(true);
+            } else {
             }
         } else {
             System.out.println("Document is null!");
@@ -136,6 +146,19 @@ public class EditDocumentController {
             try {
                 ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
                 document.setPicture(byteArrayOutputStream.toByteArray());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Kiểm tra xem có ảnh mới không
+        if (this.qrCode.getImage() != null) {
+            // Nếu có ảnh mới, cập nhật ảnh
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(this.qrCode.getImage(), null);
+            try {
+                ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+                document.setQrCode(byteArrayOutputStream.toByteArray());
             } catch (IOException e) {
                 e.printStackTrace();
             }

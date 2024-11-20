@@ -47,6 +47,7 @@ public class AddDocumentController {
     @FXML
     private Button chooseImageButtonOnAction;
 
+
     public void closeButtonOnAction(ActionEvent e) {
         // Tạo hộp thoại xác nhận với hai nút OK và Hủy
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -178,7 +179,6 @@ public class AddDocumentController {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             if(addBook()) {
                 closeButton.getScene().getWindow().hide();
-
             } else {
                 Alert alert1 = new Alert(Alert.AlertType.ERROR);
                 alert1.setTitle("Lỗi Thêm Sách");

@@ -81,7 +81,7 @@ public class DocumentDAO implements DocumentDAOInterface {
      * @param document the {@link Document} object containing updated information.
      */
     public void updateDocument(Document document) {
-        String sql = "UPDATE document SET TacGia = ?, TenSach = ?, TheLoaiSach = ?, NhaXuatBan = ?, SoLuong = ?, SoNgayMuon = ?, Picture = ? WHERE MaSach = ?";
+        String sql = "UPDATE document SET TacGia = ?, TenSach = ?, TheLoaiSach = ?, NhaXuatBan = ?, SoLuong = ?, SoNgayMuon = ?, Picture = ?, QRCode = ? WHERE MaSach = ?";
 
         try (Connection connection = JDBCConnection.getJDBCConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -99,8 +99,14 @@ public class DocumentDAO implements DocumentDAOInterface {
                 preparedStatement.setNull(7, java.sql.Types.BLOB);  // Nếu không có ảnh, set NULL cho Picture
             }
 
+            if (document.getQrCode() != null) {
+                preparedStatement.setBytes(8, document.getQrCode());  // Chuyển ảnh thành mảng byte
+            } else {
+                preparedStatement.setNull(8, java.sql.Types.BLOB);  // Nếu không có ảnh, set NULL cho QRCode
+            }
+
             // Set ID sách (MaSach)
-            preparedStatement.setString(8, document.getId());
+            preparedStatement.setString(9, document.getId());
             int rowsUpdated = preparedStatement.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Document updated successfully.");

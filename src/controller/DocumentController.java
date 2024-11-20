@@ -38,6 +38,8 @@ public class DocumentController {
     private Label publisher;
     @FXML
     private ImageView imageView;
+    @FXML
+    private ImageView qrCode;
 
     public void closeButtonOnAction(ActionEvent e) {
         closeButton.getScene().getWindow().hide();
@@ -74,6 +76,15 @@ public class DocumentController {
             this.imageView.setImage(image);
             this.imageView.setPreserveRatio(true);
         }
+
+        if(document.getQrCode() != null) {
+            // Chuyển byte array thành Image
+            ByteArrayInputStream bis = new ByteArrayInputStream(document.getQrCode());
+            Image image = new Image(bis);
+            this.qrCode.setImage(image);
+            this.qrCode.setPreserveRatio(true);
+        }
+
     }
 
 }

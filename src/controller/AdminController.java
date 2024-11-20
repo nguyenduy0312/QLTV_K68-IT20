@@ -79,10 +79,6 @@ public class AdminController {
     private Button qlNguoiDungButton;
     @FXML
     private AnchorPane quanLyNguoiDung;
-
-    private Button borrowBookButton;
-    @FXML
-    private Button returnBookButton;
     @FXML
     private VBox vboxImages;
     public static final int COL = 7;
@@ -112,7 +108,6 @@ public class AdminController {
 
 
     // Quản Lý User
-    // QL sách
     @FXML
     private TableView<User> tableViewUser;
 
@@ -143,6 +138,27 @@ public class AdminController {
             System.out.println("Username is null!");
         }
     }
+
+
+    //QL mượn
+    @FXML
+    private TextField searchUserField1;
+    @FXML
+    private  TableView<User>tableViewUser1;
+    @FXML private TableColumn<User, String> personId1Column;   // Cột ID
+    @FXML private TableColumn<User, String> personName1Column;  // Cột Name
+    @FXML private TableColumn<User, String> phoneNumber1Column;  // Cột Gender
+
+    @FXML
+    private TextField searchBookField1;
+    @FXML
+    private TableView<Document>tableViewBook1;
+    @FXML private TableColumn<Document, String> id1Column;   // Cột ID
+    @FXML private TableColumn<Document, String> title1Column;  // Cột Title
+    @FXML private TableColumn<Document, Integer> quantity1Column;  // Cột Quantity
+
+    @FXML
+    private Button borrowBookButton;
 
     public void closeButtonOnAction(ActionEvent e) {
         closeButton.getScene().getWindow().hide();
@@ -294,26 +310,7 @@ public class AdminController {
     // Refresh Table View Book
     public void refreshBookButtonOnAction(ActionEvent e) {
         loadBook();
-    }
-
-    // Borrow book
-    public void borrowBookButtonOnAction(ActionEvent e) {
-        BorrowCardView borrowCardView = new BorrowCardView();
-        try {
-            borrowCardView.start(new Stage()); // Mở cửa sổ mượn sách
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    // Return book
-    public void returnBookButtonOnAction(ActionEvent e) {
-        ReturnCardView returnCardView = new ReturnCardView();
-        try {
-           returnCardView.start(new Stage()); // Mở cửa sổ mượn sách
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        loadBook1();
     }
 
     // Load ảnh
@@ -462,6 +459,7 @@ public class AdminController {
     // Refresh Table View Book
     public void refreshUserButtonOnAction(ActionEvent e) {
         loadUser();
+        loadUser1();
     }
 
     // Load dữ liệu lên bảng user
@@ -527,4 +525,180 @@ public class AdminController {
         String keyword = searchUserField.getText();
         updateTableViewUser(keyword);
     }
+
+
+    // Quản lý Mượn
+
+    // Load bảng user1
+    public void loadUser1() {
+        // Thiết lập các cột trong TableView
+
+        personId1Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getId()));
+        personName1Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
+        phoneNumber1Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoneNumber()));
+
+        // Lấy dữ liệu từ cơ sở dữ liệu và hiển thị lên TableView
+        UserDAO userDAO = new UserDAO();
+        List<User> userList = userDAO.findAllUsers();
+
+        // Hiển thị danh sách user
+        if (userList != null && !userList.isEmpty()) {
+            ObservableList<User> observableUserList = FXCollections.observableArrayList(userList);
+            tableViewUser1.setItems(observableUserList);  // Đặt dữ liệu cho TableView
+        } else {
+            tableViewUser1.setItems(FXCollections.observableArrayList()); // Đặt danh sách trống
+        }
+
+        // Lắng nghe thay đổi
+        searchUserField1.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null || newValue.trim().isEmpty()) {
+                // Nếu TextField trống, hiển thị lại toàn bộ danh sách user
+                if (userList != null && !userList.isEmpty()) {
+                    ObservableList<User> observableUserList = FXCollections.observableArrayList(userList);
+                    tableViewUser.setItems(observableUserList);  // Đặt dữ liệu cho TableView
+                } else {
+                    System.out.println("No user to display.");
+                }
+            } else {
+                // Nếu có nội dung, lọc dữ liệu và cập nhật TableView
+                updateTableViewUser1(newValue);
+            }
+        });
+    }
+
+
+    //Update bảng theo từ khóa
+    public void updateTableViewUser1(String keyword) {
+        // Lấy dữ liệu từ cơ sở dữ liệu
+        UserDAO userDAO = new UserDAO();
+        List<User> userList = userDAO.findAllUsers();
+
+        // Lọc danh sách theo keyword
+        List<User> filteredList = userList.stream()
+                .filter(user -> user.getId().toLowerCase().contains(keyword.toLowerCase()) || // Tìm theo id
+                        user.getName().toLowerCase().contains(keyword.toLowerCase()) || // Tìm theo tên
+                        user.getPhoneNumber().toLowerCase().contains(keyword.toLowerCase()) )  // Tìm theo  số điện thoại
+                .collect(Collectors.toList());
+
+        // Cập nhật TableView với dữ liệu được lọc
+        tableViewUser1.setItems(FXCollections.observableArrayList(filteredList));
+    }
+
+    public void searchUserField1OnAction(ActionEvent e) {
+        String keyword = searchUserField1.getText();
+        updateTableViewUser1(keyword);
+    }
+
+    // Load bảng book1
+
+    public void loadBook1() {
+        // Thiết lập các cột trong TableView
+
+        id1Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getId()));
+        title1Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
+        quantity1Column.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getQuantity()).asObject());
+
+        // Lấy dữ liệu từ cơ sở dữ liệu và hiển thị lên TableView
+        DocumentDAO documentDAO = new DocumentDAO();
+        List<Document> documentList = documentDAO.findAllDocuments();
+        // Hiển thị danh sách sách
+        if (documentList != null && !documentList.isEmpty()) {
+            ObservableList<Document> observableDocumentList = FXCollections.observableArrayList(documentList);
+            tableViewBook1.setItems(observableDocumentList);  // Đặt dữ liệu cho TableView
+        } else {
+            tableViewBook1.setItems(FXCollections.observableArrayList()); // Đặt danh sách trống
+        }
+
+        // Lắng nghe thay đổi
+        searchBookField1.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null || newValue.trim().isEmpty()) {
+                // Nếu TextField trống, hiển thị lại toàn bộ danh sách sách
+                if (documentList != null && !documentList.isEmpty()) {
+                    ObservableList<Document> observableDocumentList = FXCollections.observableArrayList(documentList);
+                    tableViewBook1.setItems(observableDocumentList);  // Đặt dữ liệu cho TableView
+                } else {
+                    System.out.println("No documents to display.");
+                }
+            } else {
+                // Nếu có nội dung, lọc dữ liệu và cập nhật TableView
+                updateTableViewBook1(newValue);
+            }
+        });
+    }
+
+
+    //Update bảng theo từ khóa
+    public void updateTableViewBook1(String keyword) {
+        // Lấy dữ liệu từ cơ sở dữ liệu
+        DocumentDAO documentDAO = new DocumentDAO();
+        List<Document> documentList = documentDAO.findAllDocuments();
+
+        // Lọc danh sách theo keyword
+        List<Document> filteredList = documentList.stream()
+                .filter(document -> document.getId().toLowerCase().contains(keyword.toLowerCase()) || // Tìm trong mã sách
+                        document.getTitle().toLowerCase().contains(keyword.toLowerCase()) || // Tìm trong thể loại
+                        document.getCategory().toLowerCase().contains(keyword.toLowerCase())  )  // Tìm trong tiêu đề
+                .collect(Collectors.toList());
+
+        // Cập nhật TableView với dữ liệu được lọc
+        tableViewBook1.setItems(FXCollections.observableArrayList(filteredList));
+    }
+
+    public void searchBookField1OnAction(ActionEvent e) {
+        String keyword = searchBookField1.getText();
+        updateTableViewBook1(keyword);
+    }
+
+
+
+    // Borrow book
+
+
+
+    public void borrowBookButtonOnAction(ActionEvent e) {
+        // Lấy hàng được chọn từ bảng User và Document
+        User selectedUser = tableViewUser1.getSelectionModel().getSelectedItem();
+        Document selectedDocument = tableViewBook1.getSelectionModel().getSelectedItem();
+
+        // Kiểm tra xem cả hai bảng đều có hàng được chọn
+        if (selectedUser != null && selectedDocument != null) {
+            // Nếu cả hai bảng đều có lựa chọn, thực hiện hành động mong muốn
+            System.out.println("Selected User: " + selectedUser.getName());
+            System.out.println("Selected Document: " + selectedDocument.getTitle());
+
+            try {
+                // Tạo FXMLLoader để tải borrowcardview.fxml
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/borrowcard/borrowcardview.fxml"));
+
+                // Tải FXML và tạo Scene
+                Parent root = loader.load();
+
+                // Lấy controller của cửa sổ
+                BorrowCardController borrowCardController = loader.getController();
+                borrowCardController.setUser(selectedUser);
+                borrowCardController.setDocument(selectedDocument);
+
+                borrowCardController.borrowDocument(selectedUser, selectedDocument);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.initStyle(StageStyle.UNDECORATED);
+
+                stage.show();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    // Return book
+    public void returnBookButtonOnAction(ActionEvent e) {
+        ReturnCardView returnCardView = new ReturnCardView();
+        try {
+            returnCardView.start(new Stage()); // Mở cửa sổ mượn sách
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }

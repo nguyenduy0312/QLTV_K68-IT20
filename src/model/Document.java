@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Document {
 
     public static final int QUANTITY = 100;
-    public static final int MAXBORROWDAYS = 30;
+    public static final int MAXBORROWDAYS = 20;
 
     private String id;
     private String title;

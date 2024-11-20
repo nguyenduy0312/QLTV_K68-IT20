@@ -1,21 +1,17 @@
 package DAO;
 
 import DataBase.JDBCConnection;
-import javafx.scene.image.Image;
 import model.Document;
 import model.User;
 import util.Date;
 
-import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-public class BorrowReturnAD {
+public class BorrowReturnDAO {
 
 
     // Ngày mặc định nếu không có ngày cụ thể
@@ -25,12 +21,28 @@ public class BorrowReturnAD {
     private Document document; // Tài liệu đang mượn
 
     private LocalDate borrowDate; // Ngày mượn tài liệu
-    private LocalDate maximumBorrowDate; // Ngày tối đa cho phép mượn tài liệu
-    private Date dueDate; // Ngày phải trả
+    private LocalDate maximumBorrowDate ; // Ngày tối đa cho phép mượn tài liệu
+    private Date dueDate; // Ngày hẹn trả
     private LocalDate actualReturnDate; // Ngày thực tế trả tài liệu
 
+    public LocalDate getMaximumBorrowDate() {
+        return maximumBorrowDate;
+    }
+
+    public void setMaximumBorrowDate(LocalDate maximumBorrowDate) {
+        this.maximumBorrowDate = maximumBorrowDate;
+    }
+
+    public LocalDate getBorrowDate() {
+        return borrowDate;
+    }
+
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
     // Constructor khởi tạo đối tượng `BorrowReturn` với trạng thái mặc định là "Đã trả"
-    public BorrowReturnAD() {
+    public BorrowReturnDAO() {
         this.document = null;
         this.dueDate = DEFAULT_DATE; // Gán giá trị ngày mặc định
     }
@@ -65,24 +77,8 @@ public class BorrowReturnAD {
         }
 
 
-        this.borrowDate = LocalDate.now(); // Lưu ngày mượn hiện tại
-
-        // Nhập ngày phải trả từ người dùng
-        dueDate.inputDate();
         LocalDate dueLocalDate = dueDate.toLocalDate();
-        this.dueDate = new Date(dueLocalDate.getDayOfMonth(), dueLocalDate.getMonthValue(), dueLocalDate.getYear());
 
-        // Tính ngày tối đa có thể mượn
-        this.maximumBorrowDate = borrowDate.plusDays(document.getMaxBorrowDays());
-
-        // Kiểm tra tính hợp lệ của ngày trả
-        if (dueLocalDate.isBefore(borrowDate)) {
-            System.out.println("Return date cannot be before borrow date. Please try again.");
-        } else if (dueLocalDate.isAfter(maximumBorrowDate)) {
-            System.out.println("Cannot borrow beyond the allowed borrowing period.");
-        } else {
-            System.out.println("You have successfully borrowed the book.");
-        }
         // Mã mượn
         String newMaMuon = generateNewMaMuon();
 
@@ -108,7 +104,7 @@ public class BorrowReturnAD {
 
     }
     //Tao mã mượn
-    private String generateNewMaMuon() {
+    public String generateNewMaMuon() {
         String prefix = "HhD";
         int newNumber = 1; // Giá trị bắt đầu nếu không tìm thấy bản ghi nào
 
@@ -210,21 +206,10 @@ public class BorrowReturnAD {
         this.dueDate = dueDate;
     }
 
-
-    public static void main(String[] args) {
-        // Tạo một đối tượng BorrowReturnAD
-        BorrowReturnAD borrowReturnAD = new BorrowReturnAD();
-
-        // Tạo đối tượng Date và User
-        Date date1 = new Date(23, 12, 2005);
-        User user1 = new User("Đào Huy Hoàng", date1, "K68_02", "Nam Định", "12345", "Nam", "hoangdao@gmail.com");
-
-        // Tạo đối tượng Document
-        Document document = new Document("UIUC:30112057150333", "Lập trình Java cơ bản", "Nguyễn Văn A", "Giáo trình", "NXB Khoa Học", 100, 30);
-
-        // Gọi phương thức borrowDocument từ đối tượng borrowReturnAD
-         // borrowReturnAD.borrowDocument(user1, document);
-         borrowReturnAD.returnDocument("HhD3");
+    public static void main(String argc[]) {
+        BorrowReturnDAO borrowReturnDAO = new BorrowReturnDAO();
+        System.out.println(borrowReturnDAO.generateNewMaMuon());
     }
+
 }
 

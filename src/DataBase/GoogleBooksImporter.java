@@ -136,7 +136,7 @@ public class GoogleBooksImporter {
 
                 String nhaXuatBan = book.optString("publisher", "Chưa có nhà xuất bản");
                 int soLuong = Document.QUANTITY; // Giả định số lượng là 100
-                int soNgayMuon = Document.MAXBORROWDAYS; // Giả định thời gian mượn mặc định là 30 ngày
+                int soNgayMuon = Document.MAXBORROWDAYS; // Giả định thời gian mượn mặc định là 20 ngày
 
                 // Lấy infoLink và tạo mã QR từ nó
                 String infoLink = book.optString("infoLink", "");

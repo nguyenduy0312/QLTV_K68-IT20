@@ -158,7 +158,6 @@ public class AddUserController {
         }
 
         Account account = new Account(this.username.getText(), this.password.getText());
-        user.setAccount(account);
         // Kiểm tra tên đăng nhập
         if ("Tên đăng nhập hợp lệ.".equals(checkUserNameLabel.getText())) {
             user.setAccount(account);

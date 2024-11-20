@@ -15,8 +15,7 @@ create table Document
  drop table Document;
 
 create table Borrowing
-(   
-    STT int,
+(
 	MaMuon varchar(50) not null,
 	personID varchar(50) not null,
 	MaSach varchar(50) not null,
