@@ -46,6 +46,11 @@ public class BookRating {
 
     // Hàm cập nhật điểm số và số lượt đánh giá của sách
     public void rateBook(int rating) throws SQLException {
+        // Kiểm tra giá trị đầu vào có hợp lệ hay không
+        if (rating < 0 || rating > 5) {
+            throw new IllegalArgumentException("Điểm đánh giá phải là số nguyên trong khoảng từ 0 đến 5.");
+        }
+
         // Kiểm tra và khởi tạo rating nếu chưa có
         initializeRating();
 
@@ -115,16 +120,16 @@ public class BookRating {
     public static void main(String[] args) {
         try {
             // Mã sách cần đánh giá
-            String maSach = "9780738453576";
+            String maSach = "0802133622";
 
             // Tạo đối tượng BookRating
             BookRating bookRating = new BookRating(maSach);
 
-            // Đánh giá sách với điểm số là 5
-            bookRating.rateBook(3);
+            // Đánh giá sách với điểm số là 4
+            bookRating.rateBook(4);
             System.out.println("Đánh giá sách " + maSach + " thành công!");
 
-        } catch (SQLException e) {
+        } catch (SQLException | IllegalArgumentException e) {
             e.printStackTrace();
         }
     }

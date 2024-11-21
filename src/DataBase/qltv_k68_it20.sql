@@ -70,10 +70,6 @@ CREATE TABLE IF NOT EXISTS Rating (
     ON UPDATE CASCADE
     ON DELETE CASCADE
     );
-INSERT INTO Rating (MaSach, DiemSo, SoLuotDanhGia)
-SELECT MaSach, 0, 0
-FROM Document
-WHERE MaSach NOT IN (SELECT MaSach FROM Rating);
 
 
 INSERT INTO user (STT, personID, HoTen, NgaySinh, GioiTinh, DiaChi, Email, SoDienThoai, TenDangNhap, MatKhau) 
