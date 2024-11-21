@@ -4,16 +4,20 @@ import DAO.BorrowReturnDAO;
 import DAO.UserDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import model.BorrowReturn;
 import model.User;
 import util.Date;
 
 import java.time.LocalDate;
 import java.util.Optional;
+
 
 public class ReturnCardController {
     private AdminController adminController;
@@ -59,6 +63,11 @@ public class ReturnCardController {
     private Label reason;
     @FXML
     private Label Phat;
+    @FXML
+    private HBox starHbox;
+
+    private int scorePerStar = 5; // Điểm cho mỗi ngôi sao
+    private int totalScore = 0; // Tổng điểm
 
     public void closeButtonOnAction(ActionEvent e) {
         // Tạo hộp thoại xác nhận với hai nút OK và Hủy
@@ -131,5 +140,54 @@ public class ReturnCardController {
         } else {
             // Không thực hiện gì nếu người dùng hủy
         }
+    }
+
+    @FXML
+    private void initialize() {
+        // Mã Unicode của ngôi sao đầy và ngôi sao rỗng
+        String starFullUnicode = "\uf005"; // Ngôi sao đầy
+        String starEmptyUnicode = "\uf006"; // Ngôi sao rỗng
+
+        starHbox.setAlignment(Pos.CENTER);
+        starHbox.setSpacing(10); // Khoảng cách giữa các ngôi sao là 10px
+
+        for (int i = 1; i <= 5; i++) {
+            // Tạo ngôi sao ban đầu là rỗng
+            Text star = new Text(starEmptyUnicode);
+            star.setStyle("-fx-font-family: 'FontAwesome'; -fx-font-size: 25; -fx-fill: gold;");
+
+            // Sự kiện khi nhấn vào ngôi sao
+            star.setOnMouseClicked(event -> {
+                if (star.getText().equals(starFullUnicode)) {
+                    // Nếu đang là ngôi sao đầy, chuyển thành rỗng
+                    star.setText(starEmptyUnicode);
+                    star.setStyle("-fx-font-family: 'FontAwesome'; -fx-font-size: 24; -fx-fill: gold;");
+                } else {
+                    // Nếu đang là ngôi sao rỗng, chuyển thành đầy
+                    star.setText(starFullUnicode);
+                    star.setStyle("-fx-font-family: 'FontAwesome'; -fx-font-size: 24; -fx-fill: gold;");
+                }
+            });
+
+            // Thêm ngôi sao vào HBox
+            starHbox.getChildren().add(star);
+        }
+    }
+
+    private void setStarRating(int rating) {
+        totalScore = rating * scorePerStar; // Cập nhật điểm
+        for (int i = 0; i < starHbox.getChildren().size(); i++) {
+            Text star = (Text) starHbox.getChildren().get(i);
+            if (i < rating) {
+                // Ngôi sao đầy
+                star.setText("\uf005");
+                star.setStyle("-fx-font-family: 'FontAwesome'; -fx-font-size: 25; -fx-fill: gold;");
+            } else {
+                // Ngôi sao rỗng
+                star.setText("\uf006");
+                star.setStyle("-fx-font-family: 'FontAwesome'; -fx-font-size: 25; -fx-fill: gold;");
+            }
+        }
+        System.out.println("Số điểm hiện tại: " + totalScore); // Hiển thị điểm
     }
 }
