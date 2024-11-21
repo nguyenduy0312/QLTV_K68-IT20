@@ -1,15 +1,23 @@
 package DataBase;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.URL;
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import javax.imageio.ImageIO;
 
 import model.Document;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import com.google.zxing.BarcodeFormat;
@@ -35,7 +43,7 @@ public class GoogleBooksImporter {
     public void importBooksToDatabase() {
         try {
             // Tạo URL với từ khóa và số lượng kết quả mong muốn
-            String apiUrl = createFullApiUrl("business", 20);
+            String apiUrl = createFullApiUrl("harry", 10);
 
             // Lấy dữ liệu sách từ Google Books API
             JSONArray booksArray = getBooksFromApi(apiUrl);
@@ -87,13 +95,15 @@ public class GoogleBooksImporter {
             System.out.println("Kết nối cơ sở dữ liệu thành công!");
 
             // Chuẩn bị câu lệnh SQL để chèn dữ liệu vào bảng Document
-            String sqlInsert = "INSERT INTO Document (MaSach, TenSach, TacGia, QRCode, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            String sqlCheck = "SELECT COUNT(*) FROM Document WHERE MaSach = ?";
+            String sqlInsertDocument = "INSERT INTO Document (MaSach, TenSach, TacGia, QRCode, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlCheckDocument = "SELECT COUNT(*) FROM Document WHERE MaSach = ?";
+            String sqlInsertRating = "INSERT INTO Rating (MaSach, DiemSo, SoLuotDanhGia) VALUES (?, 0, 0)";
 
-            PreparedStatement stmtInsert = connection.prepareStatement(sqlInsert);
-            PreparedStatement stmtCheck = connection.prepareStatement(sqlCheck);
+            PreparedStatement stmtInsertDocument = connection.prepareStatement(sqlInsertDocument);
+            PreparedStatement stmtCheckDocument = connection.prepareStatement(sqlCheckDocument);
+            PreparedStatement stmtInsertRating = connection.prepareStatement(sqlInsertRating);
 
-            // Lặp qua các cuốn sách và bơm vào cơ sở dữ liệu
+            // Lặp qua các cuốn sách và chèn vào cơ sở dữ liệu
             for (int i = 0; i < booksArray.length(); i++) {
                 JSONObject book = booksArray.getJSONObject(i).getJSONObject("volumeInfo");
 
@@ -103,12 +113,12 @@ public class GoogleBooksImporter {
                 if (industryIdentifiersArray != null && industryIdentifiersArray.length() > 0) {
                     maSach = industryIdentifiersArray.getJSONObject(0).optString("identifier", "null");
                 } else {
-                    maSach = "NO_ISBN_" + System.currentTimeMillis(); // Tạo mã dựa trên thời gian hiện tại để duy nhất
+                    maSach = "NO_ISBN_" + System.currentTimeMillis(); // Tạo mã duy nhất nếu không có ISBN
                 }
 
                 // Kiểm tra nếu mã sách đã tồn tại
-                stmtCheck.setString(1, maSach);
-                ResultSet rs = stmtCheck.executeQuery();
+                stmtCheckDocument.setString(1, maSach);
+                ResultSet rs = stmtCheckDocument.executeQuery();
                 rs.next();
                 if (rs.getInt(1) > 0) {
                     System.out.println("Sách với mã " + maSach + " đã tồn tại trong cơ sở dữ liệu, bỏ qua bản ghi này.");
@@ -117,7 +127,7 @@ public class GoogleBooksImporter {
                 }
                 rs.close();
 
-                // Lấy các thông tin sách từ API response
+                // Lấy thông tin sách từ API response
                 String tenSach = book.optString("title", "Chưa có tên sách");
 
                 // Kiểm tra tác giả
@@ -142,37 +152,43 @@ public class GoogleBooksImporter {
                 String infoLink = book.optString("infoLink", "");
                 byte[] qrCode = generateQRCode(infoLink); // Tạo mã QR từ infoLink
 
-                // Lấy ảnh bìa sách
+                // Lấy ảnh bìa sách và thay đổi kích thước trước khi lưu
                 String imageUrl = book.optJSONObject("imageLinks") != null ? book.optJSONObject("imageLinks").optString("thumbnail", "") : "";
                 byte[] picture = null;
                 if (!imageUrl.isEmpty()) {
-                    picture = downloadImage(imageUrl);
+                    picture = downloadImage(imageUrl, 210, 280); // Thay đổi kích thước ảnh thành 200x300 pixels
                 }
 
-                // Thiết lập các tham số cho câu lệnh SQL
-                stmtInsert.setString(1, maSach);
-                stmtInsert.setString(2, tenSach);
-                stmtInsert.setString(3, tacGia);
-                stmtInsert.setBytes(4, qrCode);  // Chèn QR Code vào cơ sở dữ liệu
-                stmtInsert.setString(5, theLoaiSach);
-                stmtInsert.setString(6, nhaXuatBan);
-                stmtInsert.setInt(7, soLuong);
-                stmtInsert.setInt(8, soNgayMuon);
-                stmtInsert.setBytes(9, picture);  // Chèn hình ảnh vào cơ sở dữ liệu
+                // Thiết lập các tham số cho câu lệnh SQL chèn vào Document
+                stmtInsertDocument.setString(1, maSach);
+                stmtInsertDocument.setString(2, tenSach);
+                stmtInsertDocument.setString(3, tacGia);
+                stmtInsertDocument.setBytes(4, qrCode);  // Chèn QR Code vào cơ sở dữ liệu
+                stmtInsertDocument.setString(5, theLoaiSach);
+                stmtInsertDocument.setString(6, nhaXuatBan);
+                stmtInsertDocument.setInt(7, soLuong);
+                stmtInsertDocument.setInt(8, soNgayMuon);
+                stmtInsertDocument.setBytes(9, picture);  // Chèn hình ảnh vào cơ sở dữ liệu
 
-                // Thực thi câu lệnh chèn dữ liệu
-                stmtInsert.executeUpdate();
+                // Thực thi câu lệnh chèn dữ liệu vào Document
+                stmtInsertDocument.executeUpdate();
+
+                // Thêm bản ghi mặc định vào bảng Rating
+                stmtInsertRating.setString(1, maSach);
+                stmtInsertRating.executeUpdate();
             }
 
             // Đóng câu lệnh và kết nối
-            stmtInsert.close();
-            stmtCheck.close();
+            stmtInsertDocument.close();
+            stmtCheckDocument.close();
+            stmtInsertRating.close();
             connection.close();
             System.out.println("Dữ liệu đã được bơm thành công vào cơ sở dữ liệu!");
         } else {
             System.out.println("Kết nối cơ sở dữ liệu thất bại!");
         }
     }
+
 
     // Hàm để tạo mã QR từ liên kết và chuyển nó thành mảng byte
     private static byte[] generateQRCode(String text) throws IOException, WriterException {
@@ -194,26 +210,86 @@ public class GoogleBooksImporter {
         return imageBytes;
     }
 
-    // Hàm tải ảnh từ URL và chuyển đổi thành mảng byte
-    private static byte[] downloadImage(String imageUrl) throws IOException {
+    // Hàm tải ảnh từ URL, thay đổi kích thước và chuyển đổi thành mảng byte
+    public static byte[] downloadImage(String imageUrl, int width, int height) throws IOException {
+        // Tải ảnh từ URL
         URL url = new URL(imageUrl);
         BufferedImage image = ImageIO.read(url);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-        // Chuyển đổi BufferedImage thành byte[]
-        ImageIO.write(image, "jpg", baos);  // Lưu ảnh dưới dạng JPG hoặc định dạng phù hợp khác
-        baos.flush();  // Đảm bảo mọi byte được ghi vào ByteArrayOutputStream
+        if (image == null) {
+            throw new IOException("Unable to load image from URL: " + imageUrl);
+        }
+
+        // Tạo BufferedImage mới với kích thước yêu cầu
+        BufferedImage bufferedScaledImage = new BufferedImage(width, height, image.getType() == 0
+                ? BufferedImage.TYPE_INT_ARGB : image.getType());
+        Graphics2D g2d = bufferedScaledImage.createGraphics();
+
+        // Sử dụng các RenderingHints để tăng chất lượng thay đổi kích thước
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        // Vẽ ảnh đã thay đổi kích thước
+        g2d.drawImage(image, 0, 0, width, height, null);
+        g2d.dispose();
+
+        // Áp dụng bộ lọc Unsharp Masking để làm nét ảnh
+        bufferedScaledImage = applyUnsharpMasking(bufferedScaledImage);
+
+        // Chuyển BufferedImage thành mảng byte (sử dụng PNG để giữ màu tốt hơn)
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(bufferedScaledImage, "png", baos); // Lưu ảnh dưới dạng PNG (không nén mất dữ liệu)
+        baos.flush();
         byte[] imageBytes = baos.toByteArray();
         baos.close();
 
         return imageBytes;
     }
 
-    public static void main(String[] args) {
-        // Tạo đối tượng GoogleBooksImporter
-        GoogleBooksImporter importer = new GoogleBooksImporter();
+    // Phương thức áp dụng Unsharp Masking
+    private static BufferedImage applyUnsharpMasking(BufferedImage image) {
+        // Tạo một bản sao của ảnh gốc và làm mờ nó
+        BufferedImage blurredImage = blurImage(image);
 
-        // Chạy phương thức importBooksToDatabase để tải và bơm sách vào cơ sở dữ liệu
+        // Tạo ảnh mới để kết quả Unsharp Masking
+        BufferedImage unsharpImage = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
+        for (int y = 0; y < image.getHeight(); y++) {
+            for (int x = 0; x < image.getWidth(); x++) {
+                Color originalColor = new Color(image.getRGB(x, y));
+                Color blurredColor = new Color(blurredImage.getRGB(x, y));
+
+                // Tính toán sự khác biệt giữa ảnh gốc và ảnh mờ
+                int r = Math.min(255, Math.max(0, originalColor.getRed() - blurredColor.getRed() + originalColor.getRed()));
+                int g = Math.min(255, Math.max(0, originalColor.getGreen() - blurredColor.getGreen() + originalColor.getGreen()));
+                int b = Math.min(255, Math.max(0, originalColor.getBlue() - blurredColor.getBlue() + originalColor.getBlue()));
+
+                // Lưu kết quả vào ảnh unsharpImage
+                unsharpImage.setRGB(x, y, new Color(r, g, b).getRGB());
+            }
+        }
+        return unsharpImage;
+    }
+
+    // Phương thức làm mờ ảnh (Gaussian Blur)
+    private static BufferedImage blurImage(BufferedImage image) {
+        // Tạo bộ lọc Gaussian Blur với bán kính 2px
+        float[] matrix = {
+                1 / 16f, 2 / 16f, 1 / 16f,
+                2 / 16f, 4 / 16f, 2 / 16f,
+                1 / 16f, 2 / 16f, 1 / 16f
+        };
+        Kernel kernel = new Kernel(3, 3, matrix);
+        ConvolveOp convolveOp = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
+
+        // Áp dụng bộ lọc Gaussian Blur
+        BufferedImage blurredImage = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
+        convolveOp.filter(image, blurredImage);
+        return blurredImage;
+    }
+
+    public static void main(String[] args) {
+        GoogleBooksImporter importer = new GoogleBooksImporter();
         importer.importBooksToDatabase();
     }
 }
