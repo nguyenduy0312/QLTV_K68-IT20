@@ -22,10 +22,15 @@ import java.util.Optional;
 
 public class BorrowCardController {
 
+    private AdminController adminController;
     private User user;
     private Document document;
     private  LocalDate borrowBookDate = LocalDate.now();
     private LocalDate maximumBorrowDate = borrowBookDate.plusDays(Document.MAXBORROWDAYS);
+
+    public void setAdminController(AdminController adminController) {
+        this.adminController = adminController;
+    }
 
     public LocalDate getBorrowBookDate() {
         return borrowBookDate;
@@ -183,6 +188,9 @@ public class BorrowCardController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             if (borrowDocument(this.user, this.document)) {
+                adminController.loadBook();
+                adminController.loadBook1();
+                adminController.loadInfoBorrow();
                 // Ẩn cửa sổ hiện tại sau khi thêm thành công
                 closeButton.getScene().getWindow().hide();
             } else {

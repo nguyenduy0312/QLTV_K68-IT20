@@ -16,6 +16,12 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 public class ReturnCardController {
+    private AdminController adminController;
+
+    public void setAdminController(AdminController adminController) {
+        this.adminController = adminController;
+    }
+
     private BorrowReturn borrowReturn;
     public static  final int FINEADAY = 2000;
 
@@ -107,6 +113,9 @@ public class ReturnCardController {
             returnDocument(this.borrowReturn);
             BorrowReturnDAO borrowReturnDAO = new BorrowReturnDAO();
             borrowReturnDAO.returnDocument(borrowReturn.getMaMuon());
+            adminController.loadInfoBorrow();
+            adminController.loadBook();
+            adminController.loadBook1();
             closeButton.getScene().getWindow().hide();
 
         } else {

@@ -30,6 +30,12 @@ public class EditDocumentController {
         this.document = document;
     }
 
+    private AdminController adminController;
+
+    public void setAdminController(AdminController adminController) {
+        this.adminController = adminController;
+    }
+
     @FXML
     private Button closeButton;
     @FXML
@@ -180,6 +186,9 @@ public class EditDocumentController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
            updateBook(this.document);
+           adminController.loadBook();
+           adminController.loadBook1();
+           adminController.loadInfoBorrow();
            closeButton.getScene().getWindow().hide();
         } else {
             // Không thực hiện gì nếu người dùng hủy

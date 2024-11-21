@@ -396,7 +396,7 @@
                                               <String fx:value="shadow" />
                                           </styleClass>
                                       </TableView>
-                                      <Button fx:id="editBookButton" layoutX="492.0" layoutY="603.0" mnemonicParsing="false" onAction="#editBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #FFE082;" stylesheets="@../../resources/adminview.css" text="Sửa">
+                                      <Button fx:id="editBookButton" layoutX="629.0" layoutY="603.0" mnemonicParsing="false" onAction="#editBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #FFE082;" stylesheets="@../../resources/adminview.css" text="Sửa">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -408,7 +408,7 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <Button fx:id="addBookButton" layoutX="69.0" layoutY="603.0" mnemonicParsing="false" onAction="#addBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-radius: 7; -fx-background-color: #A5D6A7;" stylesheets="@../../resources/adminview.css" text="Thêm">
+                                      <Button fx:id="addBookButton" layoutX="93.0" layoutY="603.0" mnemonicParsing="false" onAction="#addBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-radius: 7; -fx-background-color: #A5D6A7;" stylesheets="@../../resources/adminview.css" text="Thêm">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -420,7 +420,7 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <Button fx:id="deleteBookButton" layoutX="275.0" layoutY="603.0" mnemonicParsing="false" onAction="#deleteBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #EF9A9A;" stylesheets="@../../resources/adminview.css" text="Xóa">
+                                      <Button fx:id="deleteBookButton" layoutX="361.0" layoutY="603.0" mnemonicParsing="false" onAction="#deleteBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #EF9A9A;" stylesheets="@../../resources/adminview.css" text="Xóa">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -432,7 +432,7 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <Button fx:id="viewInfoBookButton" alignment="CENTER" layoutX="715.0" layoutY="603.0" mnemonicParsing="false" onAction="#viewInfoBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #81D4FA;" stylesheets="@../../resources/adminview.css" text="Xem">
+                                      <Button fx:id="viewInfoBookButton" alignment="CENTER" layoutX="872.0" layoutY="603.0" mnemonicParsing="false" onAction="#viewInfoBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #81D4FA;" stylesheets="@../../resources/adminview.css" text="Xem">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -451,16 +451,6 @@
                               </Label>
                               <Line endX="980.0" layoutX="120.0" layoutY="67.0" startX="-100.0" />
                               <FontAwesomeIcon glyphName="SEARCH" layoutX="305.0" layoutY="136.0" size="20" />
-                              <Button fx:id="refreshBookButton" alignment="CENTER" layoutX="935.0" layoutY="603.0" mnemonicParsing="false" onAction="#refreshBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #D8B7DD;" stylesheets="@../../resources/adminview.css" text="Làm mới">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <styleClass>
-                                    <String fx:value="crud-button" />
-                                    <String fx:value="cursor_hand" />
-                                 </styleClass>
-                              </Button>
-                              <FontAwesomeIcon glyphName="UNDO" layoutX="949.0" layoutY="638.0" size="20" text="" />
                               <TextField fx:id="searchBookField" layoutX="353.0" layoutY="106.0" onAction="#searchBookFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
                                  <font>
                                     <Font size="17.0" />
@@ -523,7 +513,7 @@
                               </Label>
                                   </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="quanLyTraSach" layoutX="3.0" layoutY="2.0" prefHeight="686.0" prefWidth="1115.0" style="-fx-background-color: #FFFF;">
+                              <AnchorPane fx:id="quanLyTraSach" layoutX="3.0" layoutY="2.0" prefHeight="686.0" prefWidth="1115.0" style="-fx-background-color: #FFFF;" visible="false">
                                   <children>
                                       <TableView fx:id="infoBorrowTableView" layoutX="14.0" layoutY="222.0" prefHeight="332.0" prefWidth="1087.0" stylesheets="@../../resources/adminview.css">
                                           <columns>
@@ -557,7 +547,7 @@
                               <FontAwesomeIcon glyphName="SEARCH" layoutX="297.0" layoutY="157.0" size="20" text="" />
                                   </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="quanLyNguoiDung" layoutX="-2.0" layoutY="1.0" prefHeight="696.0" prefWidth="1122.0" style="-fx-background-color: #FFFF;" visible="false">
+                              <AnchorPane fx:id="quanLyNguoiDung" layoutX="-2.0" layoutY="1.0" prefHeight="696.0" prefWidth="1122.0" style="-fx-background-color: #FFFF;">
                                   <children>
                                       <TableView fx:id="tableViewUser" layoutX="12.0" layoutY="227.0" prefHeight="315.0" prefWidth="1105.0" stylesheets="@../../resources/adminview.css">
                                           <columns>
@@ -572,7 +562,7 @@
                                               <String fx:value="anchorPane-border1" />
                                           </styleClass>
                                       </TableView>
-                                      <Button fx:id="addUserButton" layoutX="86.0" layoutY="611.0" mnemonicParsing="false" onAction="#addUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #A5D6A7;" stylesheets="@../../resources/adminview.css" text="Thêm">
+                                      <Button fx:id="addUserButton" layoutX="127.0" layoutY="600.0" mnemonicParsing="false" onAction="#addUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #A5D6A7;" stylesheets="@../../resources/adminview.css" text="Thêm">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -581,7 +571,7 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <Button fx:id="deleteUserButton" layoutX="301.0" layoutY="611.0" mnemonicParsing="false" onAction="#deleteUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #EF9A9A;" stylesheets="@../../resources/adminview.css" text="Xóa">
+                                      <Button fx:id="deleteUserButton" layoutX="380.0" layoutY="600.0" mnemonicParsing="false" onAction="#deleteUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #EF9A9A;" stylesheets="@../../resources/adminview.css" text="Xóa">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -590,7 +580,7 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <Button fx:id="editUserButton" layoutX="534.0" layoutY="611.0" mnemonicParsing="false" onAction="#editUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #FFE082;" stylesheets="@../../resources/adminview.css" text="Sửa">
+                                      <Button fx:id="editUserButton" layoutX="647.0" layoutY="600.0" mnemonicParsing="false" onAction="#editUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #FFE082;" stylesheets="@../../resources/adminview.css" text="Sửa">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -599,7 +589,7 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <Button fx:id="viewUserInfoButton" alignment="CENTER" layoutX="753.0" layoutY="611.0" mnemonicParsing="false" onAction="#viewInfoUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #81D4FA;" text="Xem">
+                                      <Button fx:id="viewUserInfoButton" alignment="CENTER" layoutX="885.0" layoutY="601.0" mnemonicParsing="false" onAction="#viewInfoUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #81D4FA;" text="Xem">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -608,10 +598,10 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <FontAwesomeIcon glyphName="TIMES_CIRCLE" layoutX="330.0" layoutY="645.0" size="20" text="" />
-                                      <FontAwesomeIcon glyphName="PLUS_CIRCLE" layoutX="110.0" layoutY="645.0" size="20" />
-                                      <FontAwesomeIcon glyphName="EDIT" layoutX="555.0" layoutY="645.0" size="20" text="" />
-                                      <FontAwesomeIcon glyphName="EYE" layoutX="773.0" layoutY="646.0" size="20" text="" />
+                                      <FontAwesomeIcon glyphName="TIMES_CIRCLE" layoutX="403.0" layoutY="634.0" size="20" text="" />
+                                      <FontAwesomeIcon glyphName="PLUS_CIRCLE" layoutX="147.0" layoutY="634.0" size="20" />
+                                      <FontAwesomeIcon glyphName="EDIT" layoutX="673.0" layoutY="636.0" size="20" text="" />
+                                      <FontAwesomeIcon glyphName="EYE" layoutX="909.0" layoutY="635.0" size="20" text="" />
                                         <Label layoutX="35.0" layoutY="20.0" text="Quản Lý Người Dùng">
                                             <font>
                                                 <Font name="Tahoma Bold" size="25.0" />
@@ -624,16 +614,6 @@
                                  </font>
                               </TextField>
                               <FontAwesomeIcon glyphName="SEARCH" layoutX="330.0" layoutY="153.0" size="20" />
-                              <Button fx:id="refreshUserButton" alignment="CENTER" layoutX="959.0" layoutY="611.0" mnemonicParsing="false" onAction="#refreshUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #D8B7DD;" stylesheets="@../../resources/adminview.css" text="Làm mới">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <styleClass>
-                                    <String fx:value="crud-button" />
-                                    <String fx:value="cursor_hand" />
-                                 </styleClass>
-                              </Button>
-                              <FontAwesomeIcon glyphName="UNDO" layoutX="967.0" layoutY="645.0" size="20" text="" />
                                   </children>
                               </AnchorPane>
                           </children>

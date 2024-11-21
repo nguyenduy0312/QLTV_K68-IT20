@@ -26,6 +26,13 @@ import java.util.Optional;
 
 public class AddUserController {
     @FXML
+    private AdminController adminController;
+
+    public void setAdminController(AdminController adminController) {
+        this.adminController = adminController;
+    }
+
+    @FXML
     private Button closeButton;
     @FXML
     private Button chooseImageButton;
@@ -201,6 +208,8 @@ public class AddUserController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             if (addUser()) { // Giả sử bạn đã định nghĩa phương thức addUser() để thêm người dùng
+                adminController.loadUser();
+                adminController.loadUser1();
                 // Ẩn cửa sổ hiện tại sau khi thêm thành công
                 closeButton.getScene().getWindow().hide();
             } else {

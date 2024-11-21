@@ -25,6 +25,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 public class EditUserController {
+
     private User user;
 
     public User getUser() {
@@ -33,6 +34,12 @@ public class EditUserController {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    private AdminController adminController;
+
+    public void setAdminController(AdminController adminController) {
+        this.adminController = adminController;
     }
 
     @FXML
@@ -197,6 +204,9 @@ public class EditUserController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             updateUser(this.user);
+            adminController.loadUser();
+            adminController.loadUser1();
+            adminController.loadInfoBorrow();
             closeButton.getScene().getWindow().hide();
         } else {
             // Không thực hiện gì nếu người dùng hủy

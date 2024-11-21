@@ -21,6 +21,9 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class AddDocumentController {
+
+    private AdminController adminController;
+
     @FXML
     private Button closeButton;
     @FXML
@@ -47,6 +50,9 @@ public class AddDocumentController {
     @FXML
     private Button chooseImageButtonOnAction;
 
+    public void setAdminController(AdminController adminController) {
+        this.adminController = adminController;
+    }
 
     public void closeButtonOnAction(ActionEvent e) {
         // Tạo hộp thoại xác nhận với hai nút OK và Hủy
@@ -178,6 +184,9 @@ public class AddDocumentController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             if(addBook()) {
+                adminController.loadBook();
+                adminController.loadBook1();
+                adminController.loadImage();
                 closeButton.getScene().getWindow().hide();
             } else {
                 Alert alert1 = new Alert(Alert.AlertType.ERROR);

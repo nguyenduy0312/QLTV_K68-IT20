@@ -36,7 +36,7 @@ create table user
 	GioiTinh varchar(50) not null,
 	DiaChi varchar(100) not null,
     Email varchar(100) not null unique,
-	SoDienThoai int,
+	SoDienThoai varchar(15),
     TenDangNhap VARCHAR(50) NOT NULL unique,
     MatKhau VARCHAR(255) NOT NULL,
     Picture mediumblob,

@@ -41,6 +41,7 @@ import view.user.UserInfoView;
 
 import util.Date;
 import java.awt.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -243,7 +244,6 @@ public class AdminController {
     public void qlTraSachButtonOnAction(ActionEvent e) {
         hideAllPanes();
         quanLyTraSach.setVisible(!quanLyTraSach.isVisible());
-        loadInfoBorrow();
     }
 
     //Cửa sổ quản lý người dùng
@@ -254,22 +254,40 @@ public class AdminController {
 
     // Add book
     public void addBookButtonOnAction(ActionEvent e) {
-        AddDocument addDocument = new AddDocument();
         try {
-            addDocument.start(new Stage()); // Mở cửa sổ addUser
-        } catch (Exception ex) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/document/adddocument.fxml"));
+            Parent root = loader.load();
+
+            // Lấy controller của AddDocument
+            AddDocumentController addDocumentController = loader.getController();
+            // Truyền tham chiếu của AdminController cho AddDocumentController
+            addDocumentController.setAdminController(this);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
-
     }
 
     // Xóa sách
     public void deleteBookButtonOnAction(ActionEvent e) {
         Document selectedBook = tableViewBook.getSelectionModel().getSelectedItem();
-        if(selectedBook != null) {
+        BorrowReturnDAO borrowReturnDAO = new BorrowReturnDAO();
+        if(selectedBook != null && borrowReturnDAO.findBookById(selectedBook.getId())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi Xóa Sách");
+            alert.setHeaderText("Không thể xóa vì người dùng vẫn đang mượn sách");
+            alert.setContentText("Vui lòng kiểm tra lại thông tin hoặc thử lại sau.");
+            alert.showAndWait();
+
+        } else if(selectedBook != null && !borrowReturnDAO.findBookById(selectedBook.getId()) ) {
             DocumentDAO documentDAO = new DocumentDAO();
             documentDAO.deleteDocument(selectedBook.getId());
             loadBook();
+            loadImage();
         }
     }
 
@@ -286,6 +304,7 @@ public class AdminController {
 
                 // Lấy controller của cửa sổ Edit Document từ FXMLLoader
                 EditDocumentController editDocumentController = loader.getController();
+                editDocumentController.setAdminController(this);
                 editDocumentController.setDocument(selectedBook);
                 editDocumentController.printInfo(selectedBook);
 
@@ -326,11 +345,6 @@ public class AdminController {
         }
     }
 
-    // Refresh Table View Book
-    public void refreshBookButtonOnAction(ActionEvent e) {
-        loadBook();
-        loadBook1();
-    }
 
     // Load ảnh
     public void loadImage() {
@@ -404,10 +418,20 @@ public class AdminController {
 
     // Add user
     public void addUserButtonOnAction(ActionEvent e) {
-        AddUser addUser = new AddUser();
         try {
-            addUser.start(new Stage()); // Mở cửa sổ addUser
-        } catch (Exception ex) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user/adduser.fxml"));
+            Parent root = loader.load();
+
+            // Lấy controller của AddDocument
+            AddUserController addUserController = loader.getController();
+            // Truyền tham chiếu của AdminController cho AddDocumentController
+           addUserController.setAdminController(this);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
@@ -415,7 +439,15 @@ public class AdminController {
     // Xóa user
     public void deleteUserButtonOnAction(ActionEvent e) {
         User selectedUser = tableViewUser.getSelectionModel().getSelectedItem();
-        if(selectedUser != null) {
+        BorrowReturnDAO borrowReturnDAO = new BorrowReturnDAO();
+        if(selectedUser != null && borrowReturnDAO.findUserById(selectedUser.getId())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi Xóa Người Dùng");
+            alert.setHeaderText("Không thể xóa vì người dùng vẫn đang mượn sách");
+            alert.setContentText("Vui lòng kiểm tra lại thông tin hoặc thử lại sau.");
+            alert.showAndWait();
+
+        } else if(selectedUser != null && !borrowReturnDAO.findUserById(selectedUser.getId())) {
            UserDAO userDAO = new UserDAO();
            userDAO.deleteUser(selectedUser.getId());
            loadUser();
@@ -435,6 +467,7 @@ public class AdminController {
 
                 // Lấy controller của cửa sổ Edit Document từ FXMLLoader
                 EditUserController editUserController = loader.getController();
+                editUserController.setAdminController(this);
                 editUserController.setUser(selectedUser);
                 editUserController.printInfo(selectedUser);
 
@@ -693,6 +726,7 @@ public class AdminController {
 
                     // Lấy controller của cửa sổ
                     BorrowCardController borrowCardController = loader.getController();
+                    borrowCardController.setAdminController(this);
                     borrowCardController.setUser(selectedUser);
                     borrowCardController.setDocument(selectedDocument);
 
@@ -733,6 +767,7 @@ public class AdminController {
 
                 // Lấy controller của cửa sổ
                 ReturnCardController returnCardController = loader.getController();
+                returnCardController.setAdminController(this);
                 returnCardController.setBorrowReturn(selectedBorrowReturn);
                 returnCardController.returnDocument(selectedBorrowReturn);
 

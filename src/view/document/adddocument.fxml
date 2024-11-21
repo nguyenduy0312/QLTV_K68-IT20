@@ -25,10 +25,7 @@
                 </AnchorPane>
                 <AnchorPane layoutX="44.0" layoutY="113.0" prefHeight="169.0" prefWidth="154.0" stylesheets="@../../resources/document.css">
                     <children>
-                        <ImageView fx:id="imageView" fitHeight="198.0" fitWidth="154.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../resources/default.jpg" />
-                     </image></ImageView>
+                        <ImageView fx:id="imageView" fitHeight="165.0" fitWidth="154.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
                     </children>
                     <styleClass>
                         <String fx:value="shadow" />
