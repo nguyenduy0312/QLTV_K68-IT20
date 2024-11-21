@@ -833,9 +833,9 @@ public class AdminController {
         // Lọc danh sách theo keyword
         List<BorrowReturn> filteredList = borrowReturnList.stream()
                 .filter(borrowReturn -> borrowReturn.getMaMuon().toLowerCase().contains(keyword.toLowerCase()) || // Tìm trong mã sách
-                        borrowReturn.getMaNguoiMuon().toLowerCase().contains(keyword.toLowerCase()) || // Tìm trong thể loại
-                        borrowReturn.getNgayMuon().toString().toLowerCase().contains(keyword.toLowerCase()) ||
-                        borrowReturn.getMaSach().toLowerCase().contains(keyword.toLowerCase())  )  // Tìm trong tiêu đề
+                        borrowReturn.getMaNguoiMuon().toLowerCase().contains(keyword.toLowerCase()) || // Tìm trong mã người mượn
+                        borrowReturn.getNgayMuon().toString().toLowerCase().contains(keyword.toLowerCase()) ||  // Tìm trong ngày mượn
+                        borrowReturn.getMaSach().toLowerCase().contains(keyword.toLowerCase())  )  // Tìm trong mã sách
                 .collect(Collectors.toList());
 
         // Cập nhật TableView với dữ liệu được lọc

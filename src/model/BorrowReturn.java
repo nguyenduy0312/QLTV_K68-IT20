@@ -1,5 +1,6 @@
 package model;
 
+import DAO.DocumentDAO;
 import util.Date;
 
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ public class BorrowReturn {
     private String maMuon;
     private String maNguoiMuon;
     private String maSach;
+    private String tenSach;
     private Date ngayMuon;
     private Date ngayHenTra;
     private Date ngayTra;
@@ -47,6 +49,14 @@ public class BorrowReturn {
         this.maSach = maSach;
     }
 
+    public String getTenSach() {
+        return tenSach;
+    }
+
+    public void setTenSach(String tenSach) {
+        this.tenSach = tenSach;
+    }
+
     public Date getNgayMuon() {
         return ngayMuon;
     }
@@ -70,4 +80,5 @@ public class BorrowReturn {
     public void setNgayTra(Date ngayTra) {
         this.ngayTra = ngayTra;
     }
+
 }

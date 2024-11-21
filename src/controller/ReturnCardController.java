@@ -22,6 +22,12 @@ public class ReturnCardController {
         this.adminController = adminController;
     }
 
+    private UserController userController;
+
+    public void setUserController(UserController userController) {
+        this.userController = userController;
+    }
+
     private BorrowReturn borrowReturn;
     public static  final int FINEADAY = 2000;
 
@@ -113,11 +119,15 @@ public class ReturnCardController {
             returnDocument(this.borrowReturn);
             BorrowReturnDAO borrowReturnDAO = new BorrowReturnDAO();
             borrowReturnDAO.returnDocument(borrowReturn.getMaMuon());
-            adminController.loadInfoBorrow();
-            adminController.loadBook();
-            adminController.loadBook1();
+            if(adminController != null) {
+                adminController.loadInfoBorrow();
+                adminController.loadBook();
+                adminController.loadBook1();
+            } else if(userController != null) {
+                userController.loadBorrowBook();
+                userController.loadBook();
+            }
             closeButton.getScene().getWindow().hide();
-
         } else {
             // Không thực hiện gì nếu người dùng hủy
         }
