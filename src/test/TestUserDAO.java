@@ -1,15 +1,5 @@
 package test;
 
-import DAO.UserDAO;
-import model.Document;
-import model.User;
-import model.Account;
-import service.BorrowReturnManage;
-import util.Date;
-
-import javax.rmi.CORBA.Util;
-import java.util.ArrayList;
-
 public class TestUserDAO {
     public static void main (String[] args) {
 

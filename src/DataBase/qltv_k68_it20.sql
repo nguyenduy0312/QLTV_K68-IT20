@@ -21,7 +21,7 @@ create table Borrowing
 	MaSach varchar(50) not null,
 	NgayMuon date not null,
 	NgayHenTra date not null,
-	NgayTra date not null,
+    NgayTra date not null,
 
 	constraint pk_MaMuon primary key (MaMuon),
 	constraint fk_MaSach foreign key (MaSach) references Document(MaSach) on update cascade on delete cascade

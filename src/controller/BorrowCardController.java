@@ -15,6 +15,7 @@ import util.Date;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -137,8 +138,8 @@ public class BorrowCardController {
         phoneNumber.setText(user.getPhoneNumber());
         address.setText(user.getAddress());
 
-
-        borrowDate.setText(borrowBookDate.toString());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        borrowDate.setText(borrowBookDate.format(formatter));
 
         bookID.setText(document.getId());
         title.setText(document.getTitle());

@@ -7,9 +7,6 @@ package model;
 import util.Date;
 import service.UserManage;
 import service.DocumentManage;
-import service.BorrowReturnManage;
-
-import java.util.ArrayList;
 
 public class Admin extends Person {
 
@@ -22,7 +19,6 @@ public class Admin extends Person {
     // Quản lý tài liệu
     private DocumentManage documentManage;
 
-    private BorrowReturnManage borrowReturnManage;
 
     /**
      * Hàm khởi tạo cho lớp Admin với tất cả các tham số.

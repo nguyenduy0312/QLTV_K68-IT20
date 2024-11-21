@@ -468,7 +468,7 @@
                               </TextField>
                                   </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="quanLyMuonSach" layoutX="-1.0" prefHeight="696.0" prefWidth="1120.0" style="-fx-background-color: #ffff;">
+                              <AnchorPane fx:id="quanLyMuonSach" layoutX="-1.0" prefHeight="696.0" prefWidth="1120.0" style="-fx-background-color: #ffff;" visible="false">
                                   <children>
                                       <Button fx:id="borrowBookButton" layoutX="774.0" layoutY="603.0" mnemonicParsing="false" onAction="#borrowBookButtonOnAction" prefHeight="54.0" prefWidth="317.0" style="-fx-background-radius: 10; -fx-background-color: #A5D6A7;" text="Ghi phiếu mượn">
                                           <font>
@@ -523,15 +523,15 @@
                               </Label>
                                   </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="quanLyTraSach" layoutX="3.0" layoutY="2.0" prefHeight="686.0" prefWidth="1115.0" style="-fx-background-color: #FFFF;" visible="false">
+                              <AnchorPane fx:id="quanLyTraSach" layoutX="3.0" layoutY="2.0" prefHeight="686.0" prefWidth="1115.0" style="-fx-background-color: #FFFF;">
                                   <children>
-                                      <TableView layoutX="14.0" layoutY="222.0" prefHeight="332.0" prefWidth="1087.0" stylesheets="@../../resources/adminview.css">
+                                      <TableView fx:id="infoBorrowTableView" layoutX="14.0" layoutY="222.0" prefHeight="332.0" prefWidth="1087.0" stylesheets="@../../resources/adminview.css">
                                           <columns>
-                                              <TableColumn prefWidth="143.0" text="Mã mượn" />
-                                              <TableColumn prefWidth="280.0" text="Mã người mượn" />
-                                              <TableColumn prefWidth="250.0" text="Mã sách" />
-                                              <TableColumn prefWidth="242.0" text="Ngày mượn" />
-                                    <TableColumn prefWidth="192.0" text="Ngày hẹn trả" />
+                                              <TableColumn fx:id="borrowIDColumn" prefWidth="143.0" text="Mã mượn" />
+                                              <TableColumn fx:id="personID2Column" prefWidth="280.0" text="Mã người mượn" />
+                                              <TableColumn fx:id="bookID2Column" prefWidth="250.0" text="Mã sách" />
+                                              <TableColumn fx:id="borrowDateColumn" prefWidth="226.0" text="Ngày mượn" />
+                                    <TableColumn fx:id="dueDateColumn" prefWidth="208.0" text="Ngày hẹn trả" />
                                           </columns>
                                           <styleClass>
                                               <String fx:value="shadow" />
@@ -549,7 +549,7 @@
                                  </font>
                               </Label>
                               <Line endX="950.0" layoutX="146.0" layoutY="60.0" startX="-130.0" />
-                              <TextField layoutX="337.0" layoutY="126.0" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
+                              <TextField fx:id="searchInfoBorrowField" layoutX="337.0" layoutY="126.0" onAction="#searchInfoBorrowFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
                                  <font>
                                     <Font size="17.0" />
                                  </font>

@@ -1,6 +1,7 @@
 package DAO;
 
 import DataBase.JDBCConnection;
+import model.BorrowReturn;
 import model.Document;
 import model.User;
 import util.Date;
@@ -10,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BorrowReturnDAO {
 
@@ -137,7 +140,6 @@ public class BorrowReturnDAO {
         String updateDocumentSql = "UPDATE document SET SoLuong = SoLuong + 1 WHERE MaSach = ?";
         String updateReturnDateSql = "UPDATE borrowing SET NgayTra = ? WHERE MaMuon = ?";
         String deleteBorrowInfoSql = "DELETE FROM borrowing WHERE MaMuon = ?"; // Xóa thông tin mượn trả sau khi trả sách
-        int finePerDay = 2000; // Phí phạt mỗi ngày
 
         try (Connection connection = JDBCConnection.getJDBCConnection();
              PreparedStatement getBorrowInfoStmt = connection.prepareStatement(getBorrowInfoSql);
@@ -157,15 +159,6 @@ public class BorrowReturnDAO {
                     updateReturnDateStmt.setDate(1, java.sql.Date.valueOf(actualReturnDate));
                     updateReturnDateStmt.setString(2, maMuon);
                     updateReturnDateStmt.executeUpdate();
-
-                    // Tính số ngày trễ và tiền phạt
-                    if (actualReturnDate.isAfter(dueDate)) {
-                        long daysLate = java.time.temporal.ChronoUnit.DAYS.between(dueDate, actualReturnDate);
-                        long fine = daysLate * finePerDay;
-                        System.out.println("Bị chậm: " + daysLate + " Ngày. Phạt: " + fine + " VND.");
-                    } else {
-                        System.out.println("Trả sách đúng hạn ");
-                    }
 
                     // Tăng số lượng sách lên 1
                     updateDocumentStmt.setString(1, maSach);
@@ -206,10 +199,46 @@ public class BorrowReturnDAO {
         this.dueDate = dueDate;
     }
 
-    public static void main(String argc[]) {
-        BorrowReturnDAO borrowReturnDAO = new BorrowReturnDAO();
-        System.out.println(borrowReturnDAO.generateNewMaMuon());
+    /**
+     * Retrieves all documents from the database.
+     *
+     * @return a list of all {@link BorrowReturn} objects.
+     */
+    public List<BorrowReturn> findAllInfo() {
+        List<BorrowReturn> borrowReturnList = new ArrayList<>();
+        String sql = "SELECT * FROM Borrowing";
+
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                borrowReturnList.add(extractBorrowReturnFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving all documents: " + e.getMessage());
+        }
+        return borrowReturnList;
     }
 
+    private BorrowReturn extractBorrowReturnFromResultSet(ResultSet resultSet) throws SQLException {
+        BorrowReturn borrowReturn = new BorrowReturn();
+        borrowReturn.setMaMuon(resultSet.getString("MaMuon"));
+        borrowReturn.setMaNguoiMuon(resultSet.getString("personID"));
+        borrowReturn.setMaSach(resultSet.getString("MaSach"));
+
+        java.sql.Date sqlBorrowDate = resultSet.getDate("NgayMuon");
+        Date borrowDate = Date.fromSqlDate(sqlBorrowDate);
+        borrowReturn.setNgayMuon(borrowDate);
+
+        java.sql.Date sqlDueDate = resultSet.getDate("NgayHenTra");
+        Date dueDate = Date.fromSqlDate(sqlDueDate);
+        borrowReturn.setNgayHenTra(dueDate);
+
+        java.sql.Date sqlReturnDate = resultSet.getDate("NgayTra");
+        Date returnDate = Date.fromSqlDate(sqlDueDate);
+        borrowReturn.setNgayTra(returnDate);
+        return borrowReturn;
+    }
 }
 

@@ -73,6 +73,7 @@ public class Controller {
                         adminController.loadUser();
                         adminController.loadUser1();
                         adminController.loadBook1();
+                        adminController.loadInfoBorrow();
 
                         // Tạo và hiển thị cửa sổ AdminView
                         Stage stage = new Stage();
