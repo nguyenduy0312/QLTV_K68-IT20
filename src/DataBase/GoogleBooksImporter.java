@@ -40,10 +40,10 @@ public class GoogleBooksImporter {
     }
 
     // Phương thức này dùng để lấy sách từ Google Books API và bơm vào cơ sở dữ liệu
-    public void importBooksToDatabase() {
+    public void importBooksToDatabase(String query, int maxResults ) {
         try {
             // Tạo URL với từ khóa và số lượng kết quả mong muốn
-            String apiUrl = createFullApiUrl("doreamon", 30);
+            String apiUrl = createFullApiUrl(query,maxResults );
 
             // Lấy dữ liệu sách từ Google Books API
             JSONArray booksArray = getBooksFromApi(apiUrl);
@@ -156,7 +156,7 @@ public class GoogleBooksImporter {
                 String imageUrl = book.optJSONObject("imageLinks") != null ? book.optJSONObject("imageLinks").optString("thumbnail", "") : "";
                 byte[] picture = null;
                 if (!imageUrl.isEmpty()) {
-                    picture = downloadImage(imageUrl, 200, 250); // Thay đổi kích thước ảnh
+                    picture = downloadImage(imageUrl, 175, 235); // Thay đổi kích thước ảnh thành 200x300 pixels
                 }
 
                 // Thiết lập các tham số cho câu lệnh SQL chèn vào Document
@@ -173,7 +173,7 @@ public class GoogleBooksImporter {
                 // Thực thi câu lệnh chèn dữ liệu vào Document
                 stmtInsertDocument.executeUpdate();
 
-                // Thêm bản ghi mặc định vào bảng BookRating
+                // Thêm bản ghi mặc định vào bảng Rating
                 stmtInsertRating.setString(1, maSach);
                 stmtInsertRating.executeUpdate();
             }
@@ -192,8 +192,8 @@ public class GoogleBooksImporter {
 
     // Hàm để tạo mã QR từ liên kết và chuyển nó thành mảng byte
     private static byte[] generateQRCode(String text) throws IOException, WriterException {
-        int width = 300;
-        int height = 300;
+        int width = 200;
+        int height = 200;
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
 
@@ -290,6 +290,6 @@ public class GoogleBooksImporter {
 
     public static void main(String[] args) {
         GoogleBooksImporter importer = new GoogleBooksImporter();
-        importer.importBooksToDatabase();
+        importer.importBooksToDatabase("doraemon",5);
     }
 }

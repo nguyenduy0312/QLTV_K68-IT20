@@ -72,9 +72,9 @@ CREATE TABLE IF NOT EXISTS Rating (
 
 drop table Rating;
 
-INSERT INTO admin (STT, personID, HoTen, NgaySinh, GioiTinh, DiaChi, Email, SoDienThoai, TenDangNhap, MatKhau)
+INSERT INTO admin (personID, HoTen, NgaySinh, GioiTinh, DiaChi, Email, SoDienThoai, TenDangNhap, MatKhau)
 VALUES
 
-    (1, '1', 'Đào Huy Hoàng', '2005-12-23', 'Nam', 'Ý Yên, Nam Định', 'hoangdh2312@gmail.com', 0352712366, 'admin1', 'password1'),
-    (1, '2', 'Nguyễn Văn Duy', '2005-12-10', 'Nam', 'Hưng Yên', 'duynv@gmail.com', 0352712365, 'admin2', 'password2'),
-    (1, '3', 'Nguyễn Văn Hoàng', '2005-10-30', 'Nam', 'Thái Bình', 'hoangnv@gmail.com', 0352712367, 'admin3', 'password3');
+    ( '1', 'Đào Huy Hoàng', '2005-12-23', 'Nam', 'Ý Yên, Nam Định', 'hoangdh2312@gmail.com', 0352712366, 'admin1', 'password1'),
+    ('2', 'Nguyễn Văn Duy', '2005-12-10', 'Nam', 'Hưng Yên', 'duynv@gmail.com', 0352712365, 'admin2', 'password2'),
+    ( '3', 'Nguyễn Văn Hoàng', '2005-10-30', 'Nam', 'Thái Bình', 'hoangnv@gmail.com', 0352712367, 'admin3', 'password3');
