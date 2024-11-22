@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -133,6 +134,23 @@ public class AdminController {
     @FXML
     private Button refreshUserButton;
 
+
+    // Lưu trữ danh sách tài liệu và FilteredList
+    private ObservableList<Document> observableDocumentList;
+    private FilteredList<Document> filteredListDocument;
+    private ObservableList<Document> observableDocument1List;
+    private FilteredList<Document> filteredListDocument1;
+
+
+    // Lưu trữ danh sách người dùng và FilteredList
+    private ObservableList<User> observableUserList;
+    private FilteredList<User> filteredListUser;
+    private ObservableList<User> observableUser1List;
+    private FilteredList<User> filteredListUser1;
+
+    // Lưu trữ danh sách mượn trả và FilteredList
+    private ObservableList<BorrowReturn> observableBorrowReturnList;
+    private FilteredList<BorrowReturn> filteredListBorrowReturn;
 
     public void setUsername(String username) {
         if (username != null) {
@@ -286,7 +304,9 @@ public class AdminController {
         } else if(selectedBook != null && !borrowReturnDAO.findBookById(selectedBook.getId()) ) {
             DocumentDAO documentDAO = new DocumentDAO();
             documentDAO.deleteDocument(selectedBook.getId());
+
             loadBook();
+            loadBook1();
             loadImage();
         }
     }
@@ -353,60 +373,47 @@ public class AdminController {
         DocumentImageDisplay.displayBookImages(vboxImages, sqlQuery, COL);
     }
 
-    // Load dữ liệu lên bảng sách
     public void loadBook() {
         // Thiết lập các cột trong TableView
-
         idColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getId()));
         titleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
-        categoryColumn.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getCategory()));
+        categoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategory()));
         quantityColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getQuantity()).asObject());
         maxBorrowDaysColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getMaxBorrowDays()).asObject());
 
-        // Lấy dữ liệu từ cơ sở dữ liệu và hiển thị lên TableView
+        // Lấy dữ liệu từ cơ sở dữ liệu một lần và lưu vào biến
         DocumentDAO documentDAO = new DocumentDAO();
         List<Document> documentList = documentDAO.findAllDocuments();
-        // Hiển thị danh sách sách
-        if (documentList != null && !documentList.isEmpty()) {
-            ObservableList<Document> observableDocumentList = FXCollections.observableArrayList(documentList);
-            tableViewBook.setItems(observableDocumentList);  // Đặt dữ liệu cho TableView
-        } else {
-            tableViewBook.setItems(FXCollections.observableArrayList()); // Đặt danh sách trống
-        }
 
-        // Lắng nghe thay đổi
+        // Chuyển List thành ObservableList
+        observableDocumentList = FXCollections.observableArrayList(documentList);
+
+        // Tạo FilteredList từ ObservableList (mặc định hiển thị tất cả)
+        filteredListDocument = new FilteredList<>(observableDocumentList, p -> true);
+
+        // Đặt FilteredList vào TableView
+        tableViewBook.setItems(filteredListDocument);
+
+        // Lắng nghe thay đổi từ TextField để lọc dữ liệu
         searchBookField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == null || newValue.trim().isEmpty()) {
-                // Nếu TextField trống, hiển thị lại toàn bộ danh sách sách
-                if (documentList != null && !documentList.isEmpty()) {
-                    ObservableList<Document> observableDocumentList = FXCollections.observableArrayList(documentList);
-                    tableViewBook.setItems(observableDocumentList);  // Đặt dữ liệu cho TableView
-                } else {
-                    System.out.println("No documents to display.");
-                }
-            } else {
-                // Nếu có nội dung, lọc dữ liệu và cập nhật TableView
-                updateTableViewBook(newValue);
-            }
+            updateTableViewBook(newValue);  // Gọi hàm lọc khi có thay đổi từ khóa tìm kiếm
         });
     }
 
-
-    //Update bảng theo từ khóa
     public void updateTableViewBook(String keyword) {
-        // Lấy dữ liệu từ cơ sở dữ liệu
-        DocumentDAO documentDAO = new DocumentDAO();
-        List<Document> documentList = documentDAO.findAllDocuments();
-
-        // Lọc danh sách theo keyword
-        List<Document> filteredList = documentList.stream()
-                .filter(document -> document.getId().toLowerCase().contains(keyword.toLowerCase()) || // Tìm trong mã sách
-                        document.getTitle().toLowerCase().contains(keyword.toLowerCase()) || // Tìm trong thể loại
-                        document.getCategory().toLowerCase().contains(keyword.toLowerCase())  )  // Tìm trong tiêu đề
-                .collect(Collectors.toList());
-
-        // Cập nhật TableView với dữ liệu được lọc
-        tableViewBook.setItems(FXCollections.observableArrayList(filteredList));
+        // Kiểm tra từ khóa tìm kiếm
+        if (keyword == null || keyword.trim().isEmpty()) {
+            // Nếu không có từ khóa, hiển thị toàn bộ danh sách
+            filteredListDocument.setPredicate(p -> true);
+        } else {
+            // Nếu có từ khóa, lọc danh sách và cập nhật TableView
+            String lowerCaseKeyword = keyword.toLowerCase();
+            filteredListDocument.setPredicate(document -> {
+                return document.getId().toLowerCase().contains(lowerCaseKeyword) ||
+                        document.getTitle().toLowerCase().contains(lowerCaseKeyword) ||
+                        document.getCategory().toLowerCase().contains(lowerCaseKeyword);
+            });
+        }
     }
 
     public void searchBookFieldOnAction(ActionEvent e) {
@@ -508,69 +515,48 @@ public class AdminController {
         }
     }
 
-    // Refresh Table View Book
-    public void refreshUserButtonOnAction(ActionEvent e) {
-        loadUser();
-        loadUser1();
-    }
 
-    // Load dữ liệu lên bảng user
     public void loadUser() {
         // Thiết lập các cột trong TableView
-
         personIdColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getId()));
         personNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-        genderColumn.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getGender()));
-        dateOfBirthColumn.setCellValueFactory(cellData -> {
-            return new SimpleObjectProperty<>(cellData.getValue().getBirthday());
-        });
+        genderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGender()));
+        dateOfBirthColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getBirthday()));
         phoneNumberColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoneNumber()));
 
-        // Lấy dữ liệu từ cơ sở dữ liệu và hiển thị lên TableView
+        // Lấy dữ liệu từ cơ sở dữ liệu một lần và lưu vào biến
         UserDAO userDAO = new UserDAO();
         List<User> userList = userDAO.findAllUsers();
 
-        // Hiển thị danh sách user
-        if (userList != null && !userList.isEmpty()) {
-            ObservableList<User> observableUserList = FXCollections.observableArrayList(userList);
-            tableViewUser.setItems(observableUserList);  // Đặt dữ liệu cho TableView
-        } else {
-            tableViewUser.setItems(FXCollections.observableArrayList()); // Đặt danh sách trống
-        }
+        // Chuyển List thành ObservableList
+        observableUserList = FXCollections.observableArrayList(userList);
 
-        // Lắng nghe thay đổi
+        // Tạo FilteredList từ ObservableList (mặc định hiển thị tất cả)
+        filteredListUser = new FilteredList<>(observableUserList, p -> true);
+
+        // Đặt FilteredList vào TableView
+        tableViewUser.setItems(filteredListUser);
+
+        // Lắng nghe thay đổi từ TextField để lọc dữ liệu
         searchUserField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == null || newValue.trim().isEmpty()) {
-                // Nếu TextField trống, hiển thị lại toàn bộ danh sách user
-                if (userList != null && !userList.isEmpty()) {
-                    ObservableList<User> observableUserList = FXCollections.observableArrayList(userList);
-                    tableViewUser.setItems(observableUserList);  // Đặt dữ liệu cho TableView
-                } else {
-                    System.out.println("No user to display.");
-                }
-            } else {
-                // Nếu có nội dung, lọc dữ liệu và cập nhật TableView
-                updateTableViewUser(newValue);
-            }
+            updateTableViewUser(newValue);  // Gọi hàm lọc khi có thay đổi từ khóa tìm kiếm
         });
     }
 
-
-    //Update bảng theo từ khóa
     public void updateTableViewUser(String keyword) {
-        // Lấy dữ liệu từ cơ sở dữ liệu
-        UserDAO userDAO = new UserDAO();
-        List<User> userList = userDAO.findAllUsers();
-
-        // Lọc danh sách theo keyword
-        List<User> filteredList = userList.stream()
-                .filter(user -> user.getId().toLowerCase().contains(keyword.toLowerCase()) || // Tìm theo id
-                        user.getName().toLowerCase().contains(keyword.toLowerCase()) || // Tìm theo tên
-                        user.getPhoneNumber().toLowerCase().contains(keyword.toLowerCase()) )  // Tìm theo  số điện thoại
-                .collect(Collectors.toList());
-
-        // Cập nhật TableView với dữ liệu được lọc
-        tableViewUser.setItems(FXCollections.observableArrayList(filteredList));
+        // Kiểm tra từ khóa tìm kiếm
+        if (keyword == null || keyword.trim().isEmpty()) {
+            // Nếu không có từ khóa, hiển thị toàn bộ danh sách
+            filteredListUser.setPredicate(p -> true);
+        } else {
+            // Nếu có từ khóa, lọc danh sách và cập nhật TableView
+            String lowerCaseKeyword = keyword.toLowerCase();
+            filteredListUser.setPredicate(user -> {
+                return user.getId().toLowerCase().contains(lowerCaseKeyword) ||
+                        user.getName().toLowerCase().contains(lowerCaseKeyword) ||
+                        user.getPhoneNumber().toLowerCase().contains(lowerCaseKeyword);
+            });
+        }
     }
 
     public void searchUserFieldOnAction(ActionEvent e) {
@@ -581,119 +567,92 @@ public class AdminController {
 
     // Quản lý Mượn
 
-    // Load bảng user1
     public void loadUser1() {
         // Thiết lập các cột trong TableView
-
         personId1Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getId()));
         personName1Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
         phoneNumber1Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoneNumber()));
 
-        // Lấy dữ liệu từ cơ sở dữ liệu và hiển thị lên TableView
+        // Lấy dữ liệu từ cơ sở dữ liệu một lần và lưu vào biến
         UserDAO userDAO = new UserDAO();
         List<User> userList = userDAO.findAllUsers();
 
-        // Hiển thị danh sách user
-        if (userList != null && !userList.isEmpty()) {
-            ObservableList<User> observableUserList = FXCollections.observableArrayList(userList);
-            tableViewUser1.setItems(observableUserList);  // Đặt dữ liệu cho TableView
-        } else {
-            tableViewUser1.setItems(FXCollections.observableArrayList()); // Đặt danh sách trống
-        }
+        // Chuyển List thành ObservableList
+        observableUser1List = FXCollections.observableArrayList(userList);
 
-        // Lắng nghe thay đổi
+        // Tạo FilteredList từ ObservableList (mặc định hiển thị tất cả)
+        filteredListUser1 = new FilteredList<>(observableUser1List, p -> true);
+
+        // Đặt FilteredList vào TableView
+        tableViewUser1.setItems(filteredListUser1);
+
+        // Lắng nghe thay đổi từ TextField để lọc dữ liệu
         searchUserField1.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == null || newValue.trim().isEmpty()) {
-                // Nếu TextField trống, hiển thị lại toàn bộ danh sách user
-                if (userList != null && !userList.isEmpty()) {
-                    ObservableList<User> observableUserList = FXCollections.observableArrayList(userList);
-                    tableViewUser.setItems(observableUserList);  // Đặt dữ liệu cho TableView
-                } else {
-                    System.out.println("No user to display.");
-                }
-            } else {
-                // Nếu có nội dung, lọc dữ liệu và cập nhật TableView
-                updateTableViewUser1(newValue);
-            }
+            updateTableViewUser1(newValue);  // Gọi hàm lọc khi có thay đổi từ khóa tìm kiếm
         });
     }
 
-
-    //Update bảng theo từ khóa
+    // Hàm lọc danh sách theo từ khóa
     public void updateTableViewUser1(String keyword) {
-        // Lấy dữ liệu từ cơ sở dữ liệu
-        UserDAO userDAO = new UserDAO();
-        List<User> userList = userDAO.findAllUsers();
-
-        // Lọc danh sách theo keyword
-        List<User> filteredList = userList.stream()
-                .filter(user -> user.getId().toLowerCase().contains(keyword.toLowerCase()) || // Tìm theo id
-                        user.getName().toLowerCase().contains(keyword.toLowerCase()) || // Tìm theo tên
-                        user.getPhoneNumber().toLowerCase().contains(keyword.toLowerCase()) )  // Tìm theo  số điện thoại
-                .collect(Collectors.toList());
-
-        // Cập nhật TableView với dữ liệu được lọc
-        tableViewUser1.setItems(FXCollections.observableArrayList(filteredList));
+        // Kiểm tra từ khóa tìm kiếm
+        if (keyword == null || keyword.trim().isEmpty()) {
+            // Nếu không có từ khóa, hiển thị toàn bộ danh sách
+            filteredListUser1.setPredicate(p -> true);
+        } else {
+            // Nếu có từ khóa, lọc danh sách và cập nhật TableView
+            String lowerCaseKeyword = keyword.toLowerCase();
+            filteredListUser1.setPredicate(user -> {
+                return user.getId().toLowerCase().contains(lowerCaseKeyword) ||
+                        user.getName().toLowerCase().contains(lowerCaseKeyword) ||
+                        user.getPhoneNumber().toLowerCase().contains(lowerCaseKeyword);
+            });
+        }
     }
-
     public void searchUserField1OnAction(ActionEvent e) {
         String keyword = searchUserField1.getText();
         updateTableViewUser1(keyword);
     }
 
-    // Load bảng book1
-
     public void loadBook1() {
         // Thiết lập các cột trong TableView
-
         id1Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getId()));
         title1Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
         quantity1Column.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getQuantity()).asObject());
 
-        // Lấy dữ liệu từ cơ sở dữ liệu và hiển thị lên TableView
+        // Lấy dữ liệu từ cơ sở dữ liệu một lần và lưu vào biến
         DocumentDAO documentDAO = new DocumentDAO();
         List<Document> documentList = documentDAO.findAllDocuments();
-        // Hiển thị danh sách sách
-        if (documentList != null && !documentList.isEmpty()) {
-            ObservableList<Document> observableDocumentList = FXCollections.observableArrayList(documentList);
-            tableViewBook1.setItems(observableDocumentList);  // Đặt dữ liệu cho TableView
-        } else {
-            tableViewBook1.setItems(FXCollections.observableArrayList()); // Đặt danh sách trống
-        }
 
-        // Lắng nghe thay đổi
+        // Chuyển List thành ObservableList
+        observableDocument1List = FXCollections.observableArrayList(documentList);
+
+        // Tạo FilteredList từ ObservableList (mặc định hiển thị tất cả)
+        filteredListDocument1 = new FilteredList<>(observableDocument1List, p -> true);
+
+        // Đặt FilteredList vào TableView
+        tableViewBook1.setItems(filteredListDocument1);
+
+        // Lắng nghe thay đổi từ TextField để lọc dữ liệu
         searchBookField1.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == null || newValue.trim().isEmpty()) {
-                // Nếu TextField trống, hiển thị lại toàn bộ danh sách sách
-                if (documentList != null && !documentList.isEmpty()) {
-                    ObservableList<Document> observableDocumentList = FXCollections.observableArrayList(documentList);
-                    tableViewBook1.setItems(observableDocumentList);  // Đặt dữ liệu cho TableView
-                } else {
-                    System.out.println("No documents to display.");
-                }
-            } else {
-                // Nếu có nội dung, lọc dữ liệu và cập nhật TableView
-                updateTableViewBook1(newValue);
-            }
+            updateTableViewBook1(newValue);  // Gọi hàm lọc khi có thay đổi từ khóa tìm kiếm
         });
     }
 
-
-    //Update bảng theo từ khóa
+    // Hàm lọc danh sách theo từ khóa
     public void updateTableViewBook1(String keyword) {
-        // Lấy dữ liệu từ cơ sở dữ liệu
-        DocumentDAO documentDAO = new DocumentDAO();
-        List<Document> documentList = documentDAO.findAllDocuments();
-
-        // Lọc danh sách theo keyword
-        List<Document> filteredList = documentList.stream()
-                .filter(document -> document.getId().toLowerCase().contains(keyword.toLowerCase()) || // Tìm trong mã sách
-                        document.getTitle().toLowerCase().contains(keyword.toLowerCase()) || // Tìm trong thể loại
-                        document.getCategory().toLowerCase().contains(keyword.toLowerCase())  )  // Tìm trong tiêu đề
-                .collect(Collectors.toList());
-
-        // Cập nhật TableView với dữ liệu được lọc
-        tableViewBook1.setItems(FXCollections.observableArrayList(filteredList));
+        // Kiểm tra từ khóa tìm kiếm
+        if (keyword == null || keyword.trim().isEmpty()) {
+            // Nếu không có từ khóa, hiển thị toàn bộ danh sách
+            filteredListDocument1.setPredicate(p -> true);
+        } else {
+            // Nếu có từ khóa, lọc danh sách và cập nhật TableView
+            String lowerCaseKeyword = keyword.toLowerCase();
+            filteredListDocument1.setPredicate(document -> {
+                return document.getId().toLowerCase().contains(lowerCaseKeyword) ||
+                        document.getTitle().toLowerCase().contains(lowerCaseKeyword) ||
+                        document.getCategory().toLowerCase().contains(lowerCaseKeyword);
+            });
+        }
     }
 
     public void searchBookField1OnAction(ActionEvent e) {
@@ -784,66 +743,53 @@ public class AdminController {
 
     public void loadInfoBorrow() {
         // Thiết lập các cột trong TableView
-
         borrowIDColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMaMuon()));
         personID2Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMaNguoiMuon()));
-        bookID2Column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getMaSach()));
-        borrowDateColumn.setCellValueFactory(cellData -> {
-            return new SimpleObjectProperty<>(cellData.getValue().getNgayMuon());
-        });
-        dueDateColumn.setCellValueFactory(cellData -> {
-            return new SimpleObjectProperty<>(cellData.getValue().getNgayHenTra());
-        });
+        bookID2Column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMaSach()));
+        borrowDateColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNgayMuon()));
+        dueDateColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNgayHenTra()));
 
-
-        // Lấy dữ liệu từ cơ sở dữ liệu và hiển thị lên TableView
+        // Lấy dữ liệu từ cơ sở dữ liệu một lần và lưu vào biến
         BorrowReturnDAO borrowReturnDAO = new BorrowReturnDAO();
         List<BorrowReturn> borrowReturnList = borrowReturnDAO.findAllInfo();
-        // Hiển thị danh sách sách
-        if (borrowReturnList != null && !borrowReturnList.isEmpty()) {
-            ObservableList<BorrowReturn> observableBorrowReturnList = FXCollections.observableArrayList(borrowReturnList);
-            infoBorrowTableView.setItems(observableBorrowReturnList);  // Đặt dữ liệu cho TableView
-        } else {
-            infoBorrowTableView.setItems(FXCollections.observableArrayList()); // Đặt danh sách trống
-        }
 
-        // Lắng nghe thay đổi
+        // Chuyển List thành ObservableList
+        observableBorrowReturnList = FXCollections.observableArrayList(borrowReturnList);
+
+        // Tạo FilteredList từ ObservableList (mặc định hiển thị tất cả)
+        filteredListBorrowReturn = new FilteredList<>(observableBorrowReturnList, p -> true);
+
+        // Đặt FilteredList vào TableView
+        infoBorrowTableView.setItems(filteredListBorrowReturn);
+
+        // Lắng nghe thay đổi từ TextField để lọc dữ liệu
         searchInfoBorrowField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == null || newValue.trim().isEmpty()) {
-                if (borrowReturnList != null && !borrowReturnList.isEmpty()) {
-                    ObservableList<BorrowReturn> observableBorrowReturnList = FXCollections.observableArrayList(borrowReturnList);
-                    infoBorrowTableView.setItems(observableBorrowReturnList);  // Đặt dữ liệu cho TableView
-                } else {
-                    System.out.println("No info borrow to display.");
-                }
-            } else {
-                // Nếu có nội dung, lọc dữ liệu và cập nhật TableView
-                updateInfoBorrowTableView(newValue);
-            }
+            updateInfoBorrowTableView(newValue);  // Gọi hàm lọc khi có thay đổi từ khóa tìm kiếm
         });
     }
 
-
-    //Update bảng theo từ khóa
+    // Hàm lọc danh sách theo từ khóa
     public void updateInfoBorrowTableView(String keyword) {
-        // Lấy dữ liệu từ cơ sở dữ liệu
-        BorrowReturnDAO borrowReturnDAO = new BorrowReturnDAO();
-        List<BorrowReturn> borrowReturnList = borrowReturnDAO.findAllInfo();
-
-        // Lọc danh sách theo keyword
-        List<BorrowReturn> filteredList = borrowReturnList.stream()
-                .filter(borrowReturn -> borrowReturn.getMaMuon().toLowerCase().contains(keyword.toLowerCase()) || // Tìm trong mã sách
-                        borrowReturn.getMaNguoiMuon().toLowerCase().contains(keyword.toLowerCase()) || // Tìm trong mã người mượn
-                        borrowReturn.getNgayMuon().toString().toLowerCase().contains(keyword.toLowerCase()) ||  // Tìm trong ngày mượn
-                        borrowReturn.getMaSach().toLowerCase().contains(keyword.toLowerCase())  )  // Tìm trong mã sách
-                .collect(Collectors.toList());
-
-        // Cập nhật TableView với dữ liệu được lọc
-        infoBorrowTableView.setItems(FXCollections.observableArrayList(filteredList));
+        // Kiểm tra từ khóa tìm kiếm
+        if (keyword == null || keyword.trim().isEmpty()) {
+            // Nếu không có từ khóa, hiển thị toàn bộ danh sách
+            filteredListBorrowReturn.setPredicate(p -> true);
+        } else {
+            // Nếu có từ khóa, lọc danh sách và cập nhật TableView
+            String lowerCaseKeyword = keyword.toLowerCase();
+            filteredListBorrowReturn.setPredicate(borrowReturn -> {
+                return borrowReturn.getMaMuon().toLowerCase().contains(lowerCaseKeyword) ||
+                        borrowReturn.getMaNguoiMuon().toLowerCase().contains(lowerCaseKeyword) ||
+                        borrowReturn.getNgayMuon().toString().toLowerCase().contains(lowerCaseKeyword) ||
+                        borrowReturn.getMaSach().toLowerCase().contains(lowerCaseKeyword);
+            });
+        }
     }
 
     public void searchInfoBorrowFieldOnAction(ActionEvent e) {
         String keyword = searchInfoBorrowField.getText();
         updateTableViewBook(keyword);
     }
+
+
 }

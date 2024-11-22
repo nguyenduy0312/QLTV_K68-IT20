@@ -34,9 +34,7 @@ public class DocumentDAO implements DocumentDAOInterface {
      */
     public void addDocument(Document document) {
 
-        String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-        String sqlInsertDocument = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sqlInsertDocument = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         String sqlCheckRating = "SELECT * FROM Rating WHERE MaSach = ?";
         String sqlInsertRating = "INSERT INTO Rating (MaSach, DiemSo, SoLuotDanhGia) VALUES (?, 0.0, 0)"; // Đặt điểm số mặc định là 0 và số lượt đánh giá là 0
 
@@ -54,6 +52,7 @@ public class DocumentDAO implements DocumentDAOInterface {
             preparedStatementInsertDocument.setString(5, document.getPublisher());
             preparedStatementInsertDocument.setInt(6, document.getQuantity());
             preparedStatementInsertDocument.setInt(7, document.getMaxBorrowDays());
+            preparedStatementInsertDocument.setBytes(8, document.getPicture());
 
             int result = preparedStatementInsertDocument.executeUpdate();
             System.out.println(result + " row(s) affected in Document table.");

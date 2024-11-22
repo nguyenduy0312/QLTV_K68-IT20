@@ -146,9 +146,9 @@
                   <center>
                       <AnchorPane prefHeight="676.0" prefWidth="1122.0" stylesheets="@../../resources/adminview.css" BorderPane.alignment="CENTER">
                           <children>
-                              <AnchorPane fx:id="home" layoutX="3.0" layoutY="1.0" prefHeight="720.0" prefWidth="1195.0" style="-fx-background-color: #FCFCFC;">
+                              <AnchorPane fx:id="home" layoutX="3.0" layoutY="1.0" prefHeight="720.0" prefWidth="1195.0" style="-fx-background-color: #FCFCFC;" visible="false">
                                   <children>
-                              <AnchorPane layoutX="3.0" prefHeight="718.0" prefWidth="1112.0">
+                              <AnchorPane layoutX="3.0" prefHeight="718.0" prefWidth="1189.0">
                                  <styleClass>
                                     <String fx:value="shadow" />
                                     <String fx:value="anchorPane-border1" />
@@ -169,7 +169,7 @@
                                                   </AnchorPane>
                                     <ScrollPane layoutX="18.0" layoutY="139.0" prefHeight="542.0" prefWidth="1158.0" stylesheets="@../../resources/adminview.css">
                                        <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="850.0" prefWidth="2050.0" style="-fx-background-color: adminviewfxml">
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="850.0" prefWidth="2050.0">
                                              <children>
                                                 <VBox fx:id="vboxImages" layoutY="-2.0" prefHeight="900.0" prefWidth="1400.0">
                                                    <children>
@@ -449,7 +449,7 @@
                                           <Font name="Tahoma Bold" size="25.0" />
                                        </font>
                                     </Label>
-                                    <Line endX="950.0" layoutX="146.0" layoutY="60.0" startX="-130.0" />
+                                    <Line endX="1030.0" layoutX="146.0" layoutY="60.0" startX="-130.0" />
                                  </children>
                               </AnchorPane>
                                   </children>
@@ -522,7 +522,7 @@
                                     <Font name="Tahoma Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <Line endX="980.0" layoutX="120.0" layoutY="67.0" startX="-100.0" />
+                              <Line endX="1060.0" layoutX="120.0" layoutY="67.0" startX="-100.0" />
                               <FontAwesomeIcon glyphName="SEARCH" layoutX="305.0" layoutY="136.0" size="20" />
                               <TextField fx:id="searchBookField" layoutX="353.0" layoutY="106.0" onAction="#searchBookFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
                                  <font>
@@ -547,7 +547,7 @@
                                                 <Font name="Tahoma Bold" size="25.0" />
                                             </font>
                                         </Label>
-                                      <Line endX="950.0" layoutX="146.0" layoutY="60.0" startX="-130.0" AnchorPane.leftAnchor="21.5" />
+                                      <Line endX="1030.0" layoutX="146.0" layoutY="60.0" startX="-130.0" AnchorPane.leftAnchor="21.5" />
                               <TableView fx:id="tableViewUser1" layoutX="62.0" layoutY="234.0" prefHeight="253.0" prefWidth="521.0">
                                 <columns>
                                   <TableColumn fx:id="personId1Column" prefWidth="110.0" text="Mã " />
@@ -611,7 +611,7 @@
                                     <Font name="Tahoma Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <Line endX="950.0" layoutX="146.0" layoutY="60.0" startX="-130.0" />
+                              <Line endX="1030.0" layoutX="146.0" layoutY="60.0" startX="-130.0" />
                               <TextField fx:id="searchInfoBorrowField" layoutX="358.0" layoutY="127.0" onAction="#searchInfoBorrowFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
                                  <font>
                                     <Font size="17.0" />
@@ -620,7 +620,7 @@
                               <FontAwesomeIcon glyphName="SEARCH" layoutX="330.0" layoutY="157.0" size="20" text="" />
                                   </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="quanLyNguoiDung" layoutX="-2.0" layoutY="1.0" prefHeight="721.0" prefWidth="1199.0" style="-fx-background-color: #FFFF;" visible="false">
+                              <AnchorPane fx:id="quanLyNguoiDung" layoutX="-2.0" layoutY="1.0" prefHeight="721.0" prefWidth="1199.0" style="-fx-background-color: #FFFF;">
                                   <children>
                                       <TableView fx:id="tableViewUser" layoutX="23.0" layoutY="227.0" prefHeight="315.0" prefWidth="1161.0" stylesheets="@../../resources/adminview.css">
                                           <columns>
@@ -680,7 +680,7 @@
                                                 <Font name="Tahoma Bold" size="25.0" />
                                             </font>
                                         </Label>
-                              <Line endX="950.0" layoutX="157.0" layoutY="60.0" startX="-135.0" />
+                              <Line endX="1030.0" layoutX="157.0" layoutY="60.0" startX="-135.0" />
                               <TextField fx:id="searchUserField" layoutX="402.0" layoutY="122.0" onAction="#searchUserFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
                                  <font>
                                     <Font size="17.0" />

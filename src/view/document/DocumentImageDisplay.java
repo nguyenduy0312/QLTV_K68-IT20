@@ -87,7 +87,7 @@ public class DocumentImageDisplay {
 
                         imageCount++;  // Tăng số lượng ảnh đã thêm vào HBox
 
-                        // Nếu mỗi HBox chứa đủ 7 ImageView, chuyển sang HBox tiếp theo
+                        // Nếu mỗi HBox chứa đủ 10 ImageView, chuyển sang HBox tiếp theo
                         if (imageCount == COL) {
                             row++;  // Chuyển sang HBox tiếp theo
                             imageCount = 0;  // Reset số ảnh trong HBox
@@ -102,7 +102,6 @@ public class DocumentImageDisplay {
                 System.out.println("Kết nối cơ sở dữ liệu thất bại!");
             }
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.println("Lỗi khi hiển thị ảnh: " + e.getMessage());
         }
     }

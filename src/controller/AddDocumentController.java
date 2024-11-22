@@ -23,6 +23,8 @@ import java.util.Optional;
 public class AddDocumentController {
 
     private AdminController adminController;
+    private Document addedBook;
+
 
     @FXML
     private Button closeButton;
@@ -52,6 +54,14 @@ public class AddDocumentController {
 
     public void setAdminController(AdminController adminController) {
         this.adminController = adminController;
+    }
+
+    public Document getAddedBook() {
+        return addedBook;
+    }
+
+    public void setAddedBook(Document addedBook) {
+        this.addedBook = addedBook;
     }
 
     public void closeButtonOnAction(ActionEvent e) {
@@ -169,6 +179,7 @@ public class AddDocumentController {
         // Thêm tài liệu vào hệ thống
         DocumentDAO documentDAO = new DocumentDAO();
         documentDAO.addDocument(document);
+        this.setAddedBook(document);
         return true;  // Trả về true nếu thêm thành công
     }
 
@@ -199,4 +210,5 @@ public class AddDocumentController {
             // Không thực hiện gì nếu người dùng hủy
         }
     }
+
 }
