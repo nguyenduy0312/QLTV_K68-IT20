@@ -58,11 +58,11 @@ public class DocumentDAO implements DocumentDAOInterface {
             int result = preparedStatementInsertDocument.executeUpdate();
             System.out.println(result + " row(s) affected in Document table.");
 
-            // Kiểm tra nếu sách đã có trong bảng Rating chưa
+            // Kiểm tra nếu sách đã có trong bảng BookRating chưa
             preparedStatementCheckRating.setString(1, document.getId());
             ResultSet rs = preparedStatementCheckRating.executeQuery();
 
-            // Nếu sách chưa có trong bảng Rating, thêm vào
+            // Nếu sách chưa có trong bảng BookRating, thêm vào
             if (!rs.next()) {
                 preparedStatementInsertRating.setString(1, document.getId());
                 preparedStatementInsertRating.executeUpdate();

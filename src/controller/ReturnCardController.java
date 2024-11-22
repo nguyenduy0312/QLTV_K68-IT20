@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.BookRatingDAO;
 import DAO.BorrowReturnDAO;
 import DAO.UserDAO;
 import javafx.event.ActionEvent;
@@ -11,12 +12,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import model.BookRating;
 import model.BorrowReturn;
 import model.User;
 import util.Date;
 
-import java.time.LocalDate;
+import java.sql.SQLException;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class ReturnCardController {
@@ -65,9 +68,9 @@ public class ReturnCardController {
     private Label Phat;
     @FXML
     private HBox starHbox;
-
-    private int scorePerStar = 5; // Điểm cho mỗi ngôi sao
-    private int totalScore = 0; // Tổng điểm
+    @FXML
+    private Label level;
+    private int selectStar = 0; // Tổng điểm
 
     public void closeButtonOnAction(ActionEvent e) {
         // Tạo hộp thoại xác nhận với hai nút OK và Hủy
@@ -112,7 +115,14 @@ public class ReturnCardController {
             this.reason.setVisible(false);
         }
 
-
+        if(selectStar != 0) {
+            BookRatingDAO bookRatingDAO = new BookRatingDAO(this.bookID.getText());
+            try  {
+               bookRatingDAO.rateBook(selectStar);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void confirmButtonOnAction(ActionEvent e) {
@@ -144,50 +154,46 @@ public class ReturnCardController {
 
     @FXML
     private void initialize() {
-        // Mã Unicode của ngôi sao đầy và ngôi sao rỗng
-        String starFullUnicode = "\uf005"; // Ngôi sao đầy
-        String starEmptyUnicode = "\uf006"; // Ngôi sao rỗng
-
         starHbox.setAlignment(Pos.CENTER);
         starHbox.setSpacing(10); // Khoảng cách giữa các ngôi sao là 10px
 
+        String[] levels = {"Rất tệ", "Không hay", "Bình thường", "Hay", "Xuất sắc"};
+
         for (int i = 1; i <= 5; i++) {
             // Tạo ngôi sao ban đầu là rỗng
-            Text star = new Text(starEmptyUnicode);
+            Text star = new Text(BookRating.STAR_EMPTY);
             star.setStyle("-fx-font-family: 'FontAwesome'; -fx-font-size: 25; -fx-fill: gold;");
+            AtomicInteger rating = new AtomicInteger();
 
             // Sự kiện khi nhấn vào ngôi sao
             star.setOnMouseClicked(event -> {
-                if (star.getText().equals(starFullUnicode)) {
+                if (star.getText().equals(BookRating.STAR_FULL)) {
+                    selectStar -= 1;
                     // Nếu đang là ngôi sao đầy, chuyển thành rỗng
-                    star.setText(starEmptyUnicode);
+                    star.setText(BookRating.STAR_EMPTY);
                     star.setStyle("-fx-font-family: 'FontAwesome'; -fx-font-size: 24; -fx-fill: gold;");
                 } else {
+                    selectStar += 1;
                     // Nếu đang là ngôi sao rỗng, chuyển thành đầy
-                    star.setText(starFullUnicode);
+                    star.setText(BookRating.STAR_FULL);
                     star.setStyle("-fx-font-family: 'FontAwesome'; -fx-font-size: 24; -fx-fill: gold;");
                 }
-            });
+                 rating.set(starHbox.getChildren().indexOf(star) + 1); // Tính số sao được chọn
 
+                // Cập nhật mức đánh giá dựa trên số sao
+                if (selectStar > 0 && selectStar <= 3) {
+                    level.setText(levels[selectStar - 1]); // Hiển thị mức đánh giá
+                    level.setStyle( "-fx-text-fill: gray; -fx-font-size: 18px;");
+                } else if(selectStar >= 4 && selectStar <= levels.length) {
+                    level.setText(levels[selectStar - 1]); // Hiển thị mức đánh giá
+                    level.setStyle( "-fx-text-fill: #867507; -fx-font-size: 18px;");
+                } else {
+                    level.setText(""); // Xóa nếu không có sao nào được chọn
+                }
+            });
             // Thêm ngôi sao vào HBox
             starHbox.getChildren().add(star);
         }
     }
 
-    private void setStarRating(int rating) {
-        totalScore = rating * scorePerStar; // Cập nhật điểm
-        for (int i = 0; i < starHbox.getChildren().size(); i++) {
-            Text star = (Text) starHbox.getChildren().get(i);
-            if (i < rating) {
-                // Ngôi sao đầy
-                star.setText("\uf005");
-                star.setStyle("-fx-font-family: 'FontAwesome'; -fx-font-size: 25; -fx-fill: gold;");
-            } else {
-                // Ngôi sao rỗng
-                star.setText("\uf006");
-                star.setStyle("-fx-font-family: 'FontAwesome'; -fx-font-size: 25; -fx-fill: gold;");
-            }
-        }
-        System.out.println("Số điểm hiện tại: " + totalScore); // Hiển thị điểm
-    }
 }

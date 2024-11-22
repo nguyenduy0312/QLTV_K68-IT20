@@ -26,6 +26,8 @@ public class Controller {
     @FXML
     private Button closeButton;
     @FXML
+    private Button minimizeButton;
+    @FXML
     private Label loginMessageLabel;
     @FXML
     private TextField usernameTextField;
@@ -54,7 +56,7 @@ public class Controller {
                 successLogin.setVisible(true);
 
                 // Sử dụng PauseTransition để trì hoãn chuyển đổi
-                PauseTransition pause = new PauseTransition(Duration.seconds(1.5)); // Thời gian chờ 3 giây
+                PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Thời gian chờ 3 giây
                 pause.setOnFinished(event -> {
                     try {
                         // Đóng cửa sổ đăng nhập
@@ -102,7 +104,7 @@ public class Controller {
                 User user = userDAO.findUserByUserName(usernameTextField.getText());
 
                 // Sử dụng PauseTransition để trì hoãn chuyển đổi
-                PauseTransition pause = new PauseTransition(Duration.seconds(1.5)); // Thời gian chờ 3 giây
+                PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Thời gian chờ 3 giây
                 pause.setOnFinished(event -> {
                     try {
 
@@ -143,6 +145,13 @@ public class Controller {
     // Xử lý sự kiện nút close
     public void closeButtonOnAction(ActionEvent e) {
         closeButton.getScene().getWindow().hide();
+    }
+
+    public void minimizeButtonOnAction(ActionEvent e) {
+        // Lấy Stage hiện tại
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        // Thu nhỏ cửa sổ
+        stage.setIconified(true);
     }
 
 

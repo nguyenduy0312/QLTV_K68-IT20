@@ -13,32 +13,32 @@
    <children>
       <AnchorPane fx:id="myPane" prefHeight="521.0" prefWidth="866.0">
          <children>
-            <Label layoutX="220.0" layoutY="271.0" text="Thể loại:">
+            <Label layoutX="310.0" layoutY="280.0" text="Thể loại:">
                <font>
                   <Font name="Tahoma" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="216.0" layoutY="158.0" text="Tên sách:">
+            <Label layoutX="310.0" layoutY="160.0" text="Tên sách:">
                <font>
                   <Font name="Tahoma" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="236.0" layoutY="107.0" text="Mã/ID:">
+            <Label layoutX="310.0" layoutY="110.0" text="Mã/ID:">
                <font>
                   <Font name="Tahoma" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="212.0" layoutY="391.0" text="Số lượng:">
+            <Label layoutX="310.0" layoutY="400.0" text="Số lượng:">
                <font>
                   <Font name="Tahoma" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="224.0" layoutY="210.0" text="Tác giả:">
+            <Label layoutX="310.0" layoutY="220.0" text="Tác giả:">
                <font>
                   <Font name="Tahoma" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="252.0" layoutY="327.0" text="NXB:">
+            <Label layoutX="310.0" layoutY="340.0" text="NXB:">
                <font>
                   <Font name="Tahoma" size="20.0" />
                </font>
@@ -58,60 +58,70 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="37.0" layoutY="100.0" prefHeight="166.0" prefWidth="130.0" stylesheets="@../../resources/document.css">
+            <AnchorPane layoutX="37.0" layoutY="87.0" prefHeight="215.0" prefWidth="180.0" stylesheets="@../../resources/document.css">
                <styleClass>
                   <String fx:value="shadow" />
                   <String fx:value="image_border" />
                </styleClass>
                <children>
-                  <ImageView fx:id="imageView" fitHeight="181.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageView" fitHeight="215.0" fitWidth="182.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
-            <Label fx:id="id" layoutX="328.0" layoutY="101.0" prefHeight="38.0" prefWidth="258.0">
+            <Label fx:id="id" layoutX="400.0" layoutY="105.0" prefHeight="38.0" prefWidth="258.0">
                <font>
                   <Font name="Tahoma" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="author" layoutX="328.0" layoutY="204.0" prefHeight="38.0" prefWidth="369.0">
+            <Label fx:id="author" layoutX="400.0" layoutY="213.0" prefHeight="38.0" prefWidth="369.0">
                <font>
                   <Font name="Tahoma" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="category" layoutX="328.0" layoutY="265.0" prefHeight="38.0" prefWidth="329.0">
+            <Label fx:id="category" layoutX="400.0" layoutY="275.0" prefHeight="38.0" prefWidth="280.0">
                <font>
                   <Font name="Tahoma" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="quantity" layoutX="328.0" layoutY="385.0" prefHeight="38.0" prefWidth="167.0">
+            <Label fx:id="quantity" layoutX="400.0" layoutY="393.0" prefHeight="38.0" prefWidth="167.0">
                <font>
                   <Font name="Tahoma" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="publisher" layoutX="328.0" layoutY="321.0" prefHeight="38.0" prefWidth="283.0">
+            <Label fx:id="publisher" layoutX="400.0" layoutY="330.0" prefHeight="38.0" prefWidth="258.0">
                <font>
                   <Font name="Tahoma" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="title" layoutX="328.0" layoutY="152.0" prefHeight="38.0" prefWidth="369.0">
+            <Label fx:id="title" layoutX="400.0" layoutY="153.0" prefHeight="38.0" prefWidth="369.0">
                <font>
                   <Font name="Tahoma" size="17.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="697.0" layoutY="308.0" prefHeight="122.0" prefWidth="114.0">
+            <AnchorPane layoutX="695.0" layoutY="303.0" prefHeight="125.0" prefWidth="130.0">
                <children>
-                  <ImageView fx:id="qrCode" fitHeight="122.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="qrCode" fitHeight="125.0" fitWidth="130.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
                </children>
                <styleClass>
                   <String fx:value="shadow" />
                   <String fx:value="image_border" />
                </styleClass>
             </AnchorPane>
-            <Label layoutX="727.0" layoutY="446.0" text="Chi tiết">
+            <Label layoutX="739.0" layoutY="450.0" text="Chi tiết">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <HBox fx:id="starHbox" layoutX="13.0" layoutY="289.0" prefHeight="38.0" prefWidth="195.0" />
+            <HBox fx:id="starHbox" layoutX="20.0" layoutY="320.0" prefHeight="31.0" prefWidth="141.0" />
+            <Label fx:id="score" layoutX="167.0" layoutY="325.0" prefHeight="21.0" prefWidth="44.0" text="score" textFill="#e40404">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="numReviews" layoutX="211.0" layoutY="326.0" prefHeight="20.0" prefWidth="87.0" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

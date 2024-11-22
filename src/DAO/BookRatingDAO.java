@@ -1,26 +1,31 @@
 package DAO;
 
 import DataBase.JDBCConnection;
+import model.BookRating;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BookRating {
+public class BookRatingDAO {
 
     private String maSach; // Mã sách
     private double diemSo; // Điểm số của sách
     private int soLuotDanhGia; // Số lượt đánh giá
 
+    public BookRatingDAO() {
+        ;
+    }
+
     // Constructor khởi tạo với mã sách
-    public BookRating(String maSach) {
+    public BookRatingDAO(String maSach) {
         this.maSach = maSach;
         this.diemSo = 0.0; // Mặc định điểm số là 0.0
         this.soLuotDanhGia = 0; // Mặc định số lượt đánh giá là 0
     }
 
-    // Hàm khởi tạo rating cho sách nếu chưa có trong bảng Rating
+    // Hàm khởi tạo rating cho sách nếu chưa có trong bảng BookRating
     public void initializeRating() throws SQLException {
         Connection connection = JDBCConnection.getJDBCConnection();
         if (connection != null) {
@@ -30,7 +35,7 @@ public class BookRating {
             ResultSet rs = checkStmt.executeQuery();
 
             if (!rs.next()) {
-                // Nếu sách chưa có trong bảng Rating, thêm vào với điểm số 0.0 và số lượt đánh giá 0
+                // Nếu sách chưa có trong bảng BookRating, thêm vào với điểm số 0.0 và số lượt đánh giá 0
                 String insertSQL = "INSERT INTO Rating (MaSach, DiemSo, SoLuotDanhGia) VALUES (?, 0.0, 0)";
                 PreparedStatement insertStmt = connection.prepareStatement(insertSQL);
                 insertStmt.setString(1, maSach);
@@ -91,6 +96,28 @@ public class BookRating {
         return newDiemSo;
     }
 
+    public BookRating getRatingByBookId(String bookId) {
+        String query = "SELECT DiemSo, SoLuotDanhGia FROM rating WHERE MaSach = ?";
+        BookRating bookRating = null;
+
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, bookId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    double score = resultSet.getDouble("DiemSo");
+                    int numReviews = resultSet.getInt("SoLuotDanhGia");
+                    bookRating = new BookRating(bookId, score, numReviews);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return bookRating;
+    }
+
     // Getter và Setter
     public String getMaSach() {
         return maSach;
@@ -122,11 +149,11 @@ public class BookRating {
             // Mã sách cần đánh giá
             String maSach = "9780300262650";
 
-            // Tạo đối tượng BookRating
-            BookRating bookRating = new BookRating(maSach);
+            // Tạo đối tượng BookRatingDAO
+            BookRatingDAO bookRatingDAO = new BookRatingDAO(maSach);
 
             // Đánh giá sách với điểm số là 4
-            bookRating.rateBook(5);
+            bookRatingDAO.rateBook(5);
             System.out.println("Đánh giá sách " + maSach + " thành công!");
 
         } catch (SQLException | IllegalArgumentException e) {
