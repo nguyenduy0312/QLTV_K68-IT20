@@ -65,7 +65,12 @@
 }
 
 .info-button-form:hover{
-
     -fx-background-color: #949496
 }
 
+.action-button-form{
+    -fx-background-color:  #4babbe;
+}
+.action-button-form:hover{
+    -fx-background-color: #096fa4;
+}

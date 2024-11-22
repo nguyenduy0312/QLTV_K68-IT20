@@ -33,14 +33,19 @@ public class DocumentDAO implements DocumentDAOInterface {
      * @param document the {@link Document} object to be added.
      */
     public void addDocument(Document document) {
+
         String sqlInsertDocument = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon) VALUES (?, ?, ?, ?, ?, ?, ?)";
         String sqlCheckRating = "SELECT * FROM Rating WHERE MaSach = ?";
         String sqlInsertRating = "INSERT INTO Rating (MaSach, DiemSo, SoLuotDanhGia) VALUES (?, 0.0, 0)"; // Đặt điểm số mặc định là 0 và số lượt đánh giá là 0
+
+        String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
 
         try (Connection connection = JDBCConnection.getJDBCConnection();
              PreparedStatement preparedStatementInsertDocument = connection.prepareStatement(sqlInsertDocument);
              PreparedStatement preparedStatementCheckRating = connection.prepareStatement(sqlCheckRating);
              PreparedStatement preparedStatementInsertRating = connection.prepareStatement(sqlInsertRating)) {
+
 
             // Thêm sách vào bảng Document
             preparedStatementInsertDocument.setString(1, document.getId());
@@ -50,6 +55,7 @@ public class DocumentDAO implements DocumentDAOInterface {
             preparedStatementInsertDocument.setString(5, document.getPublisher());
             preparedStatementInsertDocument.setInt(6, document.getQuantity());
             preparedStatementInsertDocument.setInt(7, document.getMaxBorrowDays());
+            preparedStatementInsertDocument.setBytes(8, document.getPicture());
 
             int result = preparedStatementInsertDocument.executeUpdate();
             System.out.println(result + " row(s) affected in Document table.");
@@ -64,6 +70,9 @@ public class DocumentDAO implements DocumentDAOInterface {
                 preparedStatementInsertRating.executeUpdate();
                 System.out.println("Added rating entry for the book " + document.getId());
             }
+
+
+
 
         } catch (SQLException e) {
             System.err.println("Error adding document: " + e.getMessage());
@@ -98,7 +107,7 @@ public class DocumentDAO implements DocumentDAOInterface {
      * @param document the {@link Document} object containing updated information.
      */
     public void updateDocument(Document document) {
-        String sql = "UPDATE document SET TacGia = ?, TenSach = ?, TheLoaiSach = ?, NhaXuatBan = ?, SoLuong = ?, SoNgayMuon = ? WHERE MaSach = ?";
+        String sql = "UPDATE document SET TacGia = ?, TenSach = ?, TheLoaiSach = ?, NhaXuatBan = ?, SoLuong = ?, SoNgayMuon = ?, Picture = ?, QRCode = ? WHERE MaSach = ?";
 
         try (Connection connection = JDBCConnection.getJDBCConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -109,8 +118,21 @@ public class DocumentDAO implements DocumentDAOInterface {
             preparedStatement.setString(4, document.getPublisher());
             preparedStatement.setInt(5, document.getQuantity());
             preparedStatement.setInt(6, document.getMaxBorrowDays());
-            preparedStatement.setString(7, document.getId());
+            // Set ảnh (Picture) dưới dạng byte[]
+            if (document.getPicture() != null) {
+                preparedStatement.setBytes(7, document.getPicture());  // Chuyển ảnh thành mảng byte
+            } else {
+                preparedStatement.setNull(7, java.sql.Types.BLOB);  // Nếu không có ảnh, set NULL cho Picture
+            }
 
+            if (document.getQrCode() != null) {
+                preparedStatement.setBytes(8, document.getQrCode());  // Chuyển ảnh thành mảng byte
+            } else {
+                preparedStatement.setNull(8, java.sql.Types.BLOB);  // Nếu không có ảnh, set NULL cho QRCode
+            }
+
+            // Set ID sách (MaSach)
+            preparedStatement.setString(9, document.getId());
             int rowsUpdated = preparedStatement.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Document updated successfully.");

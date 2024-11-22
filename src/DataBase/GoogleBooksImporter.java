@@ -13,6 +13,11 @@ import java.net.HttpURLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import javax.imageio.ImageIO;
+
+import model.Document;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import com.google.zxing.BarcodeFormat;
@@ -27,6 +32,7 @@ public class GoogleBooksImporter {
     // API key của bạn
     private static final String API_KEY = "AIzaSyDKISCdSGCglV6eeYaRHvncSQxL4Wr6LDU";
     private static final String API_URL = "https://www.googleapis.com/books/v1/volumes?q=";
+
 
     // Phương thức tạo URL với từ khóa tìm kiếm và số lượng kết quả
     private static String createFullApiUrl(String query, int maxResults) {
@@ -139,8 +145,8 @@ public class GoogleBooksImporter {
                 }
 
                 String nhaXuatBan = book.optString("publisher", "Chưa có nhà xuất bản");
-                int soLuong = 100; // Giả định số lượng là 100
-                int soNgayMuon = 30; // Giả định thời gian mượn mặc định là 30 ngày
+                int soLuong = Document.QUANTITY; // Giả định số lượng là 100
+                int soNgayMuon = Document.MAXBORROWDAYS; // Giả định thời gian mượn mặc định là 20 ngày
 
                 // Lấy infoLink và tạo mã QR từ nó
                 String infoLink = book.optString("infoLink", "");

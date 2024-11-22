@@ -27,6 +27,9 @@ public class Person {
     // Giới tính của người dùng
     private String gender;
 
+    // Chân dung
+    private byte[] picture;  // Dữ liệu hình ảnh dạng byte[]
+
     public Person () {}
     /**
      * Hàm khởi tạo cho lớp Person.
@@ -37,8 +40,9 @@ public class Person {
      * @param address Địa chỉ của người dùng
      * @param phoneNumber Số điện thoại của người dùng
      * @param gender Giới tính của người dùng
+     * @param picture Chân dung của người dùng
      */
-    public Person(String name, Date dateOfBirth, String id, String address, String phoneNumber, String gender,String email) {
+    public Person(String name, Date dateOfBirth, String id, String address, String phoneNumber, String gender,String email, byte[] picture) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.id = id;
@@ -46,6 +50,7 @@ public class Person {
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.email = email;
+        this.picture = picture;
     }
 
     // Phương thức lấy tên của người dùng
@@ -114,6 +119,14 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
     }
 
     /**

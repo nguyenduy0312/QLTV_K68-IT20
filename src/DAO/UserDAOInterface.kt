@@ -18,6 +18,9 @@ interface UserDAOInterface {
     // Phương thức tìm người dùng theo tên
     fun findUserByName(tenNguoiDung: String?): User?
 
+    // Phương thức tìm người dùng theo mã người dùng
+    fun findUserByUserName(userName: String?): User?
+
     // Phương thức tìm tất cả người dùng
     fun findAllUsers(): List<User>?
 }

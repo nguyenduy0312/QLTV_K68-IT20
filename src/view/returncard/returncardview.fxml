@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -8,9 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="711.0" style="-fx-border-color: #999999; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReturnCardController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="711.0" style="-fx-border-color: #999999; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReturnCardController">
    <children>
-      <AnchorPane prefHeight="527.0" prefWidth="712.0">
+      <AnchorPane prefHeight="566.0" prefWidth="712.0">
          <children>
             <AnchorPane prefHeight="84.0" prefWidth="712.0" style="-fx-background-color: #999999;">
                <children>
@@ -29,40 +30,78 @@
                   <Font name="Tahoma" size="25.0" />
                </font>
             </Label>
-            <TextField layoutX="280.0" layoutY="132.0" prefHeight="31.0" prefWidth="185.0" style="-fx-background-radius: 5;" />
             <Label layoutX="43.0" layoutY="192.0" text="Mã người mượn: ">
                <font>
                   <Font name="Tahoma" size="25.0" />
                </font>
             </Label>
-            <TextField layoutX="280.0" layoutY="193.0" prefHeight="31.0" prefWidth="162.0" style="-fx-background-radius: 5;" />
             <Label layoutX="144.0" layoutY="245.0" text="Họ tên: ">
                <font>
                   <Font name="Tahoma" size="25.0" />
                </font>
             </Label>
-            <TextField layoutX="280.0" layoutY="246.0" prefHeight="31.0" prefWidth="219.0" style="-fx-background-radius: 5;" />
             <Label layoutX="23.0" layoutY="320.0" text="Ngày mượn:">
                <font>
                   <Font name="Tahoma" size="25.0" />
                </font>
             </Label>
-            <TextField layoutX="166.0" layoutY="320.0" prefHeight="31.0" prefWidth="179.0" style="-fx-background-radius: 5;" />
-            <TextField layoutX="505.0" layoutY="320.0" prefHeight="31.0" prefWidth="179.0" style="-fx-background-radius: 5;" />
             <Label layoutX="389.0" layoutY="320.0" text="Ngày trả:">
                <font>
                   <Font name="Tahoma" size="25.0" />
                </font>
             </Label>
-            <TextField layoutX="295.0" layoutY="387.0" prefHeight="31.0" prefWidth="341.0" style="-fx-background-radius: 5;" />
-            <Label layoutX="69.0" layoutY="386.0" text="Phạt:">
+            <Label fx:id="Phat" layoutX="69.0" layoutY="386.0" text="Phạt:">
                <font>
                   <Font name="Tahoma" size="25.0" />
                </font>
             </Label>
-            <TextField layoutX="144.0" layoutY="387.0" prefHeight="31.0" prefWidth="137.0" style="-fx-background-radius: 5;" />
-            <Button layoutX="248.0" layoutY="448.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="87.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" text="Trả" />
-            <Button fx:id="closeButton" layoutX="422.0" layoutY="448.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="38.0" prefWidth="87.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" text="Hủy" />
+            <Button fx:id="confirmButton" layoutX="239.0" layoutY="495.0" mnemonicParsing="false" onAction="#confirmButtonOnAction" prefHeight="38.0" prefWidth="87.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" text="Xác nhận" />
+            <Button fx:id="closeButton" layoutX="425.0" layoutY="495.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="38.0" prefWidth="87.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" text="Hủy" />
+            <Label fx:id="bookID" alignment="CENTER" layoutX="276.0" layoutY="133.0" prefHeight="29.0" prefWidth="192.0" style="-fx-border-color: #C0C0C0; -fx-border-width: 1; -fx-border-radius: 5;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="personID" alignment="CENTER" layoutX="276.0" layoutY="194.0" prefHeight="29.0" prefWidth="155.0" style="-fx-border-color: #C0C0C0; -fx-border-width: 1; -fx-border-radius: 5;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="name" alignment="CENTER" layoutX="276.0" layoutY="246.0" prefHeight="29.0" prefWidth="228.0" style="-fx-border-color: #C0C0C0; -fx-border-width: 1; -fx-border-radius: 5;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="borrowDate" alignment="CENTER" layoutX="175.0" layoutY="322.0" prefHeight="29.0" prefWidth="147.0" style="-fx-border-color: #C0C0C0; -fx-border-width: 1; -fx-border-radius: 5;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="returnDate" alignment="CENTER" layoutX="504.0" layoutY="322.0" prefHeight="29.0" prefWidth="147.0" style="-fx-border-color: #C0C0C0; -fx-border-width: 1; -fx-border-radius: 5;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="fine" alignment="CENTER" layoutX="144.0" layoutY="388.0" prefHeight="29.0" prefWidth="107.0" style="-fx-border-color: #C0C0C0; -fx-border-width: 1; -fx-border-radius: 5;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="reason" alignment="CENTER" layoutX="282.0" layoutY="388.0" prefHeight="29.0" prefWidth="389.0" style="-fx-border-color: #C0C0C0; -fx-border-width: 1; -fx-border-radius: 5;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox fx:id="starHbox" layoutX="144.0" layoutY="439.0" prefHeight="38.0" prefWidth="192.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <Label fx:id="Phat1" layoutX="15.0" layoutY="442.0" text="Đánh giá:">
+               <font>
+                  <Font name="Tahoma" size="25.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

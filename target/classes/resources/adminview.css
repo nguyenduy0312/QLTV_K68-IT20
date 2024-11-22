@@ -5,7 +5,7 @@
 }
 
 .semi-top-form{
-    -fx-background-color:#FCFCFC;
+    -fx-background-color: rgba(236, 227, 227, 1);
     -fx-border-color: #dcdcc4;
     -fx-border-width: 2px 2px 2px 4px;
 }
@@ -58,6 +58,7 @@
 .crud-button:hover{
     -fx-background-color: #dede9c;
 }
+
 .search-text-form{
     -fx-background-color: transparent;
 }

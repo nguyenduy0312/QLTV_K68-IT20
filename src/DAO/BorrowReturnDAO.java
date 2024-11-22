@@ -1,12 +1,12 @@
 package DAO;
 
 import DataBase.JDBCConnection;
-import javafx.scene.image.Image;
+import model.BorrowReturn;
 import model.Document;
 import model.User;
+import org.jetbrains.annotations.Nullable;
 import util.Date;
 
-import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BorrowReturnAD {
+public class BorrowReturnDAO {
 
 
     // Ngày mặc định nếu không có ngày cụ thể
@@ -25,12 +25,28 @@ public class BorrowReturnAD {
     private Document document; // Tài liệu đang mượn
 
     private LocalDate borrowDate; // Ngày mượn tài liệu
-    private LocalDate maximumBorrowDate; // Ngày tối đa cho phép mượn tài liệu
-    private Date dueDate; // Ngày phải trả
+    private LocalDate maximumBorrowDate ; // Ngày tối đa cho phép mượn tài liệu
+    private Date dueDate; // Ngày hẹn trả
     private LocalDate actualReturnDate; // Ngày thực tế trả tài liệu
 
+    public LocalDate getMaximumBorrowDate() {
+        return maximumBorrowDate;
+    }
+
+    public void setMaximumBorrowDate(LocalDate maximumBorrowDate) {
+        this.maximumBorrowDate = maximumBorrowDate;
+    }
+
+    public LocalDate getBorrowDate() {
+        return borrowDate;
+    }
+
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
     // Constructor khởi tạo đối tượng `BorrowReturn` với trạng thái mặc định là "Đã trả"
-    public BorrowReturnAD() {
+    public BorrowReturnDAO() {
         this.document = null;
         this.dueDate = DEFAULT_DATE; // Gán giá trị ngày mặc định
     }
@@ -65,24 +81,8 @@ public class BorrowReturnAD {
         }
 
 
-        this.borrowDate = LocalDate.now(); // Lưu ngày mượn hiện tại
-
-        // Nhập ngày phải trả từ người dùng
-        dueDate.inputDate();
         LocalDate dueLocalDate = dueDate.toLocalDate();
-        this.dueDate = new Date(dueLocalDate.getDayOfMonth(), dueLocalDate.getMonthValue(), dueLocalDate.getYear());
 
-        // Tính ngày tối đa có thể mượn
-        this.maximumBorrowDate = borrowDate.plusDays(document.getMaxBorrowDays());
-
-        // Kiểm tra tính hợp lệ của ngày trả
-        if (dueLocalDate.isBefore(borrowDate)) {
-            System.out.println("Return date cannot be before borrow date. Please try again.");
-        } else if (dueLocalDate.isAfter(maximumBorrowDate)) {
-            System.out.println("Cannot borrow beyond the allowed borrowing period.");
-        } else {
-            System.out.println("You have successfully borrowed the book.");
-        }
         // Mã mượn
         String newMaMuon = generateNewMaMuon();
 
@@ -108,7 +108,7 @@ public class BorrowReturnAD {
 
     }
     //Tao mã mượn
-    private String generateNewMaMuon() {
+    public String generateNewMaMuon() {
         String prefix = "HhD";
         int newNumber = 1; // Giá trị bắt đầu nếu không tìm thấy bản ghi nào
 
@@ -141,7 +141,6 @@ public class BorrowReturnAD {
         String updateDocumentSql = "UPDATE document SET SoLuong = SoLuong + 1 WHERE MaSach = ?";
         String updateReturnDateSql = "UPDATE borrowing SET NgayTra = ? WHERE MaMuon = ?";
         String deleteBorrowInfoSql = "DELETE FROM borrowing WHERE MaMuon = ?"; // Xóa thông tin mượn trả sau khi trả sách
-        int finePerDay = 2000; // Phí phạt mỗi ngày
 
         try (Connection connection = JDBCConnection.getJDBCConnection();
              PreparedStatement getBorrowInfoStmt = connection.prepareStatement(getBorrowInfoSql);
@@ -161,15 +160,6 @@ public class BorrowReturnAD {
                     updateReturnDateStmt.setDate(1, java.sql.Date.valueOf(actualReturnDate));
                     updateReturnDateStmt.setString(2, maMuon);
                     updateReturnDateStmt.executeUpdate();
-
-                    // Tính số ngày trễ và tiền phạt
-                    if (actualReturnDate.isAfter(dueDate)) {
-                        long daysLate = java.time.temporal.ChronoUnit.DAYS.between(dueDate, actualReturnDate);
-                        long fine = daysLate * finePerDay;
-                        System.out.println("Bị chậm: " + daysLate + " Ngày. Phạt: " + fine + " VND.");
-                    } else {
-                        System.out.println("Trả sách đúng hạn ");
-                    }
 
                     // Tăng số lượng sách lên 1
                     updateDocumentStmt.setString(1, maSach);
@@ -210,21 +200,134 @@ public class BorrowReturnAD {
         this.dueDate = dueDate;
     }
 
+    /**
+     * Retrieves all documents from the database.
+     *
+     * @return a list of all {@link BorrowReturn} objects.
+     */
+    public List<BorrowReturn> findAllInfo() {
+        List<BorrowReturn> borrowReturnList = new ArrayList<>();
+        String sql = "SELECT * FROM Borrowing";
 
-    public static void main(String[] args) {
-        // Tạo một đối tượng BorrowReturnAD
-        BorrowReturnAD borrowReturnAD = new BorrowReturnAD();
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
 
-        // Tạo đối tượng Date và User
-        Date date1 = new Date(23, 12, 2005);
-        User user1 = new User("Đào Huy Hoàng", date1, "K68_02", "Nam Định", "12345", "Nam", "hoangdao@gmail.com");
+            while (resultSet.next()) {
+                borrowReturnList.add(extractBorrowReturnFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving all documents: " + e.getMessage());
+        }
+        return borrowReturnList;
+    }
 
-        // Tạo đối tượng Document
-        Document document = new Document("UIUC:30112057150333", "Lập trình Java cơ bản", "Nguyễn Văn A", "Giáo trình", "NXB Khoa Học", 100, 30);
+    /**
+     * Kiểm tra  người dùng  đã mượn sách theo mã người dùng.
+     *
+     * @param ID mã người dùng cần tìm
+     * @return true tương ứng nếu tìm thấy, false nếu không tìm thấy
+     */
 
-        // Gọi phương thức borrowDocument từ đối tượng borrowReturnAD
-         // borrowReturnAD.borrowDocument(user1, document);
-         borrowReturnAD.returnDocument("HhD3");
+    public  boolean findUserById(String ID) {
+        if (ID == null || ID.isEmpty()) {
+            System.err.println("ID người dùng không tồn tại...");
+            return false;
+        }
+
+        String sql = "SELECT * FROM borrowing WHERE personID = ?";
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, ID);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi tìm kiếm người dùng theo ID");
+        }
+        return false;
+    }
+
+    /**
+     * Kiểm tra sách đã được mượn sách theo mã sách.
+     *
+     * @param ID mã sách cần tìm
+     * @return true tương ứng nếu tìm thấy, false nếu không tìm thấy
+     */
+    public  boolean findBookById(String ID) {
+        if (ID == null || ID.isEmpty()) {
+            System.err.println("ID sách không tồn tại...");
+            return false;
+        }
+
+        String sql = "SELECT * FROM borrowing WHERE MaSach = ?";
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, ID);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi tìm kiếm sách theo ID");
+        }
+        return false;
+    }
+
+    /**
+     * Tìm kiếm thông tin mượn sách  theo mã người dùng.
+     *
+     * @param ID mã người dùng cần tìm
+     * @return  list tương ứng nếu tìm thấy, null nếu không tìm thấy
+     */
+    public List<BorrowReturn> findInfoByUserID(String ID) {
+        List<BorrowReturn> borrowReturnList = new ArrayList<>();
+        String sql = "SELECT * FROM borrowing WHERE personID = ?";
+
+        try (Connection connection = JDBCConnection.getJDBCConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, ID);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    borrowReturnList.add(extractBorrowReturnFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error finding document by category: " + e.getMessage());
+        }
+        return borrowReturnList;
+    }
+
+
+    private BorrowReturn extractBorrowReturnFromResultSet(ResultSet resultSet) throws SQLException {
+        BorrowReturn borrowReturn = new BorrowReturn();
+        borrowReturn.setMaMuon(resultSet.getString("MaMuon"));
+        borrowReturn.setMaNguoiMuon(resultSet.getString("personID"));
+        borrowReturn.setMaSach(resultSet.getString("MaSach"));
+        DocumentDAO documentDAO = new DocumentDAO();
+        Document document = documentDAO.findDocumentById(borrowReturn.getMaSach());
+        borrowReturn.setTenSach(document.getTitle());
+
+        java.sql.Date sqlBorrowDate = resultSet.getDate("NgayMuon");
+        Date borrowDate = Date.fromSqlDate(sqlBorrowDate);
+        borrowReturn.setNgayMuon(borrowDate);
+
+        java.sql.Date sqlDueDate = resultSet.getDate("NgayHenTra");
+        Date dueDate = Date.fromSqlDate(sqlDueDate);
+        borrowReturn.setNgayHenTra(dueDate);
+
+        java.sql.Date sqlReturnDate = resultSet.getDate("NgayTra");
+        Date returnDate = Date.fromSqlDate(sqlDueDate);
+        borrowReturn.setNgayTra(returnDate);
+        return borrowReturn;
     }
 }
 

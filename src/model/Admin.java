@@ -7,9 +7,6 @@ package model;
 import util.Date;
 import service.UserManage;
 import service.DocumentManage;
-import service.BorrowReturnManage;
-
-import java.util.ArrayList;
 
 public class Admin extends Person {
 
@@ -22,7 +19,6 @@ public class Admin extends Person {
     // Quản lý tài liệu
     private DocumentManage documentManage;
 
-    private BorrowReturnManage borrowReturnManage;
 
     /**
      * Hàm khởi tạo cho lớp Admin với tất cả các tham số.
@@ -38,9 +34,9 @@ public class Admin extends Person {
      * @param userManage Đối tượng quản lý người dùng
      * @param documentManage Đối tượng quản lý tài liệu
      */
-    public Admin(String name, Date dateOfBirth, String id, String address, String phoneNumber, String gender, String email,
+    public Admin(String name, Date dateOfBirth, String id, String address, String phoneNumber, String gender, String email, byte[] picture,
                  Account account, UserManage userManage, DocumentManage documentManage) {
-        super(name, dateOfBirth, id, address, phoneNumber, gender, email);
+        super(name, dateOfBirth, id, address, phoneNumber, gender, email, picture);
         this.account = account;
         this.userManage = userManage;
         this.documentManage = documentManage;
