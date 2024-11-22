@@ -1,5 +1,5 @@
 .vbox_background_center{
-    -fx-background-image: url("img.png");
+    -fx-background-image: url("resources/background.jpg");
     -fx-background-size: cover;
     -fx-background-position: center; /* Căn giữa hình nền */
 }
