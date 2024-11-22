@@ -111,6 +111,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
+            <HBox fx:id="starHbox" layoutX="13.0" layoutY="289.0" prefHeight="38.0" prefWidth="195.0" />
          </children>
       </AnchorPane>
    </children>

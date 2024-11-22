@@ -71,7 +71,7 @@ public class UserController {
     // Trang chủ
     @FXML
     private VBox vboxImages;
-    public static  final  int COL1 = 6;
+    public static  final  int COL1 = 10;
 
     // Mượn/Trả
     @FXML

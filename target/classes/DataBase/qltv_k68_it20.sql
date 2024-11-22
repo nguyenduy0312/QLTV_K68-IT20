@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS Rating (
     ON DELETE CASCADE
     );
 
-
+drop table Rating;
 
 INSERT INTO admin (STT, personID, HoTen, NgaySinh, GioiTinh, DiaChi, Email, SoDienThoai, TenDangNhap, MatKhau)
 VALUES

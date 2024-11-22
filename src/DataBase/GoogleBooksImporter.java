@@ -43,7 +43,7 @@ public class GoogleBooksImporter {
     public void importBooksToDatabase() {
         try {
             // Tạo URL với từ khóa và số lượng kết quả mong muốn
-            String apiUrl = createFullApiUrl("harry", 10);
+            String apiUrl = createFullApiUrl("doreamon", 30);
 
             // Lấy dữ liệu sách từ Google Books API
             JSONArray booksArray = getBooksFromApi(apiUrl);
