@@ -9,9 +9,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="937.0" styleClass="vbox_background_center" stylesheets="@loginPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.Controller">
    <right>
-      <AnchorPane prefHeight="500.0" prefWidth="439.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="502.0" prefWidth="907.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="usernameTextField" layoutX="135.0" layoutY="242.0" promptText="Tài khoản" style="-fx-background-radius: 50; -fx-border-radius: 50;" />
             <FontAwesomeIcon fill="#4f4f4f" glyphName="USER" layoutX="98.0" layoutY="265.0" size="21" />
@@ -42,7 +43,7 @@
             </Label>
             <Button fx:id="closeButton" layoutX="365.0" layoutY="7.0" mnemonicParsing="false" onAction="#closeButtonOnAction" textFill="#4f4f4f" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                <graphic>
-                  <FontAwesomeIcon glyphName="CLOSE" size="21" text="" />
+                  <FontAwesomeIcon fill="#dad1d1" glyphName="CLOSE" size="20" text="" />
                </graphic>
                <styleClass>
                   <String fx:value="close_button" />
@@ -52,9 +53,9 @@
             <Label fx:id="loginMessageLabel" layoutX="140.0" layoutY="277.0" prefHeight="21.0" prefWidth="269.0" textFill="#da1010">
                <font>
                   <Font size="12.0" />
-               </font></Label>
+               </font>
+            </Label>
             <PasswordField fx:id="passwordPasswordField" layoutX="135.0" layoutY="300.0" promptText="Mật khẩu" style="-fx-background-radius: 50; -fx-border-radius: 50;" />
-            <TextField fx:id="successLogin" layoutX="265.0" layoutY="33.0" prefHeight="46.0" prefWidth="176.0" style="-fx-background-radius: 10; -fx-background-color: GREEN;" text="Đăng nhập thành công" visible="false" />
             <Label alignment="CENTER" layoutX="118.0" layoutY="74.0" prefHeight="59.0" prefWidth="99.0" text="lib" textFill="#f4ede5">
                <font>
                   <Font name="Cooper Black" size="55.0" />
@@ -70,6 +71,24 @@
                   <Font name="Cooper Black" size="40.0" />
                </font>
             </Label>
+            <TextField fx:id="successLogin" layoutX="-29.0" layoutY="8.0" prefHeight="33.0" prefWidth="193.0" text="Đăng nhập thành công" visible="false">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="login" />
+                  <String fx:value="success" />
+               </styleClass>
+            </TextField>
+            <Button fx:id="minimizeButton" layoutX="823.0" layoutY="2.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="37.0">
+               <graphic>
+                  <FontAwesomeIcon fill="#e4d4d4" glyphName="MINUS" size="15" />
+               </graphic>
+               <styleClass>
+                  <String fx:value="close_button" />
+                  <String fx:value="cursor_hand" />
+               </styleClass>
+            </Button>
          </children>
       </AnchorPane>
    </right>

@@ -1,5 +1,6 @@
 .vbox_background_center{
-    -fx-background-image: url("resources/background.jpg");
+
+    -fx-background-image: url("/resources/background.png");
     -fx-background-size: cover;
     -fx-background-position: center; /* Căn giữa hình nền */
 }
@@ -8,17 +9,17 @@
     -fx-background-color:  #F5F5DC
 }
 .login_button:hover{
-    -fx-background-color: #2e8bea;
+    -fx-background-color: #3890f3;
 }
 .cursor_hand{
     -fx-cursor:hand
 }
 .close_button{
-    -fx-background-color:  #F5F5DC
+    -fx-background-color:  transparent;
 }
 .close_button:hover{
     -fx-background-color: #ec0d0d;
 }
 .success.login{
-    -fx-background-color: GREEN;
+    -fx-background-color: #047204;
 }

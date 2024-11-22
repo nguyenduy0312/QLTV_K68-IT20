@@ -34,11 +34,12 @@ public class DocumentDAO implements DocumentDAOInterface {
      */
     public void addDocument(Document document) {
 
+        String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
         String sqlInsertDocument = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon) VALUES (?, ?, ?, ?, ?, ?, ?)";
         String sqlCheckRating = "SELECT * FROM Rating WHERE MaSach = ?";
         String sqlInsertRating = "INSERT INTO Rating (MaSach, DiemSo, SoLuotDanhGia) VALUES (?, 0.0, 0)"; // Đặt điểm số mặc định là 0 và số lượt đánh giá là 0
 
-        String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 
         try (Connection connection = JDBCConnection.getJDBCConnection();
@@ -60,18 +61,16 @@ public class DocumentDAO implements DocumentDAOInterface {
             int result = preparedStatementInsertDocument.executeUpdate();
             System.out.println(result + " row(s) affected in Document table.");
 
-            // Kiểm tra nếu sách đã có trong bảng Rating chưa
+            // Kiểm tra nếu sách đã có trong bảng BookRating chưa
             preparedStatementCheckRating.setString(1, document.getId());
             ResultSet rs = preparedStatementCheckRating.executeQuery();
 
-            // Nếu sách chưa có trong bảng Rating, thêm vào
+            // Nếu sách chưa có trong bảng BookRating, thêm vào
             if (!rs.next()) {
                 preparedStatementInsertRating.setString(1, document.getId());
                 preparedStatementInsertRating.executeUpdate();
                 System.out.println("Added rating entry for the book " + document.getId());
             }
-
-
 
 
         } catch (SQLException e) {

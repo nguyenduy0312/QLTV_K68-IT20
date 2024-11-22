@@ -83,7 +83,7 @@
                      </font>
                   </Label>
                </children></AnchorPane>
-            <AnchorPane fx:id="home" layoutY="107.0" prefHeight="603.0" prefWidth="1433.0" visible="false">
+            <AnchorPane fx:id="home" layoutY="107.0" prefHeight="603.0" prefWidth="1433.0">
                <children>
                   <Label alignment="CENTER" prefHeight="39.0" prefWidth="182.0" stylesheets="@../../resources/userview.css" text="Trang chủ" textFill="#4babbe">
                      <font>
@@ -113,13 +113,13 @@
                         </AnchorPane>
                         <ScrollPane layoutY="78.0" prefHeight="597.0" prefWidth="1378.0">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="1400.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="850.0" prefWidth="2050.0">
                                  <children>
                                     <VBox fx:id="vboxImages" prefHeight="900.0" prefWidth="1400.0">
                                        <children>
                                           <HBox fx:id="hBox1" prefHeight="243.0" prefWidth="1345.0">
                                              <children>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <HBox.margin>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
@@ -131,7 +131,7 @@
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -143,7 +143,7 @@
                                                       <Insets left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -155,7 +155,7 @@
                                                       <Insets left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -167,7 +167,7 @@
                                                       <Insets left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -179,7 +179,7 @@
                                                       <Insets left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -189,6 +189,54 @@
                                                    </styleClass>
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../resources/default.jpg" />
+                                                   </image>
+                                                   <styleClass>
+                                                      <String fx:value="shadow" />
+                                                      <String fx:value="anchorPane-border1" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../resources/default.jpg" />
+                                                   </image>
+                                                   <styleClass>
+                                                      <String fx:value="shadow" />
+                                                      <String fx:value="anchorPane-border1" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../resources/default.jpg" />
+                                                   </image>
+                                                   <styleClass>
+                                                      <String fx:value="shadow" />
+                                                      <String fx:value="anchorPane-border1" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../resources/default.jpg" />
+                                                   </image>
+                                                   <styleClass>
+                                                      <String fx:value="shadow" />
+                                                      <String fx:value="anchorPane-border1" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
                                              </children>
@@ -198,7 +246,7 @@
                                           </HBox>
                                           <HBox fx:id="hBox2" prefHeight="243.0" prefWidth="1345.0">
                                              <children>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -210,7 +258,7 @@
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -222,7 +270,7 @@
                                                       <Insets left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -234,7 +282,7 @@
                                                       <Insets left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -246,7 +294,7 @@
                                                       <Insets left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -258,7 +306,7 @@
                                                       <Insets left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -268,6 +316,54 @@
                                                    </styleClass>
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../resources/default.jpg" />
+                                                   </image>
+                                                   <styleClass>
+                                                      <String fx:value="shadow" />
+                                                      <String fx:value="anchorPane-border1" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../resources/default.jpg" />
+                                                   </image>
+                                                   <styleClass>
+                                                      <String fx:value="shadow" />
+                                                      <String fx:value="anchorPane-border1" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../resources/default.jpg" />
+                                                   </image>
+                                                   <styleClass>
+                                                      <String fx:value="shadow" />
+                                                      <String fx:value="anchorPane-border1" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../resources/default.jpg" />
+                                                   </image>
+                                                   <styleClass>
+                                                      <String fx:value="shadow" />
+                                                      <String fx:value="anchorPane-border1" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
                                              </children>
@@ -277,7 +373,7 @@
                                           </HBox>
                                           <HBox fx:id="hBox3" prefHeight="243.0" prefWidth="1353.0">
                                              <children>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -289,7 +385,7 @@
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -301,7 +397,7 @@
                                                       <Insets left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -313,7 +409,7 @@
                                                       <Insets left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -325,7 +421,7 @@
                                                       <Insets left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -337,7 +433,7 @@
                                                       <Insets left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
-                                                <ImageView fitHeight="217.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../resources/default.jpg" />
                                                    </image>
@@ -347,6 +443,54 @@
                                                    </styleClass>
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../resources/default.jpg" />
+                                                   </image>
+                                                   <styleClass>
+                                                      <String fx:value="shadow" />
+                                                      <String fx:value="anchorPane-border1" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../resources/default.jpg" />
+                                                   </image>
+                                                   <styleClass>
+                                                      <String fx:value="shadow" />
+                                                      <String fx:value="anchorPane-border1" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../resources/default.jpg" />
+                                                   </image>
+                                                   <styleClass>
+                                                      <String fx:value="shadow" />
+                                                      <String fx:value="anchorPane-border1" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <ImageView fitHeight="240.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../resources/default.jpg" />
+                                                   </image>
+                                                   <styleClass>
+                                                      <String fx:value="shadow" />
+                                                      <String fx:value="anchorPane-border1" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </ImageView>
                                              </children>
@@ -368,7 +512,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="muonTra" layoutX="-6.0" layoutY="107.0" prefHeight="606.0" prefWidth="1433.0">
+            <AnchorPane fx:id="muonTra" layoutX="-6.0" layoutY="107.0" prefHeight="606.0" prefWidth="1433.0" visible="false">
                <children>
                   <Label layoutX="49.0" layoutY="14.0" text="Mượn/Trả sách" textFill="#20b0e3">
                      <font>

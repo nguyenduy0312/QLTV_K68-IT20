@@ -13,25 +13,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane fx:id="myPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="1432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
+<StackPane fx:id="myPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
     <children>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="top_form" stylesheets="@../../resources/adminview.css">
+        <AnchorPane prefHeight="817.0" prefWidth="1432.0" styleClass="top_form" stylesheets="@../../resources/adminview.css">
          <children>
-              <BorderPane prefHeight="720.0" prefWidth="930.0">
+              <BorderPane prefHeight="802.0" prefWidth="1500.0">
                   <top>
-                      <AnchorPane prefHeight="77.0" prefWidth="1433.0" style="-fx-background-color: #D3E3FD;" BorderPane.alignment="CENTER">
+                      <AnchorPane prefHeight="80.0" prefWidth="1471.0" style="-fx-background-color: #D3E3FD;" BorderPane.alignment="CENTER">
                           <children>
-                              <Button fx:id="minimizeButton" layoutX="1285.0" layoutY="-1.0" mnemonicParsing="false" onAction="#minimizeButtonOnAction" prefHeight="31.0" prefWidth="40.0" styleClass="exit-button" stylesheets="@../../resources/adminview.css" AnchorPane.rightAnchor="108.0">
+                              <Button fx:id="minimizeButton" layoutX="1352.0" layoutY="-1.0" mnemonicParsing="false" onAction="#minimizeButtonOnAction" prefHeight="31.0" prefWidth="40.0" styleClass="exit-button" stylesheets="@../../resources/adminview.css" AnchorPane.rightAnchor="116.0">
                                   <graphic>
                                       <FontAwesomeIcon glyphName="MINUS" size="15" text="" />
                                   </graphic>
                               </Button>
-                              <Button fx:id="closeButton" layoutX="1389.0" layoutY="-1.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="31.0" prefWidth="44.0" styleClass="exit-button" stylesheets="@../../resources/adminview.css">
+                              <Button fx:id="closeButton" layoutX="1458.0" layoutY="-1.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="31.0" prefWidth="44.0" styleClass="exit-button" stylesheets="@../../resources/adminview.css">
                                   <graphic>
                                       <FontAwesomeIcon glyphName="CLOSE" size="20" text="" />
                                   </graphic>
                               </Button>
-                        <AnchorPane layoutY="30.0" prefHeight="50.0" prefWidth="1433.0" style="-fx-background-color: #2BB7BB;" styleClass="semi-top-form" stylesheets="@../../resources/adminview.css">
+                        <AnchorPane layoutY="30.0" prefHeight="50.0" prefWidth="1508.0" style="-fx-background-color: #2BB7BB;" styleClass="semi-top-form" stylesheets="@../../resources/adminview.css">
                            <children>
                                     <Label alignment="CENTER" layoutX="26.0" layoutY="4.0" prefHeight="42.0" prefWidth="143.0" text="Libhub">
                                         <font>
@@ -48,7 +48,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <Button fx:id="maximizeButton" layoutX="1335.0" layoutY="-1.0" mnemonicParsing="false" onAction="#maximizeButtonOnAction" prefHeight="31.0" prefWidth="41.0" styleClass="exit-button">
+                        <Button fx:id="maximizeButton" layoutX="1406.0" layoutY="-1.0" mnemonicParsing="false" onAction="#maximizeButtonOnAction" prefHeight="31.0" prefWidth="41.0" styleClass="exit-button">
                            <graphic>
                               <FontAwesomeIcon glyphName="SQUARE" />
                            </graphic>
@@ -57,7 +57,7 @@
                       </AnchorPane>
                   </top>
                   <left>
-                      <AnchorPane prefHeight="643.0" prefWidth="311.0" stylesheets="@../../resources/adminview.css" BorderPane.alignment="CENTER">
+                      <AnchorPane prefHeight="722.0" prefWidth="311.0" stylesheets="@../../resources/adminview.css" BorderPane.alignment="CENTER">
                           <children>
                               <FontAwesomeIcon fill="#eee0e0" glyphName="USER" layoutX="74.0" layoutY="92.0" size="5em" text="" AnchorPane.leftAnchor="110.0" />
                               <Label alignment="CENTER" layoutX="52.0" layoutY="114.0" prefHeight="28.0" prefWidth="104.0" text="Xin Chào," AnchorPane.leftAnchor="90.0">
@@ -146,15 +146,15 @@
                   <center>
                       <AnchorPane prefHeight="676.0" prefWidth="1122.0" stylesheets="@../../resources/adminview.css" BorderPane.alignment="CENTER">
                           <children>
-                              <AnchorPane fx:id="home" layoutX="3.0" layoutY="1.0" prefHeight="689.0" prefWidth="1117.0" style="-fx-background-color: #FCFCFC;" visible="false">
+                              <AnchorPane fx:id="home" layoutX="3.0" layoutY="1.0" prefHeight="720.0" prefWidth="1195.0" style="-fx-background-color: #FCFCFC;">
                                   <children>
-                              <AnchorPane layoutX="3.0" prefHeight="695.0" prefWidth="1112.0">
+                              <AnchorPane layoutX="3.0" prefHeight="718.0" prefWidth="1112.0">
                                  <styleClass>
                                     <String fx:value="shadow" />
                                     <String fx:value="anchorPane-border1" />
                                  </styleClass>
                                  <children>
-                                                  <AnchorPane layoutX="18.0" layoutY="83.0" prefHeight="56.0" prefWidth="1085.0" style="-fx-background-color: #20A8D8;">
+                                                  <AnchorPane layoutX="18.0" layoutY="83.0" prefHeight="56.0" prefWidth="1157.0" style="-fx-background-color: #20A8D8;">
                                                       <children>
                                                           <Label layoutX="44.0" layoutY="17.0" text="Mới nhất" textFill="#f5f2f2">
                                                               <font>
@@ -167,9 +167,9 @@
                                                           <String fx:value="anchorPane-border1" />
                                                       </styleClass>
                                                   </AnchorPane>
-                                    <ScrollPane layoutX="18.0" layoutY="139.0" prefHeight="542.0" prefWidth="1085.0" stylesheets="@../../resources/adminview.css">
+                                    <ScrollPane layoutX="18.0" layoutY="139.0" prefHeight="542.0" prefWidth="1158.0" stylesheets="@../../resources/adminview.css">
                                        <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="1400.0" style="-fx-background-color: adminviewfxml">
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="850.0" prefWidth="2050.0" style="-fx-background-color: adminviewfxml">
                                              <children>
                                                 <VBox fx:id="vboxImages" layoutY="-2.0" prefHeight="900.0" prefWidth="1400.0">
                                                    <children>
@@ -205,6 +205,30 @@
                                                                </image>
                                                                <HBox.margin>
                                                                   <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </ImageView>
+                                                            <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                               <image>
+                                                                  <Image url="@../../resources/default.jpg" />
+                                                               </image>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </ImageView>
+                                                            <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                               <image>
+                                                                  <Image url="@../../resources/default.jpg" />
+                                                               </image>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </ImageView>
+                                                            <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                               <image>
+                                                                  <Image url="@../../resources/default.jpg" />
+                                                               </image>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                                </HBox.margin>
                                                             </ImageView>
                                                             <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
@@ -294,6 +318,30 @@
                                                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                                </HBox.margin>
                                                             </ImageView>
+                                                            <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                               <image>
+                                                                  <Image url="@../../resources/default.jpg" />
+                                                               </image>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </ImageView>
+                                                            <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                               <image>
+                                                                  <Image url="@../../resources/default.jpg" />
+                                                               </image>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </ImageView>
+                                                            <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                               <image>
+                                                                  <Image url="@../../resources/default.jpg" />
+                                                               </image>
+                                                               <HBox.margin>
+                                                                  <Insets right="10.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </ImageView>
                                                          </children>
                                                          <VBox.margin>
                                                             <Insets left="10.0" right="10.0" top="10.0" />
@@ -357,6 +405,30 @@
                                                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                                </HBox.margin>
                                                             </ImageView>
+                                                            <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                               <image>
+                                                                  <Image url="@../../resources/default.jpg" />
+                                                               </image>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </ImageView>
+                                                            <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                               <image>
+                                                                  <Image url="@../../resources/default.jpg" />
+                                                               </image>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </ImageView>
+                                                            <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                                               <image>
+                                                                  <Image url="@../../resources/default.jpg" />
+                                                               </image>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </ImageView>
                                                          </children>
                                                          <VBox.margin>
                                                             <Insets bottom="10.0" right="10.0" top="10.0" />
@@ -382,22 +454,22 @@
                               </AnchorPane>
                                   </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="quanLySach" layoutX="-1.0" layoutY="1.0" prefHeight="696.0" prefWidth="1119.0" style="-fx-background-color: #FCFCFC;" styleClass="anchorPane-border1" stylesheets="@../../resources/adminview.css">
+                              <AnchorPane fx:id="quanLySach" layoutX="-1.0" layoutY="1.0" prefHeight="720.0" prefWidth="1198.0" style="-fx-background-color: #FCFCFC;" styleClass="anchorPane-border1" stylesheets="@../../resources/adminview.css" visible="false">
                                   <children>
-                                      <TableView fx:id="tableViewBook" layoutX="20.0" layoutY="188.0" prefHeight="352.0" prefWidth="1090.0" stylesheets="@../../resources/adminview.css">
+                                      <TableView fx:id="tableViewBook" layoutX="20.0" layoutY="188.0" prefHeight="352.0" prefWidth="1175.0" stylesheets="@../../resources/adminview.css">
                                           <columns>
-                                              <TableColumn fx:id="idColumn" minWidth="2.0" prefWidth="119.0" text="Mã sách" />
-                                              <TableColumn fx:id="titleColumn" minWidth="0.0" prefWidth="372.0" text="Tên sách" />
-                                              <TableColumn fx:id="categoryColumn" minWidth="0.0" prefWidth="317.0" text="Thể loại" />
-                                              <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="146.0" text="Số lượng" />
-                                              <TableColumn fx:id="maxBorrowDaysColumn" minWidth="0.0" prefWidth="135.0" text="Số ngày  mượn " />
+                                              <TableColumn fx:id="idColumn" minWidth="2.0" prefWidth="174.0" text="Mã sách" />
+                                              <TableColumn fx:id="titleColumn" minWidth="0.0" prefWidth="384.0" text="Tên sách" />
+                                              <TableColumn fx:id="categoryColumn" minWidth="0.0" prefWidth="325.0" text="Thể loại" />
+                                              <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="127.0" text="Số lượng" />
+                                              <TableColumn fx:id="maxBorrowDaysColumn" minWidth="0.0" prefWidth="164.0" text="Số ngày  mượn tối đa" />
                                           </columns>
                                           <styleClass>
                                               <String fx:value="anchorPane-border1" />
                                               <String fx:value="shadow" />
                                           </styleClass>
                                       </TableView>
-                                      <Button fx:id="editBookButton" layoutX="629.0" layoutY="603.0" mnemonicParsing="false" onAction="#editBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #FFE082;" stylesheets="@../../resources/adminview.css" text="Sửa">
+                                      <Button fx:id="editBookButton" layoutX="658.0" layoutY="603.0" mnemonicParsing="false" onAction="#editBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #FFE082;" stylesheets="@../../resources/adminview.css" text="Sửa">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -409,7 +481,7 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <Button fx:id="addBookButton" layoutX="93.0" layoutY="603.0" mnemonicParsing="false" onAction="#addBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-radius: 7; -fx-background-color: #A5D6A7;" stylesheets="@../../resources/adminview.css" text="Thêm">
+                                      <Button fx:id="addBookButton" layoutX="120.0" layoutY="603.0" mnemonicParsing="false" onAction="#addBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-radius: 7; -fx-background-color: #A5D6A7;" stylesheets="@../../resources/adminview.css" text="Thêm">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -421,7 +493,7 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <Button fx:id="deleteBookButton" layoutX="361.0" layoutY="603.0" mnemonicParsing="false" onAction="#deleteBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #EF9A9A;" stylesheets="@../../resources/adminview.css" text="Xóa">
+                                      <Button fx:id="deleteBookButton" layoutX="389.0" layoutY="603.0" mnemonicParsing="false" onAction="#deleteBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #EF9A9A;" stylesheets="@../../resources/adminview.css" text="Xóa">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -433,7 +505,7 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <Button fx:id="viewInfoBookButton" alignment="CENTER" layoutX="872.0" layoutY="603.0" mnemonicParsing="false" onAction="#viewInfoBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #81D4FA;" stylesheets="@../../resources/adminview.css" text="Xem">
+                                      <Button fx:id="viewInfoBookButton" alignment="CENTER" layoutX="929.0" layoutY="603.0" mnemonicParsing="false" onAction="#viewInfoBookButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #81D4FA;" stylesheets="@../../resources/adminview.css" text="Xem">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -459,9 +531,9 @@
                               </TextField>
                                   </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="quanLyMuonSach" layoutX="-1.0" prefHeight="696.0" prefWidth="1120.0" style="-fx-background-color: #ffff;" visible="false">
+                              <AnchorPane fx:id="quanLyMuonSach" layoutX="-1.0" prefHeight="720.0" prefWidth="1196.0" style="-fx-background-color: #ffff;" visible="false">
                                   <children>
-                                      <Button fx:id="borrowBookButton" layoutX="774.0" layoutY="603.0" mnemonicParsing="false" onAction="#borrowBookButtonOnAction" prefHeight="54.0" prefWidth="317.0" style="-fx-background-radius: 10; -fx-background-color: #A5D6A7;" text="Ghi phiếu mượn">
+                                      <Button fx:id="borrowBookButton" layoutX="828.0" layoutY="603.0" mnemonicParsing="false" onAction="#borrowBookButtonOnAction" prefHeight="54.0" prefWidth="317.0" style="-fx-background-radius: 10; -fx-background-color: #A5D6A7;" text="Ghi phiếu mượn">
                                           <font>
                                               <Font name="Tahoma Bold" size="22.0" />
                                           </font>
@@ -476,60 +548,60 @@
                                             </font>
                                         </Label>
                                       <Line endX="950.0" layoutX="146.0" layoutY="60.0" startX="-130.0" AnchorPane.leftAnchor="21.5" />
-                              <TableView fx:id="tableViewUser1" layoutX="62.0" layoutY="234.0" prefHeight="253.0" prefWidth="481.0">
+                              <TableView fx:id="tableViewUser1" layoutX="62.0" layoutY="234.0" prefHeight="253.0" prefWidth="521.0">
                                 <columns>
-                                  <TableColumn fx:id="personId1Column" prefWidth="95.0" text="Mã " />
-                                  <TableColumn fx:id="personName1Column" prefWidth="228.0" text="Họ tên" />
-                                    <TableColumn fx:id="phoneNumber1Column" prefWidth="165.0" text="SĐT" />
+                                  <TableColumn fx:id="personId1Column" prefWidth="110.0" text="Mã " />
+                                  <TableColumn fx:id="personName1Column" prefWidth="259.0" text="Họ tên" />
+                                    <TableColumn fx:id="phoneNumber1Column" prefWidth="151.0" text="SĐT" />
                                 </columns>
                               </TableView>
-                              <TableView fx:id="tableViewBook1" layoutX="625.0" layoutY="235.0" prefHeight="253.0" prefWidth="475.0">
+                              <TableView fx:id="tableViewBook1" layoutX="660.0" layoutY="235.0" prefHeight="253.0" prefWidth="522.0">
                                  <columns>
-                                    <TableColumn fx:id="id1Column" prefWidth="118.0" text="Mã sách" />
-                                    <TableColumn fx:id="title1Column" prefWidth="255.0" text="Tên sách" />
-                                    <TableColumn fx:id="quantity1Column" prefWidth="101.0" text="Số lượng" />
+                                    <TableColumn fx:id="id1Column" prefWidth="148.0" text="Mã sách" />
+                                    <TableColumn fx:id="title1Column" prefWidth="290.0" text="Tên sách" />
+                                    <TableColumn fx:id="quantity1Column" prefWidth="83.0" text="Số lượng" />
                                  </columns>
                               </TableView>
-                              <TextField fx:id="searchUserField1" layoutX="115.0" layoutY="130.0" onAction="#searchUserField1OnAction" prefHeight="46.0" prefWidth="361.0" promptText="Tìm kiếm người dùng" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
+                              <TextField fx:id="searchUserField1" layoutX="135.0" layoutY="130.0" onAction="#searchUserField1OnAction" prefHeight="46.0" prefWidth="361.0" promptText="Tìm kiếm người dùng" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </TextField>
-                              <FontAwesomeIcon glyphName="SEARCH" layoutX="69.0" layoutY="159.0" size="20" text="" />
-                              <TextField fx:id="searchBookField1" layoutX="708.0" layoutY="129.0" onAction="#searchBookField1OnAction" prefHeight="46.0" prefWidth="361.0" promptText="Tìm kiếm tài liệu" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
+                              <FontAwesomeIcon glyphName="SEARCH" layoutX="103.0" layoutY="159.0" size="20" text="" />
+                              <TextField fx:id="searchBookField1" layoutX="767.0" layoutY="130.0" onAction="#searchBookField1OnAction" prefHeight="46.0" prefWidth="361.0" promptText="Tìm kiếm tài liệu" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </TextField>
-                              <FontAwesomeIcon glyphName="SEARCH" layoutX="664.0" layoutY="160.0" size="20" text="" />
+                              <FontAwesomeIcon glyphName="SEARCH" layoutX="735.0" layoutY="159.0" size="20" text="" />
                               <Label layoutX="62.0" layoutY="202.0" text="Danh sách người dùng">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="641.0" layoutY="202.0" text="Danh sách tài liệu">
+                              <Label layoutX="660.0" layoutY="202.0" text="Danh sách tài liệu">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
                                   </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="quanLyTraSach" layoutX="3.0" layoutY="2.0" prefHeight="686.0" prefWidth="1115.0" style="-fx-background-color: #FFFF;" visible="false">
+                              <AnchorPane fx:id="quanLyTraSach" layoutX="3.0" layoutY="2.0" prefHeight="719.0" prefWidth="1195.0" style="-fx-background-color: #FFFF;" visible="false">
                                   <children>
-                                      <TableView fx:id="infoBorrowTableView" layoutX="14.0" layoutY="222.0" prefHeight="332.0" prefWidth="1087.0" stylesheets="@../../resources/adminview.css">
+                                      <TableView fx:id="infoBorrowTableView" layoutX="14.0" layoutY="222.0" prefHeight="332.0" prefWidth="1170.0" stylesheets="@../../resources/adminview.css">
                                           <columns>
-                                              <TableColumn fx:id="borrowIDColumn" prefWidth="143.0" text="Mã mượn" />
-                                              <TableColumn fx:id="personID2Column" prefWidth="280.0" text="Mã người mượn" />
-                                              <TableColumn fx:id="bookID2Column" prefWidth="250.0" text="Mã sách" />
-                                              <TableColumn fx:id="borrowDateColumn" prefWidth="226.0" text="Ngày mượn" />
-                                    <TableColumn fx:id="dueDateColumn" prefWidth="208.0" text="Ngày hẹn trả" />
+                                              <TableColumn fx:id="borrowIDColumn" prefWidth="190.0" text="Mã mượn" />
+                                              <TableColumn fx:id="personID2Column" prefWidth="233.0" text="Mã người mượn" />
+                                              <TableColumn fx:id="bookID2Column" prefWidth="304.0" text="Mã sách" />
+                                              <TableColumn fx:id="borrowDateColumn" prefWidth="230.0" text="Ngày mượn" />
+                                    <TableColumn fx:id="dueDateColumn" prefWidth="212.0" text="Ngày hẹn trả" />
                                           </columns>
                                           <styleClass>
                                               <String fx:value="shadow" />
                                               <String fx:value="anchorPane-border1" />
                                           </styleClass>
                                       </TableView>
-                                      <Button fx:id="returnBookButton" layoutX="769.0" layoutY="598.0" mnemonicParsing="false" onAction="#returnBookButtonOnAction" prefHeight="54.0" prefWidth="317.0" style="-fx-background-radius: 10; -fx-background-color: #EF9A9A;" styleClass="crud-button" text="Xác nhận trả sách">
+                                      <Button fx:id="returnBookButton" layoutX="852.0" layoutY="603.0" mnemonicParsing="false" onAction="#returnBookButtonOnAction" prefHeight="54.0" prefWidth="317.0" style="-fx-background-radius: 10; -fx-background-color: #EF9A9A;" styleClass="crud-button" text="Xác nhận trả sách">
                                           <font>
                                               <Font name="Tahoma Bold" size="22.0" />
                                           </font>
@@ -540,30 +612,30 @@
                                  </font>
                               </Label>
                               <Line endX="950.0" layoutX="146.0" layoutY="60.0" startX="-130.0" />
-                              <TextField fx:id="searchInfoBorrowField" layoutX="337.0" layoutY="126.0" onAction="#searchInfoBorrowFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
+                              <TextField fx:id="searchInfoBorrowField" layoutX="358.0" layoutY="127.0" onAction="#searchInfoBorrowFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </TextField>
-                              <FontAwesomeIcon glyphName="SEARCH" layoutX="297.0" layoutY="157.0" size="20" text="" />
+                              <FontAwesomeIcon glyphName="SEARCH" layoutX="330.0" layoutY="157.0" size="20" text="" />
                                   </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="quanLyNguoiDung" layoutX="-2.0" layoutY="1.0" prefHeight="696.0" prefWidth="1122.0" style="-fx-background-color: #FFFF;" visible="false">
+                              <AnchorPane fx:id="quanLyNguoiDung" layoutX="-2.0" layoutY="1.0" prefHeight="721.0" prefWidth="1199.0" style="-fx-background-color: #FFFF;" visible="false">
                                   <children>
-                                      <TableView fx:id="tableViewUser" layoutX="12.0" layoutY="227.0" prefHeight="315.0" prefWidth="1105.0" stylesheets="@../../resources/adminview.css">
+                                      <TableView fx:id="tableViewUser" layoutX="23.0" layoutY="227.0" prefHeight="315.0" prefWidth="1161.0" stylesheets="@../../resources/adminview.css">
                                           <columns>
-                                              <TableColumn fx:id="personIdColumn" prefWidth="162.0" text="Mã người dùng" />
-                                              <TableColumn fx:id="personNameColumn" prefWidth="298.0" text="Họ tên" />
-                                              <TableColumn fx:id="genderColumn" prefWidth="151.0" text="Giới tính" />
-                                              <TableColumn fx:id="dateOfBirthColumn" prefWidth="239.0" text="Ngày sinh" />
-                                              <TableColumn fx:id="phoneNumberColumn" prefWidth="255.0" text="Số điện thoại" />
+                                              <TableColumn fx:id="personIdColumn" prefWidth="170.0" text="Mã người dùng" />
+                                              <TableColumn fx:id="personNameColumn" prefWidth="352.0" text="Họ tên" />
+                                              <TableColumn fx:id="genderColumn" prefWidth="165.0" text="Giới tính" />
+                                              <TableColumn fx:id="dateOfBirthColumn" prefWidth="225.0" text="Ngày sinh" />
+                                              <TableColumn fx:id="phoneNumberColumn" prefWidth="246.0" text="Số điện thoại" />
                                           </columns>
                                           <styleClass>
                                               <String fx:value="shadow" />
                                               <String fx:value="anchorPane-border1" />
                                           </styleClass>
                                       </TableView>
-                                      <Button fx:id="addUserButton" layoutX="127.0" layoutY="600.0" mnemonicParsing="false" onAction="#addUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #A5D6A7;" stylesheets="@../../resources/adminview.css" text="Thêm">
+                                      <Button fx:id="addUserButton" layoutX="147.0" layoutY="600.0" mnemonicParsing="false" onAction="#addUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #A5D6A7;" stylesheets="@../../resources/adminview.css" text="Thêm">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -572,7 +644,7 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <Button fx:id="deleteUserButton" layoutX="380.0" layoutY="600.0" mnemonicParsing="false" onAction="#deleteUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #EF9A9A;" stylesheets="@../../resources/adminview.css" text="Xóa">
+                                      <Button fx:id="deleteUserButton" layoutX="429.0" layoutY="600.0" mnemonicParsing="false" onAction="#deleteUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #EF9A9A;" stylesheets="@../../resources/adminview.css" text="Xóa">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -581,7 +653,7 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <Button fx:id="editUserButton" layoutX="647.0" layoutY="600.0" mnemonicParsing="false" onAction="#editUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #FFE082;" stylesheets="@../../resources/adminview.css" text="Sửa">
+                                      <Button fx:id="editUserButton" layoutX="707.0" layoutY="602.0" mnemonicParsing="false" onAction="#editUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #FFE082;" stylesheets="@../../resources/adminview.css" text="Sửa">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -590,7 +662,7 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <Button fx:id="viewUserInfoButton" alignment="CENTER" layoutX="885.0" layoutY="601.0" mnemonicParsing="false" onAction="#viewInfoUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #81D4FA;" text="Xem">
+                                      <Button fx:id="viewUserInfoButton" alignment="CENTER" layoutX="961.0" layoutY="600.0" mnemonicParsing="false" onAction="#viewInfoUserButtonOnAction" prefHeight="54.0" prefWidth="136.0" style="-fx-background-color: #81D4FA;" text="Xem">
                                           <font>
                                               <Font size="18.0" />
                                           </font>
@@ -599,22 +671,22 @@
                                     <String fx:value="cursor_hand" />
                                  </styleClass>
                                       </Button>
-                                      <FontAwesomeIcon glyphName="TIMES_CIRCLE" layoutX="403.0" layoutY="634.0" size="20" text="" />
-                                      <FontAwesomeIcon glyphName="PLUS_CIRCLE" layoutX="147.0" layoutY="634.0" size="20" />
-                                      <FontAwesomeIcon glyphName="EDIT" layoutX="673.0" layoutY="636.0" size="20" text="" />
-                                      <FontAwesomeIcon glyphName="EYE" layoutX="909.0" layoutY="635.0" size="20" text="" />
+                                      <FontAwesomeIcon glyphName="TIMES_CIRCLE" layoutX="454.0" layoutY="636.0" size="20" text="" />
+                                      <FontAwesomeIcon glyphName="PLUS_CIRCLE" layoutX="171.0" layoutY="636.0" size="20" />
+                                      <FontAwesomeIcon glyphName="EDIT" layoutX="727.0" layoutY="636.0" size="20" text="" />
+                                      <FontAwesomeIcon glyphName="EYE" layoutX="979.0" layoutY="636.0" size="20" text="" wrappingWidth="20.0" />
                                         <Label layoutX="35.0" layoutY="20.0" text="Quản Lý Người Dùng">
                                             <font>
                                                 <Font name="Tahoma Bold" size="25.0" />
                                             </font>
                                         </Label>
                               <Line endX="950.0" layoutX="157.0" layoutY="60.0" startX="-135.0" />
-                              <TextField fx:id="searchUserField" layoutX="363.0" layoutY="122.0" onAction="#searchUserFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
+                              <TextField fx:id="searchUserField" layoutX="402.0" layoutY="122.0" onAction="#searchUserFieldOnAction" prefHeight="46.0" prefWidth="396.0" promptText="Tìm kiếm" style="-fx-background-radius: 10; -fx-background-color: #E5E7EB;" styleClass="search-text-form" stylesheets="@../../resources/adminview.css">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </TextField>
-                              <FontAwesomeIcon glyphName="SEARCH" layoutX="330.0" layoutY="153.0" size="20" />
+                              <FontAwesomeIcon glyphName="SEARCH" layoutX="371.0" layoutY="153.0" size="20" />
                                   </children>
                               </AnchorPane>
                           </children>

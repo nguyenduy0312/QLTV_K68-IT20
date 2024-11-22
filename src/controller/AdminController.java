@@ -84,7 +84,7 @@ public class AdminController {
     private AnchorPane quanLyNguoiDung;
     @FXML
     private VBox vboxImages;
-    public static final int COL = 7;
+    public static final int COL = 10;
 
     // QL sách
     @FXML

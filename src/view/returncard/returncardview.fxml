@@ -102,6 +102,11 @@
                   <Font name="Tahoma" size="25.0" />
                </font>
             </Label>
+            <Label fx:id="level" layoutX="336.0" layoutY="445.0" prefHeight="27.0" prefWidth="118.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
