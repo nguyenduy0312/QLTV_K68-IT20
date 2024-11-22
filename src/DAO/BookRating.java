@@ -120,13 +120,13 @@ public class BookRating {
     public static void main(String[] args) {
         try {
             // Mã sách cần đánh giá
-            String maSach = "0802133622";
+            String maSach = "9780300262650";
 
             // Tạo đối tượng BookRating
             BookRating bookRating = new BookRating(maSach);
 
             // Đánh giá sách với điểm số là 4
-            bookRating.rateBook(4);
+            bookRating.rateBook(5);
             System.out.println("Đánh giá sách " + maSach + " thành công!");
 
         } catch (SQLException | IllegalArgumentException e) {

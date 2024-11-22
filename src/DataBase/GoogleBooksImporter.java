@@ -156,7 +156,7 @@ public class GoogleBooksImporter {
                 String imageUrl = book.optJSONObject("imageLinks") != null ? book.optJSONObject("imageLinks").optString("thumbnail", "") : "";
                 byte[] picture = null;
                 if (!imageUrl.isEmpty()) {
-                    picture = downloadImage(imageUrl, 210, 280); // Thay đổi kích thước ảnh thành 200x300 pixels
+                    picture = downloadImage(imageUrl, 175, 235); // Thay đổi kích thước ảnh thành 200x300 pixels
                 }
 
                 // Thiết lập các tham số cho câu lệnh SQL chèn vào Document

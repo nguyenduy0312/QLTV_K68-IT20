@@ -33,26 +33,48 @@ public class DocumentDAO implements DocumentDAOInterface {
      * @param document the {@link Document} object to be added.
      */
     public void addDocument(Document document) {
+
         String sql = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon, Picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
+        String sqlInsertDocument = "INSERT INTO Document (MaSach, TenSach, TacGia, TheLoaiSach, NhaXuatBan, SoLuong, SoNgayMuon) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sqlCheckRating = "SELECT * FROM Rating WHERE MaSach = ?";
+        String sqlInsertRating = "INSERT INTO Rating (MaSach, DiemSo, SoLuotDanhGia) VALUES (?, 0.0, 0)"; // Đặt điểm số mặc định là 0 và số lượt đánh giá là 0
+
+
         try (Connection connection = JDBCConnection.getJDBCConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatementInsertDocument = connection.prepareStatement(sqlInsertDocument);
+             PreparedStatement preparedStatementCheckRating = connection.prepareStatement(sqlCheckRating);
+             PreparedStatement preparedStatementInsertRating = connection.prepareStatement(sqlInsertRating)) {
 
-            preparedStatement.setString(1, document.getId());
-            preparedStatement.setString(2, document.getTitle());
-            preparedStatement.setString(3, document.getAuthor());
-            preparedStatement.setString(4, document.getCategory());
-            preparedStatement.setString(5, document.getPublisher());
-            preparedStatement.setInt(6, document.getQuantity());
-            preparedStatement.setInt(7, document.getMaxBorrowDays());
-            preparedStatement.setBytes(8, document.getPicture());
+            // Thêm sách vào bảng Document
+            preparedStatementInsertDocument.setString(1, document.getId());
+            preparedStatementInsertDocument.setString(2, document.getTitle());
+            preparedStatementInsertDocument.setString(3, document.getAuthor());
+            preparedStatementInsertDocument.setString(4, document.getCategory());
+            preparedStatementInsertDocument.setString(5, document.getPublisher());
+            preparedStatementInsertDocument.setInt(6, document.getQuantity());
+            preparedStatementInsertDocument.setInt(7, document.getMaxBorrowDays());
 
-            int result = preparedStatement.executeUpdate();
-            System.out.println(result + " row(s) affected.");
+            int result = preparedStatementInsertDocument.executeUpdate();
+            System.out.println(result + " row(s) affected in Document table.");
+
+            // Kiểm tra nếu sách đã có trong bảng Rating chưa
+            preparedStatementCheckRating.setString(1, document.getId());
+            ResultSet rs = preparedStatementCheckRating.executeQuery();
+
+            // Nếu sách chưa có trong bảng Rating, thêm vào
+            if (!rs.next()) {
+                preparedStatementInsertRating.setString(1, document.getId());
+                preparedStatementInsertRating.executeUpdate();
+                System.out.println("Added rating entry for the book " + document.getId());
+            }
+
+
         } catch (SQLException e) {
             System.err.println("Error adding document: " + e.getMessage());
         }
     }
+
 
     @Override
     /**
