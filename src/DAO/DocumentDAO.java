@@ -39,10 +39,12 @@ public class DocumentDAO implements DocumentDAOInterface {
         String sqlInsertRating = "INSERT INTO Rating (MaSach, DiemSo, SoLuotDanhGia) VALUES (?, 0.0, 0)"; // Đặt điểm số mặc định là 0 và số lượt đánh giá là 0
 
 
+
         try (Connection connection = JDBCConnection.getJDBCConnection();
              PreparedStatement preparedStatementInsertDocument = connection.prepareStatement(sqlInsertDocument);
              PreparedStatement preparedStatementCheckRating = connection.prepareStatement(sqlCheckRating);
              PreparedStatement preparedStatementInsertRating = connection.prepareStatement(sqlInsertRating)) {
+
 
             // Thêm sách vào bảng Document
             preparedStatementInsertDocument.setString(1, document.getId());
