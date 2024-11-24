@@ -3,6 +3,7 @@ package controller;
 import DAO.BorrowReturnDAO;
 import DAO.DocumentDAO;
 import DAO.UserDAO;
+import DataBase.GoogleBooksImporter;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -86,6 +87,14 @@ public class AdminController {
     @FXML
     private VBox vboxImages;
     public static final int COL = 10;
+
+    @FXML
+    public TextField themeLabel;
+    @FXML
+    public TextField quantityLabel;
+    @FXML
+    public Button getBookButton;
+
 
     // QL sách
     @FXML
@@ -268,6 +277,18 @@ public class AdminController {
     public void qlNguoiDungButtonOnAction(ActionEvent e) {
         hideAllPanes();
         quanLyNguoiDung.setVisible(!quanLyNguoiDung.isVisible());
+    }
+
+
+    // Get Book from API
+    public void getBookButtonOnAction(ActionEvent e) {
+        String theme = themeLabel.getText();
+        String quantity = quantityLabel.getText();
+
+        if(theme != null && quantity != null) {
+            GoogleBooksImporter googleBooksImporter = new GoogleBooksImporter();
+            googleBooksImporter.importBooksToDatabase();
+        }
     }
 
     // Add book
@@ -790,6 +811,7 @@ public class AdminController {
         String keyword = searchInfoBorrowField.getText();
         updateTableViewBook(keyword);
     }
+
 
 
 }

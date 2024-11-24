@@ -105,10 +105,10 @@ public class ReturnCardController {
             this.fine.setVisible(true);
             this.reason.setVisible(true);
 
-            long daysLate = java.time.temporal.ChronoUnit.DAYS.between(returnDate.toLocalDate(), borrowReturn.getNgayHenTra().toLocalDate());
+            long daysLate = java.time.temporal.ChronoUnit.DAYS.between(borrowReturn.getNgayHenTra().toLocalDate() ,returnDate.toLocalDate());
             long fine = daysLate * FINEADAY;
-            this.fine.setText(Long.toString(fine));
-            this.reason.setText("Trả tài liệu châm " + daysLate + "ngày.");
+            this.fine.setText(Long.toString(fine) + "VNĐ");
+            this.reason.setText("Trả tài liệu chậm " + daysLate + " ngày.");
         } else {
             this.Phat.setVisible(false);
             this.fine.setVisible(false);
