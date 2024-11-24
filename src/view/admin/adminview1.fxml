@@ -531,7 +531,7 @@
                               </TextField>
                               <TextField fx:id="themeField" layoutX="878.0" layoutY="139.0" promptText="Nhập chủ đề" style="-fx-background-color: #E5E7EB; -fx-background-radius: 8;" styleClass="search-text-form" />
                               <TextField fx:id="quantityField" layoutX="1081.0" layoutY="139.0" prefHeight="31.0" prefWidth="77.0" promptText="Số lượng" style="-fx-background-color: #E5E7EB; -fx-background-radius: 8;" styleClass="search-text-form" />
-                              <Button fx:id="getBookButton" layoutX="878.0" layoutY="91.0" mnemonicParsing="false" style="-fx-background-color: #6666CC; -fx-background-radius: 5;" text="Lấy sách API" textFill="WHITE" />
+                              <Button fx:id="getBookButton" layoutX="878.0" layoutY="91.0" mnemonicParsing="false" onAction="#getBookButtonOnAction" style="-fx-background-color: #6666CC; -fx-background-radius: 5;" styleClass="cursor_hand" text="Lấy sách API" textFill="WHITE" />
                                   </children>
                               </AnchorPane>
                               <AnchorPane fx:id="quanLyMuonSach" layoutX="-1.0" prefHeight="720.0" prefWidth="1196.0" style="-fx-background-color: #ffff;" visible="false">

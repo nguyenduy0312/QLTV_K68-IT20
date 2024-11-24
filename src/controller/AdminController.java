@@ -89,9 +89,9 @@ public class AdminController {
     public static final int COL = 10;
 
     @FXML
-    public TextField themeLabel;
+    public TextField themeField;
     @FXML
-    public TextField quantityLabel;
+    public TextField quantityField;
     @FXML
     public Button getBookButton;
 
@@ -282,12 +282,20 @@ public class AdminController {
 
     // Get Book from API
     public void getBookButtonOnAction(ActionEvent e) {
-        String theme = themeLabel.getText();
-        String quantity = quantityLabel.getText();
+        String theme = themeField.getText();
+        String quantity = quantityField.getText();
 
         if(theme != null && quantity != null) {
             GoogleBooksImporter googleBooksImporter = new GoogleBooksImporter();
-            googleBooksImporter.importBooksToDatabase();
+            googleBooksImporter.importBooksToDatabase(theme, Integer.parseInt(quantity));
+            loadBook();
+            loadBook1();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi Lấy Sách");
+            alert.setHeaderText("Không thể lấy sách.");
+            alert.setContentText("Vui lòng kiểm tra lại thông tin hoặc thử lại sau.");
+            alert.showAndWait();
         }
     }
 

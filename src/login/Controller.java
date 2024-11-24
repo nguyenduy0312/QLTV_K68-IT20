@@ -51,6 +51,8 @@ public class Controller {
             String type = loginDAO.authenticate1(usernameTextField.getText(), passwordPasswordField.getText());
             if(type == null) {
                 loginMessageLabel.setText("Tên đăng nhập hoặc mật khẩu không chính xác!");
+                addClearLabelOnInput(usernameTextField);
+                addClearLabelOnInput(passwordPasswordField);
             } else {
                 // Hiển thị thông báo
                 successLogin.setVisible(true);
@@ -97,6 +99,8 @@ public class Controller {
             String type = loginDAO.authenticate2(usernameTextField.getText(), passwordPasswordField.getText());
             if(type == null) {
                 loginMessageLabel.setText("Tên đăng nhập hoặc mật khẩu không chính xác!");
+                addClearLabelOnInput(usernameTextField);
+                addClearLabelOnInput(passwordPasswordField);
             } else {
                 // Hiển thị thông báo
                 successLogin.setVisible(true);
@@ -181,4 +185,9 @@ public class Controller {
         }
     }
 
+    private void addClearLabelOnInput(TextField textField) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            loginMessageLabel.setText("");
+        });
+    }
 }
