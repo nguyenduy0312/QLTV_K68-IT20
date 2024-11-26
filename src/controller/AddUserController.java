@@ -28,9 +28,6 @@ public class AddUserController {
     @FXML
     private AdminController adminController;
 
-    public void setAdminController(AdminController adminController) {
-        this.adminController = adminController;
-    }
 
     @FXML
     private Button closeButton;
@@ -60,6 +57,10 @@ public class AddUserController {
     @FXML
     private ImageView imageView;
 
+
+    public void setAdminController(AdminController adminController) {
+        this.adminController = adminController;
+    }
 
     public void initialize() {
         setGender(); // Đảm bảo được gọi khi giao diện được tải

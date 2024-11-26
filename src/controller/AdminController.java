@@ -819,7 +819,4 @@ public class AdminController {
         String keyword = searchInfoBorrowField.getText();
         updateTableViewBook(keyword);
     }
-
-
-
 }
